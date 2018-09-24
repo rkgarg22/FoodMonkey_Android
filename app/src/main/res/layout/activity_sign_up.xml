@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.SignUpActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginRight="@dimen/marginLeft"
+            android:layout_marginTop="30dp">
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/yourEmailPassword"
+                android:inputType="text"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/email"
+                android:inputType="textPassword"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@drawable/curve_border_background"
+                android:drawableRight="@drawable/show_password"
+                android:hint="@string/setPassword"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black"
+                app:passwordToggleEnabled="true" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/fullName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/password"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/fullName"
+                android:inputType="text"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/mobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/fullName"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/mobileNumber"
+                android:inputType="text"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/termsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/mobileNumber"
+                android:layout_marginTop="@dimen/marginTop"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CustomControls.TextViewRawLineRegular
+                    android:id="@+id/readTerms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/readAcceptTermsAndConditions"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/createAccountButton"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/termsLayout"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/createAccount"
+                android:textColor="@android:color/white" />
+
+            <CustomControls.TextViewRawLineRegular
+                android:id="@+id/orLoginText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/createAccountButton"
+                android:layout_marginTop="@dimen/largeMarginTop"
+                android:gravity="center"
+                android:text="@string/loginWith"
+                android:textColor="@android:color/black" />
+
+            <LinearLayout
+                android:id="@+id/socailMediaLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/orLoginText"
+                android:layout_marginTop="@dimen/marginTop"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.5"
+                    android:background="#2d4a96"
+                    android:orientation="horizontal">
+
+                    <CustomControls.TextViewIconStyle
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:text="@string/facebookIcon"
+                        android:textColor="@android:color/white"
+                        android:textSize="25dp" />
+
+                    <CustomControls.TextViewRawLineRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/facebook"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/smallTitleText" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.5"
+                    android:background="#dd4b39"
+                    android:orientation="horizontal">
+
+                    <CustomControls.TextViewIconStyle
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:text="@string/googleIcon"
+                        android:textColor="@android:color/white"
+                        android:textSize="25dp" />
+
+                    <CustomControls.TextViewRawLineRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/google"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/smallTitleText" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <CustomControls.TextViewRawLineBold
+                android:id="@+id/loginText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/socailMediaLayout"
+                android:layout_marginTop="@dimen/largeMarginTop"
+                android:gravity="center"
+                android:text="@string/haveAnAccount" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#d70f64</color>
+    <color name="colorPrimaryDark">#d70f64</color>
+    <color name="colorAccent">#737373</color>
+    <color name="pink">#d70f64</color>
+    <color name="gray">#323232</color>
+    <color name="underline">#cfcfcf</color>
+
+    <color name="duskYellow">#fecc00</color>
+    <color name="lightGrey">#cbcbcb</color>
+
+</resources>

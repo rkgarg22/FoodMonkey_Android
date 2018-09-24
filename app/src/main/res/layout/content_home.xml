@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_marginBottom="@dimen/margin"
+            android:layout_marginTop="@dimen/largeMarginTop"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/curve_border_background">
+
+                <CustomControls.EditTextLatoRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/locationBtn"
+                    android:background="@android:color/transparent"
+                    android:drawableRight="@drawable/close"
+                    android:hint="BD87SZ"
+                    android:paddingLeft="@dimen/largeMargin" />
+
+                <ImageView
+                    android:id="@+id/locationBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_toLeftOf="@+id/searchBtn"
+                    android:padding="@dimen/padding"
+                    android:src="@drawable/location" />
+
+                <ImageView
+                    android:id="@+id/searchBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/marginLeft"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/padding"
+                    android:src="@drawable/search" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/restaurantLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/largeMarginTop">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/restSeeMore"
+                    android:text="@string/restaurant"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/titleText" />
+
+                <TextView
+                    android:id="@+id/restSeeMore"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:padding="5dp"
+                    android:background="@drawable/round_edges_background"
+                    android:gravity="center"
+                    android:text="@string/seeMore"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/mediumText" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/restaurantRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/restSeeMore"
+                    android:layout_marginTop="@dimen/marginTop" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/takeOutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/largeMarginTop">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/menuSeeMore"
+                    android:text="@string/takeOut"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/titleText" />
+
+                <TextView
+                    android:id="@+id/menuSeeMore"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/round_edges_background"
+                    android:gravity="center"
+                    android:text="@string/seeMore"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/mediumText" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/menuRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/menuSeeMore"
+                    android:layout_marginTop="@dimen/marginTop" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/yourOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/largeMarginTop"
+                android:layout_marginTop="@dimen/largeMarginTop">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/orderSeeMore"
+                    android:text="@string/yourOrder"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/titleText" />
+
+                <TextView
+                    android:id="@+id/orderSeeMore"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/round_edges_background"
+                    android:gravity="center"
+                    android:text="@string/seeMore"
+                    android:padding="5dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/mediumText" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/orderRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/orderSeeMore"
+                    android:layout_marginTop="@dimen/marginTop" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">FoodMonkey</string>
+    <string name="facebook_app_id">5061065330892</string> <!--dummy keys -->
+    <string name="fb_login_protocol_scheme">fb5061065330892</string>
+    <string name="ok">Ok</string>
+    <string name="letsTheChimp"><b>Let</b> The <b>Chimp</b> Tingle \n<b>Your</b> Taste <b>Buds..</b></string>
+    <string name="splash_three_text">Let The Chimp Tingle\n Your Taste Buds</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="login">Login</string>
+    <string name="loginWith">OR LOGIN WITH</string>
+    <string name="facebook">Facebook</string>
+
+
+    <!--Font awsome cheats-->
+
+    <string name="facebookIcon">&#xf09a;</string>
+    <string name="googleIcon">&#xf1a0;</string>
+    <string name="google">Google</string>
+    <string name="dontHaveAccount">DO NOT HAVE AN ACCOUNT? SIGN UP</string>
+    <string name="thumbLogin">Thumb Login</string>
+    <string name="faceRecognition">Facial Recognition</string>
+    <string name="forgetPasswordText">Enter your email and we will send a link to\n recover your account</string>
+    <string name="emailAddress">Email Address</string>
+    <string name="yourEmailPassword">Your Email Address</string>
+    <string name="setPassword">Set Password</string>
+    <string name="fullName">Full Name</string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="readAcceptTermsAndConditions">I\'ve read and accept Terms and conditions</string>
+    <string name="createAccount">Create Account</string>
+    <string name="haveAnAccount">HAVE AN ACCOUNT? LOGIN</string>
+    <string name="signUp">Signup</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="foodMonkey">Food Monkey</string>
+    <string name="myAccount">My Account</string>
+    <string name="signOut">Signout</string>
+    <string name="referFriend">Refer a friend</string>
+    <string name="myOrders">My Orders</string>
+    <string name="help">Help</string>
+    <string name="terms">Terms</string>
+    <string name="settings">Settings</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="seeMore">See More</string>
+    <string name="takeOut">Take Out Menu</string>
+    <string name="yourOrder">Your Orders</string>
+    <string name="sponsored">Sponsored</string>
+
+</resources>
