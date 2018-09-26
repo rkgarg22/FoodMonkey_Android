@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_image"
     tools:context="com.kartik.project.foodmonkey.HomeListingActivity">
 
     <RelativeLayout
@@ -115,7 +116,6 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/infoToolbar"
-        />
+        android:layout_below="@+id/infoToolbar" />
 
 </RelativeLayout>

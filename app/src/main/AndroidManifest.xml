@@ -56,7 +56,8 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".HomeListingActivity"></activity>
+        <activity android:name=".HomeListingActivity" />
+        <activity android:name=".DetailActivity"></activity>
     </application>
 
 </manifest>

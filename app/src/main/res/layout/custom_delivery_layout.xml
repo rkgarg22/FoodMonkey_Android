@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:background="@color/popUpmenu"
+    android:paddingLeft="@dimen/padding">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/deliveryRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/margin"
+            android:buttonTint="@android:color/white"
+            android:text="Delivery"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/smallTitleText" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/deliveryRadio"
+            android:layout_marginBottom="@dimen/margin"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/underline" />
+
+        <RadioButton
+            android:id="@+id/takeAwayRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@android:color/white"
+            android:text="@string/takeAway"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/smallTitleText" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/deliveryRadio"
+            android:layout_marginBottom="@dimen/margin"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/underline" />
+
+
+        <RadioButton
+            android:id="@+id/deliveryTakeAwayRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/margin"
+            android:buttonTint="@android:color/white"
+            android:text="@string/deliveryTakeAway"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/smallTitleText" />
+
+    </RadioGroup>
+
+</RelativeLayout>

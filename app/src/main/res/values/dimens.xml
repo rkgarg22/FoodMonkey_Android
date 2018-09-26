@@ -20,4 +20,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="smallMargin">5dp</dimen>
     <dimen name="superSmallText">10sp</dimen>
+    <dimen name="smallPadding">5dp</dimen>
 </resources>

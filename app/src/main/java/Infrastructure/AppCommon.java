@@ -10,6 +10,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -21,6 +23,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Patterns;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 
 import com.kartik.project.foodmonkey.R;
@@ -490,7 +493,6 @@ public class AppCommon {
     }
 
 
-
     public boolean isValidPassword(final String password) {
 
         Pattern pattern;
@@ -514,5 +516,13 @@ public class AppCommon {
         } else {
             return false;
         }
+    }
+
+    public void setImageBlack(ImageView imageView) {
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+        imageView.setColorFilter(filter);
     }
 }

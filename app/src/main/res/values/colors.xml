@@ -9,5 +9,7 @@
 
     <color name="duskYellow">#fecc00</color>
     <color name="lightGrey">#cbcbcb</color>
+    <color name="closedRestColor">#e5e5e5</color>
+    <color name="popUpmenu">#7E083A</color>
 
 </resources>

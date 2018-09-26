@@ -1,26 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
-    <CustomControls.TextViewLatoBold
-        android:id="@+id/textTitle"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbarHeight"
-        android:layout_below="@+id/recyclerView"
-        android:background="@color/closedRestColor"
-        android:gravity="center"
-        android:text="@string/closedRestaurents"
-        android:visibility="gone"
-        android:textSize="@dimen/smallTitleText" />
-
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.DetailActivity">
 
     <RelativeLayout
-        android:id="@+id/parentLayout"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/padding"
+            android:src="@drawable/back_icon" />
+
+        <CustomControls.TextViewLatoBold
+            android:id="@+id/toolbarText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/left"
+            android:text="Pepe's Piri Piri"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/titleText" />
+
+        <CustomControls.EditTextLatoRegular
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_toLeftOf="@+id/searchBtn"
+            android:layout_toRightOf="@+id/left"
+            android:background="@drawable/search_background"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/searchBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/largeMargin"
+            android:layout_toLeftOf="@+id/cartToolbarLayout"
+            android:padding="@dimen/smallPadding"
+            android:src="@drawable/search" />
+
+        <RelativeLayout
+            android:id="@+id/cartToolbarLayout"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin"
+            android:background="@drawable/search_background">
+
+            <ImageView
+                android:id="@+id/cartImg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin"
+                android:src="@drawable/back_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/cartImg"
+                android:paddingLeft="@dimen/padding"
+                android:text="99"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/smallTitleText" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/itemDetailLayout"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@+id/textTitle">
+        android:layout_below="@+id/toolbar">
 
         <ImageView
             android:id="@+id/displayPic"
@@ -58,7 +126,8 @@
                 android:layout_alignParentRight="true"
                 android:text="@string/sponsored"
                 android:textColor="@color/pink"
-                android:textSize="@dimen/smallTitleText" />
+                android:textSize="@dimen/smallTitleText"
+                android:visibility="gone" />
 
 
             <RatingBar
@@ -173,5 +242,18 @@
             android:layout_alignParentBottom="true"
             android:background="@color/underline" />
     </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight"
+        android:layout_below="@+id/itemDetailLayout" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabLayout" />
+
 
 </RelativeLayout>
