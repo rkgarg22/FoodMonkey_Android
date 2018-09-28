@@ -1,13 +1,105 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.kartik.project.foodmonkey.Fragments.InfoActivity">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:orientation="vertical">
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin"
+                android:paddingTop="@dimen/margin"
+                android:text="@string/description"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dummyText"
+                android:textSize="@dimen/smallText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/readMore"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/underline1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/layout1"
+            android:background="@color/underline" />
+
+        <CustomControls.TextViewLatoBold
+            android:id="@+id/openingHrText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/underline1"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
+            android:text="@string/openningHour"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:textSize="@dimen/smallTitleText" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/openingHourRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/openingHrText" />
+
+        <View
+            android:id="@+id/underline2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_below="@+id/openingHourRecyclerView"
+            android:background="@color/underline" />
+
+        <CustomControls.TextViewLatoBold
+            android:id="@+id/deliveryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/underline2"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
+            android:text="@string/deliveryAreas"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/smallTitleText" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/deliveryRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_below="@+id/deliveryText" />
+
+    </RelativeLayout>
+
+
+</ScrollView>

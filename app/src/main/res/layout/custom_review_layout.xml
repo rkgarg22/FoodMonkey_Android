@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/marginLeft"
+        android:layout_marginRight="@dimen/margin"
+        android:layout_marginTop="@dimen/largeMarginTop">
+
+        <CustomControls.TextViewLatoRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/dateText"
+            android:text="Brenda"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/smallTitleText" />
+
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="01/09/2018"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/mediumText" />
+
+    </RelativeLayout>
+
+    <RatingBar
+        android:theme="@style/RatingBar"
+        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:rating="4.5" />
+    <!--android:scaleX="0.9"-->
+    <!--android:scaleY="0.9"-->
+
+    <CustomControls.TextViewLatoRegular
+        android:id="@+id/descriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:layout_marginTop="@dimen/smallMargin"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/mediumText" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/largeMarginTop"
+        android:background="@color/underline" />
+
+
+</LinearLayout>

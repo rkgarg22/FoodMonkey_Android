@@ -88,14 +88,14 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
             //Returning the current tabs
             switch (position) {
                 case 0:
-                    MenuFragment tab1 = new MenuFragment();
-                    return tab1;
+                    MenuFragment menuFragment = new MenuFragment();
+                    return menuFragment;
                 case 1:
-                    ReviewsFragment tab2 = new ReviewsFragment();
-                    return tab2;
+                    ReviewsFragment reviewsFragment = new ReviewsFragment();
+                    return reviewsFragment;
                 case 2:
-                    InfoActivity tab3 = new InfoActivity();
-                    return tab3;
+                    InfoActivity infoActivity = new InfoActivity();
+                    return infoActivity;
                 default:
                     return null;
             }

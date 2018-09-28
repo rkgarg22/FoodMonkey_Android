@@ -5,9 +5,12 @@
     tools:context="com.kartik.project.foodmonkey.Fragments.MenuFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ExpandableListView
+        android:id="@+id/expandableListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:divider="@android:color/transparent"
+        android:scrollbars="none"
+        android:groupIndicator="@android:color/transparent" />
 
 </FrameLayout>
