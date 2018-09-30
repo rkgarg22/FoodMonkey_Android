@@ -57,7 +57,9 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".HomeListingActivity" />
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".CheckOutActivity" />
+        <activity android:name=".EditCartActivity"></activity>
     </application>
 
 </manifest>

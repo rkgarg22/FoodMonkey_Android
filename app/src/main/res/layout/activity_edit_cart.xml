@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.EditCartActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/largeMargin"
+            android:layout_marginLeft="@dimen/largeMargin">
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/sectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:gravity="center_vertical"
+                android:text="Pepe's Piri Piri"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/sectionTitle"
+                android:background="@color/underline" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/editCartRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/editCartRecyclerView"
+                android:background="@color/underline" />
+
+            <RelativeLayout
+                android:id="@+id/totalAmountLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/line2">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/totalAmount"
+                    android:gravity="center_vertical"
+                    android:text="@string/total"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoBold
+                    android:id="@+id/totalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="$13.45"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallTitleText" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

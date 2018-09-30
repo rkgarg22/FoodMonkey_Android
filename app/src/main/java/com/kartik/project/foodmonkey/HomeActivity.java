@@ -78,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
         menuRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.takeOut)));
 
         orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        orderRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.yourOrder)));
+        orderRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.yourOrders)));
     }
 
     @OnClick(R.id.left)

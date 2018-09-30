@@ -50,7 +50,7 @@
     <string name="restaurant">Restaurant</string>
     <string name="seeMore">See More</string>
     <string name="takeOut">Take Out Menu</string>
-    <string name="yourOrder">Your Orders</string>
+    <string name="yourOrders">Your Orders</string>
     <string name="sponsored">Sponsored</string>
     <string name="closedRestaurents">Closed Restaurents</string>
     <string name="delivery">Delivery</string>
@@ -72,5 +72,28 @@
     <string name="readMore">Read more</string>
     <string name="openningHour">Opening hours</string>
     <string name="deliveryAreas">Delivery areas</string>
+    <string name="cancel">Cancel</string>
+    <string name="selectQuantity">Select Quantity</string>
+    <string name="yourOrder">Your Order</string>
+    <string name="cartSummary">Cart Summary</string>
+    <string name="editOrder">Edit Order</string>
+    <string name="subTotal">Subtotal</string>
+    <string name="deliveryFee">Delivery Fee</string>
+    <string name="total">Total</string>
+    <string name="paymentAfterLogin">You wil be able to review delivery address and payment\n option after login.</string>
+    <string name="checkOut">Checkout</string>
+    <string name="editCart">Edit Cart</string>
+    <string name="firstName">First name</string>
+    <string name="middleName">Middle name</string>
+    <string name="surName">Surname</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="mobile">Mobile</string>
+    <string name="dob">Date of birth</string>
+    <string name="yyyy">yyyy</string>
+    <string name="mm">mm</string>
+    <string name="chooseDeliveryType">Choose delivery type</string>
+    <string name="addNewAddress">Add new address</string>
+    <string name="proceedToPay">Proceed to Pay</string>
 
 </resources>

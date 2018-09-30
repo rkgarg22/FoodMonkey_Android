@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kartik.project.foodmonkey.Fragments.MenuFragment;
 import com.kartik.project.foodmonkey.R;
 
 import java.util.ArrayList;
@@ -61,6 +62,13 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.childItem);
 
         txtListChild.setText(childText);
+
+        txtListChild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MenuFragment().setPopStatus("",true);
+            }
+        });
         return convertView;
     }
 
@@ -111,4 +119,6 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+
+
 }

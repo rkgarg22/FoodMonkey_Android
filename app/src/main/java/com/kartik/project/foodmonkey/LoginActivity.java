@@ -41,7 +41,11 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.loginButton)
     void setLoginButton()
     {
-        startActivity(new Intent(this,HomeActivity.class));
+        Intent intent = getIntent();
+        intent.putExtra("data", true);
+        setResult(RESULT_OK, intent);
+        finish();
+//        startActivity(new Intent(this,HomeActivity.class));
     }
 
     private void setSignUpText() {

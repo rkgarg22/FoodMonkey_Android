@@ -12,8 +12,8 @@
         android:background="@color/closedRestColor"
         android:gravity="center"
         android:text="@string/closedRestaurents"
-        android:visibility="gone"
-        android:textSize="@dimen/smallTitleText" />
+        android:textSize="@dimen/smallTitleText"
+        android:visibility="gone" />
 
 
     <RelativeLayout
@@ -58,7 +58,7 @@
                 android:layout_alignParentRight="true"
                 android:text="@string/sponsored"
                 android:textColor="@color/pink"
-                android:textSize="@dimen/smallTitleText" />
+                android:textSize="@dimen/mediumText" />
 
 
             <RatingBar
@@ -96,72 +96,101 @@
                 android:textSize="@dimen/mediumText" />
 
             <LinearLayout
+                android:id="@+id/deliveryLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/descriptionsText"
-                android:layout_marginLeft="@dimen/margin"
+                android:layout_height="20dp"
                 android:layout_marginTop="@dimen/smallMargin"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:weightSum="6">
+                android:layout_below="@+id/descriptionsText"
+                android:layout_marginLeft="@dimen/marginLeft">
 
                 <ImageView
-                    android:id="@+id/locationIcon"
-                    android:layout_width="0dp"
+                    android:id="@+id/deliveryIcon"
+                    android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="0.5"
                     android:src="@drawable/location" />
 
                 <CustomControls.TextViewLatoRegular
-                    android:id="@+id/distanceText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_marginLeft="@dimen/smallMargin"
-                    android:layout_weight="1.2"
-                    android:text="0.9 miles"
-                    android:textColor="@color/pink"
-                    android:textSize="@dimen/superSmallText" />
-
-                <CustomControls.TextViewLatoRegular
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/smallMargin"
-                    android:layout_weight="1.5"
-                    android:gravity="right"
-                    android:text="Min. spend:"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/superSmallText" />
-
-                <CustomControls.TextViewLatoRegular
-                    android:id="@+id/minSpendText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/smallMargin"
-                    android:layout_weight="0.9"
-                    android:text="$10.00"
-                    android:textColor="@color/pink"
-                    android:textSize="@dimen/superSmallText" />
-
-                <CustomControls.TextViewLatoRegular
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/smallMargin"
-                    android:layout_weight="1.1"
-                    android:gravity="right"
+                    android:gravity="center_vertical"
                     android:text="Delivery:"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/superSmallText" />
+                    android:textSize="@dimen/smallText" />
 
                 <CustomControls.TextViewLatoRegular
                     android:id="@+id/deliveryText"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/smallMargin"
-                    android:layout_weight="1"
                     android:text="$1.00"
                     android:textColor="@color/pink"
-                    android:textSize="@dimen/superSmallText" />
+                    android:textSize="@dimen/smallText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/deliveryLayout"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:gravity="center_vertical"
+                        android:text="Min. spend:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/smallText" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:id="@+id/minSpendText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/smallMargin"
+                        android:gravity="center_vertical"
+                        android:maxLength="8"
+                        android:text="$10.00"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallText" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="end">
+
+                    <ImageView
+                        android:id="@+id/locationIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/location" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:id="@+id/distanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="@dimen/smallMargin"
+                        android:gravity="center_vertical"
+                        android:text="0.9 miles"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallText" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

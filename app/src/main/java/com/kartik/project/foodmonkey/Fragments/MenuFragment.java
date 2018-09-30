@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.kartik.project.foodmonkey.Adapters.MenuExpandableAdapter;
+import com.kartik.project.foodmonkey.DetailActivity;
 import com.kartik.project.foodmonkey.R;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class MenuFragment extends Fragment {
 
     MenuExpandableAdapter menuExpandableAdapter;
     ArrayList<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild ;
+    HashMap<String, List<String>> listDataChild;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -92,6 +94,11 @@ public class MenuFragment extends Fragment {
         listDataChild.put(listDataHeader.get(2), comingSoon);
         listDataChild.put(listDataHeader.get(3), comingSoon);
         listDataChild.put(listDataHeader.get(4), comingSoon);
+    }
+
+    public void setPopStatus(String data, boolean status) {
+//        Toast.makeText(getActivity(), "Working Status " + status, Toast.LENGTH_SHORT).show();
+//        ((DetailActivity)getActivity()).setAddItemToCartPopUpVisiblity(status);
     }
 
 }

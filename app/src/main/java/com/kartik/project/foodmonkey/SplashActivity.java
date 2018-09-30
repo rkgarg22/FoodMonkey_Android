@@ -44,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == 2) {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    startActivity(new Intent(SplashActivity.this,HomeActivity.class));
                     finish();
                 }
                 pager.setCurrentItem(currentPage++, true);

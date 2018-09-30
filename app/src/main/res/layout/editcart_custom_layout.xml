@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_toLeftOf="@+id/noOfItemLayout">
+
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/itemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Carmel Chew Chew"
+            android:textSize="@dimen/mediumText" />
+
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/itemPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="$2.49"
+            android:textSize="@dimen/mediumText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/noOfItemLayout"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin"
+        android:background="@drawable/curve_border_background"
+        android:orientation="horizontal"
+        android:padding="@dimen/smallMargin">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/remove" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/noOfItem"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="888" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/add_btn"
+            android:padding="@dimen/smallMargin" />
+
+    </LinearLayout>
+
+</RelativeLayout>

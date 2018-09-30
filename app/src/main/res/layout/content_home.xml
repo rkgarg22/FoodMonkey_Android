@@ -144,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/orderSeeMore"
-                    android:text="@string/yourOrder"
+                    android:text="@string/yourOrders"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/titleText" />
 

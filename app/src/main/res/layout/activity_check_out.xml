@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.CheckOutActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/totalLayout"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:layout_marginRight="@dimen/margin"
+            android:orientation="vertical">
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/textOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop"
+                android:text="@string/yourOrder"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <RadioButton
+                    android:id="@+id/deliveryOneHr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin"
+                    android:layout_weight="0.4"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="@string/delivery"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallTitleText" />
+
+                <RadioButton
+                    android:id="@+id/bestMatchedRadio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin"
+                    android:layout_weight="0.6"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="@string/takeAway"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallTitleText" />
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@color/underline" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/editOrder"
+                    android:gravity="center_vertical"
+                    android:text="@string/cartSummary"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/editOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/editOrder"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/mediumText" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/underline" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:text="Pepe's Piri Piri"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/underline" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/orderListRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/underline" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/subTotalText"
+                    android:gravity="center_vertical"
+                    android:text="@string/subTotal"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoBold
+                    android:id="@+id/subTotalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="$12.45"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/deliveryFeeAmount"
+                    android:gravity="center_vertical"
+                    android:text="@string/deliveryFee"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/deliveryFeeAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="$1.00"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@color/underline" />
+
+            <RelativeLayout
+                android:id="@+id/totalAmountLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/totalAmount"
+                    android:gravity="center_vertical"
+                    android:text="@string/total"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoBold
+                    android:id="@+id/totalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="$13.45"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallTitleText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/loginLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/underline" />
+
+                <CustomControls.TextViewRawLineRegular
+                    android:id="@+id/paymentAfterLoginText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/line"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:gravity="center"
+                    android:text="@string/paymentAfterLogin"
+                    android:textColor="@android:color/black" />
+
+                <CustomControls.ButtonLatoRegular
+                    android:id="@+id/loginButton"
+                    style="@style/Base.V7.Widget.AppCompat.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/paymentAfterLoginText"
+                    android:layout_marginBottom="@dimen/largeMarginTop"
+                    android:layout_marginTop="@dimen/largeMarginTop"
+                    android:background="@color/pink"
+                    android:gravity="center"
+                    android:text="@string/login"
+                    android:textColor="@android:color/white" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/chooseDeliveryTypeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/chooseDeliveryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/chooseDeliveryType"
+                    android:textSize="@dimen/mediumText" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/chooseDeliveryRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chooseDeliveryText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/addNewAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/chooseDeliveryRecyclerView"
+                    android:gravity="center_vertical"
+                    android:text="@string/addNewAddress"
+                    android:textColor="@color/pink"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.ButtonLatoRegular
+                    android:id="@+id/proceedToPayBtn"
+                    style="@style/Base.V7.Widget.AppCompat.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/addNewAddress"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:background="@color/pink"
+                    android:gravity="center"
+                    android:text="@string/proceedToPay"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

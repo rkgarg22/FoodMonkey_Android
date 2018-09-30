@@ -1,5 +1,6 @@
 package com.kartik.project.foodmonkey;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,7 +8,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kartik.project.foodmonkey.Fragments.InfoActivity;
@@ -16,6 +20,7 @@ import com.kartik.project.foodmonkey.Fragments.ReviewsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
@@ -30,6 +35,12 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @BindView(R.id.toolbarText)
     TextView toolbarText;
+
+    @BindView(R.id.cartToolbarLayout)
+    RelativeLayout cartToolbarLayout;
+
+    @BindView(R.id.addItemToCartPopUp)
+    LinearLayout addItemToCartPopUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +128,29 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
                 title = getString(R.string.info);
             }
             return title;
+        }
+    }
+
+    @OnClick(R.id.cartToolbarLayout)
+    void setCartToolbarLayout() {
+        startActivity(new Intent(this, CheckOutActivity.class));
+    }
+
+    @OnClick(R.id.left)
+    void setLeft() {
+        onBackPressed();
+    }
+
+    @OnClick(R.id.cancelPopUp)
+    void setCancelPopUp() {
+        setAddItemToCartPopUpVisiblity(false);
+    }
+
+    public void setAddItemToCartPopUpVisiblity(boolean status) {
+        if (status) {
+            addItemToCartPopUp.setVisibility(View.VISIBLE);
+        } else {
+            addItemToCartPopUp.setVisibility(View.GONE);
         }
     }
 }
