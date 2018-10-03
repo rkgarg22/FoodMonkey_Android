@@ -4,6 +4,7 @@ public class MYPerference {
 
     public static final String mPREFS_NAME = "FOOD_PREFERENCE";
     public static final String IS_USER_LOGIN = "isUserLogIn";
+    public static final String DEVICE_TOKEN = "deviceToken";
     public static final String USER_NAME = "userName";
     public static final String EMAIL_ADDRESS = "emailAddress";
     public static final String USER_ID = "user_id";
@@ -12,4 +13,6 @@ public class MYPerference {
     public static final String Id="id";
     public static final String USER_OBJECT="userObject";
     public static final String isVerified="isVerified";
+    public static final String USER_LATITUDE="userLatitude";
+    public static final String USER_LONGITUDE="userLongitude";
 }

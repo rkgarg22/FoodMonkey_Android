@@ -18,9 +18,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
             android:layout_marginLeft="@dimen/marginLeft"
             android:layout_marginRight="@dimen/margin"
-            android:layout_marginBottom="@dimen/margin"
             android:layout_marginTop="@dimen/largeMarginTop"
             android:orientation="vertical">
 
@@ -42,8 +42,8 @@
                     android:id="@+id/locationBtn"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/margin"
                     android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginRight="@dimen/margin"
                     android:layout_toLeftOf="@+id/searchBtn"
                     android:padding="@dimen/padding"
                     android:src="@drawable/location" />
@@ -80,9 +80,9 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:padding="5dp"
                     android:background="@drawable/round_edges_background"
                     android:gravity="center"
+                    android:padding="5dp"
                     android:text="@string/seeMore"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/mediumText" />
@@ -93,7 +93,6 @@
                     android:layout_height="200dp"
                     android:layout_below="@+id/restSeeMore"
                     android:layout_marginTop="@dimen/marginTop" />
-
 
             </RelativeLayout>
 
@@ -115,10 +114,10 @@
                     android:id="@+id/menuSeeMore"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/round_edges_background"
                     android:gravity="center"
+                    android:padding="5dp"
                     android:text="@string/seeMore"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/mediumText" />
@@ -155,8 +154,8 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/round_edges_background"
                     android:gravity="center"
-                    android:text="@string/seeMore"
                     android:padding="5dp"
+                    android:text="@string/seeMore"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/mediumText" />
 
@@ -174,5 +173,13 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone"/>
 
 </RelativeLayout>

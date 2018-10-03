@@ -21,6 +21,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -47,6 +48,8 @@ public class AppCommon {
     static Context mContext;
     String pathOfFile = null;
 
+    public static final int LOCATION_PERMISSION_REQUEST_CODE = 1100;
+
     public static AppCommon getInstance(Context _Context) {
         if (mInstance == null) {
             mInstance = new AppCommon();
@@ -67,6 +70,20 @@ public class AppCommon {
         mEditor.commit();
     }
 
+    public boolean isEmailValid(String email) {
+//        boolean isValid = false;
+//
+//        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+//        CharSequence inputStr = email;
+//
+//        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+//        Matcher matcher = pattern.matcher(inputStr);
+//        if (matcher.matches()) {
+//            isValid = true;
+//        }
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     public String getUserName() {
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, mContext.MODE_PRIVATE);
         return mSharedPreferences.getString(MYPerference.USER_NAME, "");
@@ -84,6 +101,7 @@ public class AppCommon {
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, mContext.MODE_PRIVATE);
         return mSharedPreferences.getString(MYPerference.EMAIL_ADDRESS, null);
     }
+
 
     public static void setEmailAddress(String emailAddress) {
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, mContext.MODE_PRIVATE);
@@ -192,16 +210,16 @@ public class AppCommon {
         return formatted;
     }
 
-    public void setDeviceAddress(String mDeviceAddress) {
+    public void setDeviceToken(String deviceToken) {
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, mContext.MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-        mEditor.putString(MYPerference.DEVICE_MAC_ADDRESS, mDeviceAddress);
+        mEditor.putString(MYPerference.DEVICE_TOKEN, deviceToken);
         mEditor.apply();
     }
 
-    public String getDeviceAddress() {
+    public String getDeviceToken() {
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, mContext.MODE_PRIVATE);
-        return mSharedPreferences.getString(MYPerference.DEVICE_MAC_ADDRESS, "");
+        return mSharedPreferences.getString(MYPerference.DEVICE_TOKEN, "");
     }
 
     public static String getUnixTime2(final String inputDateAsString, final String inputStringFormat) throws ParseException {
@@ -228,32 +246,6 @@ public class AppCommon {
         String s = getUnixDateFormat.format(inputDate);
         return s;
     }
-
-//    public static boolean checkDateValidationHistoryCustomView(HistoryActivity historyActivity, String mFromDateText, String mToDateText) {
-//        boolean valid = true;
-//        if (mFromDateText.equals("- -") || mToDateText.equals("- -")) {
-//            showDialog(historyActivity, "Set Some Date");
-//            valid = false;
-//        } else if (!(mFromDateText.equals("- -") && (mToDateText.equals("- -")))) {
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = null;
-//            try {
-//                date = sdf.parse(mFromDateText);
-//                Date date1 = sdf.parse(mToDateText);
-//                if (date.compareTo(date1) > 0) {
-//                    showDialog(historyActivity, mContext.getResources().getString(R.string.fromDate));
-//                    valid = false;
-//                } else if (date.compareTo(date1) == 0) {
-//                    showDialog(historyActivity, mContext.getResources().getString(R.string.dateNotSame));
-//                    valid = false;
-//                }
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return valid;
-//    }
-
 
     public static String getFromMonthDateFromMonthSelected(String date) {
         final Calendar c = Calendar.getInstance();
@@ -351,26 +343,6 @@ public class AppCommon {
     public static double getInchToCM(double inch) {
 
         return (inch * 2.54);
-    }
-
-    public static double getCMToInch(double cm) {
-        return (cm * 0.393701);
-    }
-
-    public static double getKiloToLB(double weight) {
-        return (weight * 2.20462);
-    }
-
-    public static double getLbToKilo(double lb) {
-        return (lb * 0.453592);
-    }
-
-    public static float getMgDlFrommMol(float mMol) {
-        return (mMol * 18.01801801801802f);
-    }
-
-    public static double getmMolFromMgDl(double mMgDl) {
-        return (mMgDl * 0.0555);
     }
 
     public void setVerified(boolean count) {
@@ -525,4 +497,30 @@ public class AppCommon {
         ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
         imageView.setColorFilter(filter);
     }
+
+    public void setUserLatitude(double latitude) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putFloat(MYPerference.USER_LATITUDE, (float) latitude);
+        mEditor.apply();
+    }
+
+    public void setUserLongitude(double longitude) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putFloat(MYPerference.USER_LONGITUDE, (float) longitude);
+        mEditor.apply();
+    }
+
+
+    public float getUserLatitude() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getFloat(MYPerference.USER_LATITUDE, 0.0f);
+    }
+
+    public float getUserLongitude() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getFloat(MYPerference.USER_LONGITUDE, 0.0f);
+    }
+
 }

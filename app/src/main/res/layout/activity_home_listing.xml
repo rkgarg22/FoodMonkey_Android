@@ -54,7 +54,7 @@
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/padding"
-                android:src="@drawable/back_icon" />
+                android:src="@drawable/delivery_menu" />
 
             <ImageView
                 android:id="@+id/filterImg"
@@ -62,7 +62,7 @@
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/padding"
-                android:src="@drawable/back_icon" />
+                android:src="@drawable/relevant_menu" />
 
             <ImageView
                 android:id="@+id/filterImgTwo"
@@ -70,7 +70,7 @@
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/padding"
-                android:src="@drawable/back_icon" />
+                android:src="@drawable/cuisines_menu" />
 
         </LinearLayout>
 

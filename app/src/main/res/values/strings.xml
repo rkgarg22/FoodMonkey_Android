@@ -2,6 +2,9 @@
     <string name="app_name">FoodMonkey</string>
     <string name="facebook_app_id">5061065330892</string> <!--dummy keys -->
     <string name="fb_login_protocol_scheme">fb5061065330892</string>
+
+    <string name="PostalCodeAPI">BD11EZ</string>
+
     <string name="ok">Ok</string>
     <string name="letsTheChimp"><b>Let</b> The <b>Chimp</b> Tingle \n<b>Your</b> Taste <b>Buds..</b></string>
     <string name="splash_three_text">Let The Chimp Tingle\n Your Taste Buds</string>
@@ -95,5 +98,15 @@
     <string name="chooseDeliveryType">Choose delivery type</string>
     <string name="addNewAddress">Add new address</string>
     <string name="proceedToPay">Proceed to Pay</string>
+    <string name="network_error">No Internet Connection</string>
+    <string name="serverError">Server Error</string>
+    <string name="dd">dd</string>
+    <string name="pleaseEnterFirstName">Please enter first name</string>
+    <string name="pleaseEnterMiddleName">Please enter middle name</string>
+    <string name="pleaseEnterSurName">Please enter sur name</string>
+    <string name="pleaseEnterEmail">Please enter email address</string>
+    <string name="pleaseEnterMobile">Please enter mobile number</string>
+    <string name="pleaseSelectDateOfBirth">Please select date of birth</string>
+    <string name="pleaseEnterPassword">Please enter password</string>
 
 </resources>

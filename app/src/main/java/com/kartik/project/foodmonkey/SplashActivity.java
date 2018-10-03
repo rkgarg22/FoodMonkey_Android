@@ -9,11 +9,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.kartik.project.foodmonkey.Adapters.CustomSliderPagerAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Infrastructure.AppCommon;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,10 +35,14 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(SplashActivity.this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
+
+        String deviceToken =""+ FirebaseInstanceId.getInstance().getToken();
+        AppCommon.getInstance(this).setDeviceToken(deviceToken);
 
         customSliderPagerAdapter = new CustomSliderPagerAdapter(SplashActivity.this, mResources);
         pager.setAdapter(customSliderPagerAdapter);
@@ -44,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == 2) {
-                    startActivity(new Intent(SplashActivity.this,HomeActivity.class));
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                     finish();
                 }
                 pager.setCurrentItem(currentPage++, true);

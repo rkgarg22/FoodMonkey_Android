@@ -31,7 +31,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerInParent="true"
-                    app:placeholderImage="@mipmap/ic_launcher" />
+                    app:placeholderImage="@drawable/profile_placeholder" />
 
                 <ImageView
                     android:layout_width="30dp"
@@ -120,7 +120,7 @@
                 android:id="@+id/mobile"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/genderLayout"
+                android:layout_below="@+id/email"
                 android:layout_marginTop="@dimen/marginTop"
                 android:background="@drawable/curve_border_background"
                 android:hint="@string/mobile"
@@ -183,7 +183,7 @@
                     android:layout_toLeftOf="@+id/line3"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/padding"
-                    android:text="@string/yyyy"
+                    android:text="@string/dd"
                     android:textColor="@android:color/black"
                     android:textColorHint="@android:color/black"
                     android:textSize="@dimen/mediumText" />
@@ -353,5 +353,14 @@
         </RelativeLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressBackgroundTint="@color/pink"
+        android:visibility="gone"/>
+
 
 </RelativeLayout>

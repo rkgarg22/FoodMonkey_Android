@@ -18,6 +18,7 @@ import com.kartik.project.foodmonkey.Adapters.PopUpAdapter;
 
 import java.util.ArrayList;
 
+import Infrastructure.GPSTracker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -38,16 +39,20 @@ public class HomeListingActivity extends AppCompatActivity {
 
     HomeListingAdapter homeListingAdapter;
 
+    GPSTracker gpsTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_listing);
         ButterKnife.bind(this);
+        gpsTracker = new GPSTracker(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setNestedScrollingEnabled(false);
         homeListingAdapter = new HomeListingAdapter(this);
         recyclerView.setAdapter(homeListingAdapter);
         setOnClickListerner();
+        gpsTracker.getLocation();
 
     }
 
@@ -150,5 +155,8 @@ public class HomeListingActivity extends AppCompatActivity {
         return popupWindow;
     }
 
-
+    @OnClick(R.id.left)
+    void setLeft() {
+        onBackPressed();
+    }
 }

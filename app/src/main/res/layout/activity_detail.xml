@@ -68,7 +68,7 @@
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/margin"
-                android:src="@drawable/back_icon" />
+                android:src="@drawable/cart_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -185,7 +185,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/location" />
+                    android:src="@drawable/food_delivery_icon" />
 
                 <CustomControls.TextViewLatoRegular
                     android:layout_width="wrap_content"
@@ -254,7 +254,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/location" />
+                        android:src="@drawable/location_marker" />
 
                     <CustomControls.TextViewLatoRegular
                         android:id="@+id/distanceText"
