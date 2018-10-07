@@ -41,8 +41,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
 
-        String deviceToken =""+ FirebaseInstanceId.getInstance().getToken();
-        AppCommon.getInstance(this).setDeviceToken(deviceToken);
+//        String deviceToken =""+ FirebaseInstanceId.getInstance().getToken();
+//        AppCommon.getInstance(this).setDeviceToken(deviceToken);
 
         customSliderPagerAdapter = new CustomSliderPagerAdapter(SplashActivity.this, mResources);
         pager.setAdapter(customSliderPagerAdapter);

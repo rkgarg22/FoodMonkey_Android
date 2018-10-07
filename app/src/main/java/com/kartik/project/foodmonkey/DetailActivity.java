@@ -8,12 +8,17 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.kartik.project.foodmonkey.Adapters.MenuExpandableSubItemAdapter;
 import com.kartik.project.foodmonkey.Fragments.InfoActivity;
 import com.kartik.project.foodmonkey.Fragments.MenuFragment;
 import com.kartik.project.foodmonkey.Fragments.ReviewsFragment;
@@ -33,14 +38,34 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.left)
     ImageView left;
 
-    @BindView(R.id.toolbarText)
-    TextView toolbarText;
+//    @BindView(R.id.toolbarText)
+//    TextView toolbarText;
 
     @BindView(R.id.cartToolbarLayout)
     RelativeLayout cartToolbarLayout;
 
+//    @BindView(R.id.searchBarLayout)
+//    RelativeLayout searchBarLayout;
+
     @BindView(R.id.addItemToCartPopUp)
     LinearLayout addItemToCartPopUp;
+
+    @BindView(R.id.toolbarText)
+    EditText toolbarText;
+
+    @BindView(R.id.searchBarLayout)
+    RelativeLayout searchBarLayout;
+
+    @BindView(R.id.loginButton)
+    Button loginButton;
+
+    @BindView(R.id.innerItemsRecyclerView)
+    RecyclerView innerItemsRecyclerView;   // onClick of expandable subchild Items
+
+    @BindView(R.id.innerItemsLayout)
+    RelativeLayout innerItemsLayout;   // onClick of expandable subchild whole layout to visible
+
+    boolean searchFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +73,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
         toolbarText.setText("Pepe's Piri Piri");
+        innerItemsRecyclerView.setLayoutManager(new LinearLayoutManager(DetailActivity.this));
         setTabs();
         //Creating our pager adapter
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
@@ -143,14 +169,58 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @OnClick(R.id.cancelPopUp)
     void setCancelPopUp() {
-        setAddItemToCartPopUpVisiblity(false);
+        setAddItemToCartPopUpVisiblity("cancel");
     }
 
-    public void setAddItemToCartPopUpVisiblity(boolean status) {
-        if (status) {
+    public void setAddItemToCartPopUpVisiblity(String status) {
+        if (status.equals("subItemDisplay")) {
             addItemToCartPopUp.setVisibility(View.VISIBLE);
-        } else {
+            innerItemsLayout.setVisibility(View.VISIBLE);
+            loginButton.setText(getString(R.string.addToCartPlus));
+            callsubItemAdapter();
+        } else if (status.equals("itemDisplay")) {
+            addItemToCartPopUp.setVisibility(View.VISIBLE);
+            innerItemsLayout.setVisibility(View.GONE);
+            loginButton.setText(getString(R.string.login));
+        } else if (status.equals("cancel")) {
             addItemToCartPopUp.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (searchFlag) {
+            setOnSearch(false);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @OnClick(R.id.searchBtn)
+    void searchBtn() {
+        if (searchFlag) {
+            setOnSearch(false);
+        } else {
+            setOnSearch(true);
+        }
+    }
+
+    void callsubItemAdapter() {
+        MenuExpandableSubItemAdapter menuExpandableSubItemAdapter = new MenuExpandableSubItemAdapter(this);
+        innerItemsRecyclerView.setAdapter(menuExpandableSubItemAdapter);
+    }
+
+    void setOnSearch(boolean status) {
+        if (status) {
+            toolbarText.setEnabled(true);
+            searchBarLayout.setBackgroundResource(R.drawable.search_background);
+            left.setVisibility(View.GONE);
+            searchFlag = status;
+        } else {
+            searchFlag = status;
+            toolbarText.setEnabled(false);
+            left.setVisibility(View.VISIBLE);
+            searchBarLayout.setBackgroundResource(android.R.color.transparent);
         }
     }
 }

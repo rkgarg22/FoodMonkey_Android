@@ -13,45 +13,51 @@
         android:layout_height="@dimen/toolbarHeight"
         android:background="@color/colorPrimary">
 
-        <ImageView
-            android:id="@+id/left"
-            android:layout_width="40dp"
+        <RelativeLayout
+            android:id="@+id/searchBarLayout"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:padding="@dimen/padding"
-            android:src="@drawable/back_icon" />
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/smallMargin"
+            android:layout_toLeftOf="@+id/cartToolbarLayout">
 
-        <CustomControls.TextViewLatoBold
-            android:id="@+id/toolbarText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/left"
-            android:text="Pepe's Piri Piri"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/titleText" />
+            <ImageView
+                android:id="@+id/left"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/padding"
+                android:src="@drawable/back_icon" />
 
-        <CustomControls.EditTextLatoRegular
-            android:id="@+id/searchEditText"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/margin"
-            android:layout_toLeftOf="@+id/searchBtn"
-            android:layout_toRightOf="@+id/left"
-            android:background="@drawable/search_background"
-            android:visibility="gone" />
+            <CustomControls.EditTextLatoBold
+                android:id="@+id/toolbarText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchBtn"
+                android:layout_toRightOf="@+id/left"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:enabled="false"
+                android:maxLines="1"
+                android:padding="@dimen/smallMargin"
+                android:text="Pepe's Piri Piri"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/titleText" />
 
+            <ImageView
+                android:id="@+id/searchBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/largeMargin"
+                android:padding="@dimen/smallPadding"
+                android:src="@drawable/search" />
 
-        <ImageView
-            android:id="@+id/searchBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/largeMargin"
-            android:layout_toLeftOf="@+id/cartToolbarLayout"
-            android:padding="@dimen/smallPadding"
-            android:src="@drawable/search" />
+        </RelativeLayout>
+
 
         <RelativeLayout
             android:id="@+id/cartToolbarLayout"
@@ -84,13 +90,16 @@
 
     </RelativeLayout>
 
-    <!--<android.support.v4.widget.NestedScrollView-->
+    <!--<ScrollView-->
     <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/toolbar">-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@+id/toolbar"-->
+    <!--android:fillViewport="true">-->
+
     <!--<RelativeLayout-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content">-->
+
 
     <RelativeLayout
         android:id="@+id/itemDetailLayout"
@@ -235,8 +244,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/smallMargin"
+                        android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLength="8"
+                        android:maxLines="1"
                         android:text="$10.00"
                         android:textColor="@color/pink"
                         android:textSize="@dimen/smallText" />
@@ -311,15 +322,17 @@
         android:id="@+id/addItemToCartPopUp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="#ccF0F0F0"
-        android:visibility="gone"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/itemTitle"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
             android:background="@color/colorPrimary">
 
             <CustomControls.TextViewLatoRegular
@@ -346,9 +359,47 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/innerItemsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="@dimen/smallMargin"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:background="@android:color/white">
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/addExtrasText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin"
+                android:text="Add Extras"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/margin"
+                android:rotation="90"
+                android:src="@drawable/back_icon"
+                android:tint="@android:color/black" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/innerItemsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addExtrasText" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/itemTitle"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
             android:background="@android:color/white">
 
             <RelativeLayout
@@ -415,12 +466,133 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/selectQuatnityLayout"
+                android:layout_marginBottom="@dimen/largeMargin"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginRight="@dimen/margin"
                 android:background="@color/pink"
                 android:gravity="center"
                 android:text="@string/login"
+                android:textColor="@android:color/white" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/innerSubItemsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ccF0F0F0"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/subItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary">
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:gravity="center_vertical"
+                android:text="Prime Pitta"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/innerCancelPopUp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/marginLeft"
                 android:layout_marginRight="@dimen/margin"
+                android:gravity="center_vertical"
+                android:text="@string/cancel"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/mediumText" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/itemTitle"
+            android:background="@android:color/white">
+
+            <RelativeLayout
+                android:id="@+id/selectQuatnityInnerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/largeMargin">
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/marginLeft"
+                    android:text="@string/selectQuantity"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/curve_border_background"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/smallMargin">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/remove" />
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="888"
+                        android:textColor="@android:color/black" />
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/add_btn"
+                        android:padding="@dimen/smallMargin" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/addToCartBtn"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selectQuatnityInnerLayout"
+                android:layout_marginBottom="@dimen/largeMargin"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginRight="@dimen/margin"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/login"
                 android:textColor="@android:color/white" />
 
         </RelativeLayout>
@@ -430,7 +602,7 @@
 
     <!--</RelativeLayout>-->
 
-    <!--</android.support.v4.widget.NestedScrollView>-->
+    <!--</ScrollView>-->
 
 
 </RelativeLayout>

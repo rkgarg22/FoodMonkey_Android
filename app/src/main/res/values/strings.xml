@@ -108,5 +108,10 @@
     <string name="pleaseEnterMobile">Please enter mobile number</string>
     <string name="pleaseSelectDateOfBirth">Please select date of birth</string>
     <string name="pleaseEnterPassword">Please enter password</string>
+    <string name="somethingWentWrong">Something went please try again.</string>
+    <string name="customerType">Customer</string>
+    <string name="callingChannel">App</string>
+    <string name="tryAgain">Try Again</string>
+    <string name="addToCartPlus">Add to Cart +</string>
 
 </resources>

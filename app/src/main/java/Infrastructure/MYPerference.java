@@ -10,9 +10,10 @@ public class MYPerference {
     public static final String USER_ID = "user_id";
     public static final String REMIND = "remind";
     public static final String DEVICE_MAC_ADDRESS = "deviceMacAddress";
-    public static final String Id="id";
-    public static final String USER_OBJECT="userObject";
-    public static final String isVerified="isVerified";
-    public static final String USER_LATITUDE="userLatitude";
-    public static final String USER_LONGITUDE="userLongitude";
+    public static final String Id = "id";
+    public static final String USER_OBJECT = "userObject";
+    public static final String isVerified = "isVerified";
+    public static final String USER_LATITUDE = "userLatitude";
+    public static final String USER_LONGITUDE = "userLongitude";
+    public static final String USER_POSTCODE = "userPostCode";
 }

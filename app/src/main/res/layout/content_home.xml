@@ -30,6 +30,7 @@
                 android:background="@drawable/curve_border_background">
 
                 <CustomControls.EditTextLatoRegular
+                    android:id="@+id/postalCodeText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toLeftOf="@+id/locationBtn"

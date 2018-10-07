@@ -3,9 +3,12 @@ package Infrastructure;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Service;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +20,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 
 public class GPSTracker extends Service implements LocationListener {
@@ -80,11 +87,7 @@ public class GPSTracker extends Service implements LocationListener {
     }
 
     public void requestPermission() {
-        if (ContextCompat.checkSelfPermission(mContext,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(mContext,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) mContext,
                     new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
                     AppCommon.LOCATION_PERMISSION_REQUEST_CODE);
@@ -219,6 +222,39 @@ public class GPSTracker extends Service implements LocationListener {
 //        } else if (mContext instanceof IngresaActivity) {
 //            ((IngresaActivity) mContext).locationGet(location);
 //        }
+    }
+
+    public String getPostalCodeByCoordinates() {
+
+        Geocoder mGeocoder = new Geocoder(mContext, Locale.getDefault());
+        String zipcode = null;
+        Address address = null;
+
+        if (mGeocoder != null) {
+
+            List<Address> addresses = null;
+            try {
+                addresses = mGeocoder.getFromLocation(latitude, longitude, 5);
+                if (addresses != null && addresses.size() > 0) {
+
+                    for (int i = 0; i < addresses.size(); i++) {
+                        address = addresses.get(i);
+                        if (address.getPostalCode() != null) {
+                            zipcode = address.getPostalCode();
+                            Log.d("GPS_Tracker", "Postal code: " + address.getPostalCode());
+                            break;
+                        }
+
+                    }
+                    AppCommon.getInstance(mContext).setPostalCode(zipcode);
+                    return zipcode;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 
     @Override

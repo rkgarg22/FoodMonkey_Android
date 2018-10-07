@@ -1,6 +1,7 @@
 package com.kartik.project.foodmonkey.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -96,9 +97,9 @@ public class MenuFragment extends Fragment {
         listDataChild.put(listDataHeader.get(4), comingSoon);
     }
 
-    public void setPopStatus(String data, boolean status) {
-//        Toast.makeText(getActivity(), "Working Status " + status, Toast.LENGTH_SHORT).show();
-//        ((DetailActivity)getActivity()).setAddItemToCartPopUpVisiblity(status);
+    public void setPopStatus(Context context,String data, boolean status) {
+//        Toast.makeText(context, "Working Status " + status, Toast.LENGTH_SHORT).show();
+        ((DetailActivity)context).setAddItemToCartPopUpVisiblity(data);
     }
 
 }

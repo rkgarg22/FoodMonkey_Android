@@ -1,7 +1,9 @@
 package com.kartik.project.foodmonkey.API;
 
+import com.kartik.project.foodmonkey.ApiEntity.AddTokenEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerSignUpEntity;
 import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
+import com.kartik.project.foodmonkey.ApiResponse.CommonResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerSignUpResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantListResponse;
 
@@ -14,6 +16,9 @@ import retrofit2.http.POST;
  */
 
 public interface FoodMonkeyAppService {
+
+    @POST("customer/add_token.php")
+    Call<CommonResponse> addTokenAPI(@Body AddTokenEntity addTokenEntity);
 
     @POST("customer/customer_signup.php")
     Call<CustomerSignUpResponse> customerSignUp(@Body CustomerSignUpEntity customerSignUpEntity);

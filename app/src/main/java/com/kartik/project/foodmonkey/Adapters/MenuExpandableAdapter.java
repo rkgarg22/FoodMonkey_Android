@@ -66,7 +66,12 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
         txtListChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MenuFragment().setPopStatus("",true);
+                if (childPosition%2==0)
+                {
+                    new MenuFragment().setPopStatus(mContext,"subItemDisplay",true);
+                }else {
+                    new MenuFragment().setPopStatus(mContext,"itemDisplay",true);
+                }
             }
         });
         return convertView;

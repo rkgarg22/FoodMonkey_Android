@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import com.kartik.project.foodmonkey.Adapters.HomeListingAdapter;
 import com.kartik.project.foodmonkey.Adapters.PopUpAdapter;
@@ -28,6 +30,9 @@ public class HomeListingActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    @BindView(R.id.left)
+    ImageView left;
+
     @BindView(R.id.deliveryTakeAwayImg)
     ImageView deliveryTakeAwayImg;
 
@@ -36,6 +41,12 @@ public class HomeListingActivity extends AppCompatActivity {
 
     @BindView(R.id.filterImgTwo)
     ImageView filterImgTwo;
+
+    @BindView(R.id.searchEditText)
+    EditText searchEditText;
+
+    @BindView(R.id.seachLayout)
+    RelativeLayout seachLayout;
 
     HomeListingAdapter homeListingAdapter;
 
@@ -159,4 +170,40 @@ public class HomeListingActivity extends AppCompatActivity {
     void setLeft() {
         onBackPressed();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (searchFlag) {
+            setOnSearch(false);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    boolean searchFlag = false;
+
+    @OnClick(R.id.searchImg)
+    void setOnSearchClick() {
+        if (searchFlag) {
+            setOnSearch(false);
+        } else {
+            setOnSearch(true);
+        }
+    }
+
+    void setOnSearch(boolean status) {
+        if (status) {
+            searchEditText.setEnabled(true);
+            seachLayout.setBackgroundResource(R.drawable.search_background);
+            left.setVisibility(View.GONE);
+            searchFlag = status;
+        } else {
+            searchFlag = status;
+            searchEditText.setEnabled(false);
+            left.setVisibility(View.VISIBLE);
+            seachLayout.setBackgroundResource(android.R.color.transparent);
+        }
+    }
+
+
 }

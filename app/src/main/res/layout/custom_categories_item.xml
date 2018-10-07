@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/parentLayout"
     android:orientation="vertical"
     android:paddingRight="@dimen/margin"
     android:paddingLeft="@dimen/margin"
@@ -19,6 +20,7 @@
         android:textSize="@dimen/smallTitleText" />
 
     <View
+        android:id="@+id/underline1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="@dimen/margin"

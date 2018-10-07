@@ -99,9 +99,9 @@
                 android:id="@+id/deliveryLayout"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:layout_marginTop="@dimen/smallMargin"
                 android:layout_below="@+id/descriptionsText"
-                android:layout_marginLeft="@dimen/marginLeft">
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginTop="@dimen/smallMargin">
 
                 <ImageView
                     android:id="@+id/deliveryIcon"
@@ -160,6 +160,8 @@
                         android:layout_marginLeft="@dimen/smallMargin"
                         android:gravity="center_vertical"
                         android:maxLength="8"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         android:text="$10.00"
                         android:textColor="@color/pink"
                         android:textSize="@dimen/smallText" />

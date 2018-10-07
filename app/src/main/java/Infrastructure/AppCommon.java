@@ -523,4 +523,16 @@ public class AppCommon {
         return mSharedPreferences.getFloat(MYPerference.USER_LONGITUDE, 0.0f);
     }
 
+    public void setPostalCode(String postalCode) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.USER_POSTCODE, postalCode);
+        mEditor.apply();
+    }
+
+    public String getUserPostalCode() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.USER_POSTCODE, "");
+    }
+
 }
