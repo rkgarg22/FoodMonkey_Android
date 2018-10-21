@@ -8,18 +8,38 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResturantListEnity {
     @SerializedName("TokenKey")
-    String tokenKey;
+    private String tokenKey;
+    @SerializedName("SearchBy")
+    private String searchBy;
+    @SerializedName("PostCode")
+    private String postCode;
+    @SerializedName("DeliveryOptions")
+    private String deliveryOptions;
+    @SerializedName("ListBy")
+    private String listBy;
+    @SerializedName("Cuisines")
+    private String cuisines;
+    @SerializedName("PageNumber")
+    private String pageNumber;
+    @SerializedName("CallingChannel")
+    private String callingChannel;
+    @SerializedName("Resturant_id")
+    private String resturantID;
 
-    @SerializedName("Search_By")
-    String searchBy;
-
-    @SerializedName("Post_Code")
-    String postCode;
-
-    public ResturantListEnity(String tokenKey, String searchBy, String postCode) {
+    public ResturantListEnity(String tokenKey, String searchBy, String postCode, String deliveryOptions, String listBy, String cuisines, String pageNumber, String callingChannel) {
         this.tokenKey = tokenKey;
         this.searchBy = searchBy;
         this.postCode = postCode;
+        this.deliveryOptions = deliveryOptions;
+        this.listBy = listBy;
+        this.cuisines = cuisines;
+        this.pageNumber = pageNumber;
+        this.callingChannel = callingChannel;
+    }
+
+    public ResturantListEnity(String tokenKey, String resturantID) {
+        this.tokenKey = tokenKey;
+        this.resturantID = resturantID;
     }
 
     public String getTokenKey() {
@@ -44,5 +64,53 @@ public class ResturantListEnity {
 
     public void setPostCode(String postCode) {
         this.postCode = postCode;
+    }
+
+    public String getDeliveryOptions() {
+        return deliveryOptions;
+    }
+
+    public void setDeliveryOptions(String deliveryOptions) {
+        this.deliveryOptions = deliveryOptions;
+    }
+
+    public String getListBy() {
+        return listBy;
+    }
+
+    public void setListBy(String listBy) {
+        this.listBy = listBy;
+    }
+
+    public String getCuisines() {
+        return cuisines;
+    }
+
+    public void setCuisines(String cuisines) {
+        this.cuisines = cuisines;
+    }
+
+    public String getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(String pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public String getCallingChannel() {
+        return callingChannel;
+    }
+
+    public void setCallingChannel(String callingChannel) {
+        this.callingChannel = callingChannel;
+    }
+
+    public String getResturantID() {
+        return resturantID;
+    }
+
+    public void setResturantID(String resturantID) {
+        this.resturantID = resturantID;
     }
 }

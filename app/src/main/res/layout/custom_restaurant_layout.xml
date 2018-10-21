@@ -9,12 +9,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/parentLayout">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/displayPic"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:scaleType="fitXY"
             app:placeholderImage="@drawable/dummy_rest" />
 
         <CustomControls.TextViewLatoBold
@@ -24,6 +26,8 @@
             android:layout_below="@+id/displayPic"
             android:paddingLeft="@dimen/padding"
             android:text="Alvis"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@android:color/black"
             android:textSize="@dimen/smallTitleText" />
 

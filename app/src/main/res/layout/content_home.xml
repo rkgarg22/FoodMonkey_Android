@@ -41,7 +41,7 @@
 
                 <ImageView
                     android:id="@+id/locationBtn"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/margin"
                     android:layout_marginRight="@dimen/margin"
@@ -51,7 +51,7 @@
 
                 <ImageView
                     android:id="@+id/searchBtn"
-                    android:layout_width="50dp"
+                    android:layout_width="45dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginLeft="@dimen/marginLeft"

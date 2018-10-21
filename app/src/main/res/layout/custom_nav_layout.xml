@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/icons"
-        app:placeholderImage="@drawable/back_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:roundAsCircle="true"
-        android:padding="@dimen/padding"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/marginLeft"
-        android:layout_centerVertical="true" />
+        android:padding="@dimen/padding"
+        app:placeholderImage="@drawable/back_icon"
+        app:roundAsCircle="true" />
 
     <CustomControls.TextViewLatoRegular
         android:id="@+id/userName"

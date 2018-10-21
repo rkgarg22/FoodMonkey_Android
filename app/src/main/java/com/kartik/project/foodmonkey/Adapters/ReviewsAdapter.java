@@ -6,9 +6,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
+import com.kartik.project.foodmonkey.ApiObject.ResturantFeedbackList;
 import com.kartik.project.foodmonkey.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -17,9 +24,11 @@ import butterknife.ButterKnife;
 
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHolder> {
     Context mContext;
+    List<ResturantFeedbackList> resturantFeedbackList = new ArrayList<>();
 
-    public ReviewsAdapter(Context mContext) {
+    public ReviewsAdapter(Context mContext, List<ResturantFeedbackList> resturantFeedbackList) {
         this.mContext = mContext;
+        this.resturantFeedbackList = resturantFeedbackList;
     }
 
     @NonNull
@@ -31,15 +40,28 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ReviewsAdapter.MyViewHolder holder, int position) {
-
+        holder.name.setText(resturantFeedbackList.get(position).getCustomerName());
+        holder.dateText.setText(resturantFeedbackList.get(position).getRatingDate());
+        holder.descriptionText.setText(resturantFeedbackList.get(position).getComments());
+        holder.ratingBar.setRating(Float.parseFloat(resturantFeedbackList.get(position).getNumberOfStars()));
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return resturantFeedbackList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.name)
+        TextView name;
+        @BindView(R.id.dateText)
+        TextView dateText;
+        @BindView(R.id.ratingBar)
+        RatingBar ratingBar;
+        @BindView(R.id.descriptionText)
+        TextView descriptionText;
+
+
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

@@ -40,11 +40,11 @@
                 android:background="@android:color/transparent"
                 android:ellipsize="end"
                 android:enabled="false"
+                android:gravity="center_vertical"
                 android:maxLines="1"
                 android:padding="@dimen/smallMargin"
-                android:text="Pepe's Piri Piri"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/titleText" />
+                android:textSize="@dimen/smallTitleText" />
 
             <ImageView
                 android:id="@+id/searchBtn"
@@ -107,14 +107,14 @@
         android:layout_height="150dp"
         android:layout_below="@+id/toolbar">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/displayPic"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/largeMargin"
             android:scaleType="fitXY"
-            android:src="@drawable/dummy_rest" />
+            app:placeholderImage="@drawable/food_logo_one" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -161,6 +161,7 @@
                 android:theme="@style/RatingBar" />
 
             <CustomControls.TextViewLatoRegular
+                android:id="@+id/noOfReviews"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/titleText"
@@ -336,6 +337,7 @@
             android:background="@color/colorPrimary">
 
             <CustomControls.TextViewLatoRegular
+                android:id="@+id/itemTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/marginLeft"
@@ -429,6 +431,7 @@
                     android:padding="@dimen/smallMargin">
 
                     <ImageView
+                        android:id="@+id/removeValue"
                         android:layout_width="30dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/remove" />
@@ -439,6 +442,7 @@
                         android:background="@android:color/darker_gray" />
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/displayValue"
                         android:layout_width="30dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -451,6 +455,7 @@
                         android:background="@android:color/darker_gray" />
 
                     <ImageView
+                        android:id="@+id/addValue"
                         android:layout_width="30dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/add_btn"
@@ -603,6 +608,15 @@
     <!--</RelativeLayout>-->
 
     <!--</ScrollView>-->
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

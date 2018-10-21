@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kartik.project.foodmonkey.Fragments.MenuFragment;
+import com.kartik.project.foodmonkey.Models.ChildAndAddonModel;
+import com.kartik.project.foodmonkey.Models.HeaderDataModel;
 import com.kartik.project.foodmonkey.R;
 
 import java.util.ArrayList;
@@ -21,12 +23,12 @@ import java.util.List;
 
 public class MenuExpandableAdapter extends BaseExpandableListAdapter {
     Context mContext;
-    private ArrayList<String> headerListDate = new ArrayList<>(); // header titles
+    private ArrayList<HeaderDataModel> headerListDate = new ArrayList<>(); // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<String>> childListDate = new HashMap<>();
+    private HashMap<HeaderDataModel, List<ChildAndAddonModel>> childListDate = new HashMap<>();
 
-    public MenuExpandableAdapter(Context mContext, ArrayList<String> headerListDate,
-                                 HashMap<String, List<String>> childListDate) {
+    public MenuExpandableAdapter(Context mContext, ArrayList<HeaderDataModel> headerListDate,
+                                 HashMap<HeaderDataModel, List<ChildAndAddonModel>> childListDate) {
         this.mContext = mContext;
         this.headerListDate = headerListDate;
         this.childListDate = childListDate;
@@ -35,7 +37,7 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
         return this.childListDate.get(this.headerListDate.get(groupPosition))
-                .get(childPosititon);
+                .get(childPosititon).getItemName();
     }
 
     @Override
@@ -44,7 +46,7 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
+    public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
         final String childText = (String) getChild(groupPosition, childPosition);
@@ -56,21 +58,27 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         ImageView vegNonVegIndicator = (ImageView) convertView.findViewById(R.id.vegNonVegIndicator);
-        TextView childItemAmmount = (TextView) convertView
+        final TextView childItemAmmount = (TextView) convertView
                 .findViewById(R.id.childItemAmmount);
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.childItem);
 
         txtListChild.setText(childText);
+        childItemAmmount.setText(childListDate.get(headerListDate.get(groupPosition)).get(childPosition).getItemPrice());
+        if (childListDate.get(headerListDate.get(groupPosition)).get(childPosition).getIsNonVeg() == 1) {
+            vegNonVegIndicator.setImageResource(R.drawable.nonveg_icon);
+        } else {
+            vegNonVegIndicator.setImageResource(R.drawable.veg_icon);
+        }
+//        childItemAmmount.setText(childListDate.get(headerListDate.get(groupPosition)).get(childPosition).getItemPrice());
 
         txtListChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (childPosition%2==0)
-                {
-                    new MenuFragment().setPopStatus(mContext,"subItemDisplay",true);
-                }else {
-                    new MenuFragment().setPopStatus(mContext,"itemDisplay",true);
+                if (childListDate.get(headerListDate.get(groupPosition)).get(childPosition).getAddOnSize() != 0) {
+                    new MenuFragment().setPopStatus(mContext, "subItemDisplay", childPosition, groupPosition);
+                } else {
+                    new MenuFragment().setPopStatus(mContext, "itemDisplay", childPosition, groupPosition);
                 }
             }
         });
@@ -85,7 +93,7 @@ public class MenuExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getGroup(int groupPosition) {
-        return this.headerListDate.get(groupPosition);
+        return this.headerListDate.get(groupPosition).getHeaderName();
     }
 
     @Override

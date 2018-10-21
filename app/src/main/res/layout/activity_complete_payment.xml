@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.CompletePaymentActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/payText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:text="@string/wouldYouLikeToPay"
+                android:textColor="@color/colorPrimary" />
+
+            <RelativeLayout
+                android:id="@+id/parentSelectedCardLayout"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_below="@+id/payText"
+                android:layout_margin="@dimen/margin"
+                android:background="@drawable/card_bg">
+
+                <RelativeLayout
+                    android:id="@+id/selectCardLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <ImageView
+                        android:id="@+id/checkboxImage"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/checkbox_click" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin"
+                        android:layout_toLeftOf="@+id/dropDownImage"
+                        android:layout_toRightOf="@+id/checkboxImage"
+                        android:text="0 Visa ****5020 exp 12/20"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/mediumText" />
+
+                    <ImageView
+                        android:id="@+id/dropDownImage"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin"
+                        android:padding="@dimen/smallMargin"
+                        android:rotation="90"
+                        android:src="@drawable/back_icon"
+                        android:tint="@android:color/black" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/visaIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/selectCardLayout"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:src="@drawable/visa_card" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/securityText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/visaIcon"
+                    android:layout_marginTop="@dimen/margin"
+                    android:text="@string/securityNumber"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/securityText"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginTop="@dimen/margin">
+
+                    <CustomControls.EditTextLatoRegular
+                        android:id="@+id/cvvNumberText"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/white"
+                        android:gravity="center"
+                        android:maxLength="3"
+                        android:padding="@dimen/smallMargin" />
+
+                    <ImageView
+                        android:id="@+id/cvvImage"
+                        android:layout_width="70dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin"
+                        android:layout_toRightOf="@+id/cvvNumberText"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/cv_card" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/margin"
+                        android:layout_toRightOf="@+id/cvvImage"
+                        android:gravity="center_vertical"
+                        android:text="@string/cvvText"
+                        android:textColor="@android:color/black" />
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/payPalLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/parentSelectedCardLayout">
+
+                <ImageView
+                    android:id="@+id/checkbox2Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/check_box" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/payViaPayPalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_toRightOf="@+id/checkbox2Image"
+                    android:text="@string/payViaPaypal"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/payViaPayPalText"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_toRightOf="@+id/checkbox2Image"
+                    android:text="johndoe@gmail.com"
+                    android:textSize="@dimen/mediumText" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/largeMargin"
+                    android:layout_toRightOf="@+id/payViaPayPalText"
+                    android:src="@drawable/paypal_icon" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/payPalLayout"
+                android:layout_marginLeft="@dimen/largeMargin"
+                android:layout_marginRight="@dimen/largeMargin"
+                android:background="@color/underline" />
+
+            <RelativeLayout
+                android:id="@+id/codLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/payPalLayout"
+                android:layout_marginTop="1dp">
+
+                <ImageView
+                    android:id="@+id/checkbox3Image"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/check_box" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/payViacashText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_toRightOf="@+id/checkbox3Image"
+                    android:text="@string/payCashOnDeliv"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/placeMyOrderBtn"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/codLayout"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/placeMyOrder"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginRight="@dimen/margin"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/placeOrderRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/placeMyOrderBtn"
+                android:layout_marginTop="@dimen/margin" />
+
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/addNewCard"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/placeOrderRecyclerView"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/addNewCard"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginRight="@dimen/margin"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="@dimen/largeMargin"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

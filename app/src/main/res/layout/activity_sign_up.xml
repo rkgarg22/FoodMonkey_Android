@@ -31,11 +31,13 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerInParent="true"
+                    app:roundAsCircle="true"
                     app:placeholderImage="@drawable/profile_placeholder" />
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:backgroundTint="@android:color/white"
                     android:layout_alignBottom="@+id/profilePic"
                     android:layout_alignEnd="@+id/profilePic"
                     android:src="@drawable/add_circle" />
@@ -209,27 +211,62 @@
 
             </RelativeLayout>
 
-            <CustomControls.EditTextLatoRegular
-                android:id="@+id/password"
+            <RelativeLayout
+                android:id="@+id/passwordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/dobLayout"
                 android:layout_marginTop="@dimen/marginTop"
                 android:background="@drawable/curve_border_background"
-                android:drawableRight="@drawable/show_password"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                android:paddingEnd="@dimen/padding"
-                android:paddingStart="@dimen/padding"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black"
-                app:passwordToggleEnabled="true" />
+                android:inputType="textPassword">
+
+                <CustomControls.EditTextLatoRegular
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/marginTop"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:layout_centerVertical="true"
+                    android:paddingEnd="@dimen/padding"
+                    android:paddingStart="@dimen/padding"
+                    android:textColor="@android:color/black"
+                    app:passwordToggleEnabled="true" />
+
+                <ImageView
+                    android:id="@+id/showPassword"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/show_password" />
+
+            </RelativeLayout>
+
+            <!--<CustomControls.EditTextLatoRegular-->
+                <!--android:id="@+id/password"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_below="@+id/dobLayout"-->
+                <!--android:layout_marginTop="@dimen/marginTop"-->
+                <!--android:background="@drawable/curve_border_background"-->
+                <!--android:drawableRight="@drawable/show_password"-->
+                <!--android:hint="@string/password"-->
+                <!--android:inputType="textPassword"-->
+                <!--android:paddingEnd="@dimen/padding"-->
+                <!--android:paddingStart="@dimen/padding"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textColorHint="@android:color/black"-->
+                <!--app:passwordToggleEnabled="true" />-->
 
             <LinearLayout
                 android:id="@+id/termsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@+id/password"
+                android:layout_below="@+id/passwordLayout"
                 android:layout_marginTop="@dimen/marginTop"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">

@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Patterns;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -97,17 +98,17 @@ public class AppCommon {
 
     }
 
-    public static String emailAddress() {
+    public String getEmailAddress() {
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, mContext.MODE_PRIVATE);
         return mSharedPreferences.getString(MYPerference.EMAIL_ADDRESS, null);
     }
 
 
-    public static void setEmailAddress(String emailAddress) {
+    public void setEmailAddress(String emailAddress) {
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, mContext.MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-        mEditor.putString(MYPerference.USER_NAME, emailAddress);
-        mEditor.commit();
+        mEditor.putString(MYPerference.EMAIL_ADDRESS, emailAddress);
+        mEditor.apply();
 
     }
 
@@ -340,10 +341,19 @@ public class AppCommon {
         return formatted;
     }
 
-    public static double getInchToCM(double inch) {
-
-        return (inch * 2.54);
+    public String getBase64ImageString(Bitmap photo) {
+        String imgString;
+        if (photo != null) {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.PNG, 60, outputStream);
+            byte[] profileImage = outputStream.toByteArray();
+            imgString = Base64.encodeToString(profileImage, Base64.NO_WRAP);
+        } else {
+            imgString = "";
+        }
+        return imgString;
     }
+
 
     public void setVerified(boolean count) {
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, mContext.MODE_PRIVATE);
@@ -535,4 +545,130 @@ public class AppCommon {
         return mSharedPreferences.getString(MYPerference.USER_POSTCODE, "");
     }
 
+    public void setCustomerID(String customerID) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.CUSTOMER_ID, customerID);
+        mEditor.apply();
+    }
+
+    public String getCustomerID() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.CUSTOMER_ID, "");
+    }
+
+    public void setFirstName(String firstName) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.FIRST_NAME, firstName);
+        mEditor.apply();
+    }
+
+    public String getFirstName() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.FIRST_NAME, "");
+    }
+
+    public void setSurName(String surName) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.SUR_NAME, surName);
+        mEditor.apply();
+    }
+
+    public String getSurName() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.SUR_NAME, "");
+    }
+
+    public void setMiddleName(String middleName) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.MIDDLE_NAME, middleName);
+        mEditor.apply();
+    }
+
+    public String getMiddleName() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.MIDDLE_NAME, "");
+    }
+
+
+    public void setGender(String gender) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.GENDER, gender);
+        mEditor.apply();
+    }
+
+    public String getGender() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.GENDER, "");
+    }
+
+
+    public void setMobileNumber(String mobileNumber) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.MOBILE_NUMBER, mobileNumber);
+        mEditor.apply();
+    }
+
+    public String getMobileNumber() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.MOBILE_NUMBER, "");
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.DATE_OF_BIRTH, dateOfBirth);
+        mEditor.apply();
+    }
+
+    public String getDateOfBirth() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.DATE_OF_BIRTH, "");
+    }
+
+    public void setProfilePic(String profilePic) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.PROFILE_PIC, profilePic);
+        mEditor.apply();
+    }
+
+    public String getProfilePic() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.PROFILE_PIC, "");
+    }
+
+    public void setStatus(Integer status) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putInt(MYPerference.STATUS, status);
+        mEditor.apply();
+    }
+
+    public String getStatus() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.STATUS, "");
+    }
+
+    public String getFileToBase64(String filePath) {
+        Bitmap bmp = null;
+            ByteArrayOutputStream bos = null;
+            byte[] bt = null;
+            String encodeString = null;
+            try{
+                bmp = BitmapFactory.decodeFile(filePath);
+                bos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 60, bos);
+                bt = bos.toByteArray();
+                encodeString = Base64.encodeToString(bt, Base64.DEFAULT);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return encodeString;
+    }
 }

@@ -9,14 +9,13 @@ import java.util.ArrayList;
  * Created by kartikeya on 02/10/2018.
  */
 
-public class ResturantListResponse
-{
+public class ResturantListResponse {
     @SerializedName("Code")
     private String code;
     @SerializedName("Message")
     private String message;
     @SerializedName("Restutant_list")
-    private ArrayList<RestutantListObject> restutantList = null;
+    private RestutantListObject restutantList;
 
     public String getCode() {
         return code;
@@ -34,11 +33,11 @@ public class ResturantListResponse
         this.message = message;
     }
 
-    public ArrayList<RestutantListObject> getRestutantList() {
+    public RestutantListObject getRestutantList() {
         return restutantList;
     }
 
-    public void setRestutantList(ArrayList<RestutantListObject> restutantList) {
+    public void setRestutantList(RestutantListObject restutantList) {
         this.restutantList = restutantList;
     }
 }

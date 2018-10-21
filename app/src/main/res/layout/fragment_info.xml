@@ -27,6 +27,7 @@
                 android:textSize="@dimen/smallTitleText" />
 
             <CustomControls.TextViewLatoBold
+                android:id="@+id/descriptionsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dummyText"

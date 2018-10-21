@@ -1,14 +1,28 @@
 package com.kartik.project.foodmonkey;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.LinkMovementMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,12 +36,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.JsonSyntaxException;
 import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
 import com.kartik.project.foodmonkey.API.ServiceGenerator;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerSignUpEntity;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerSignUpResponse;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -41,6 +61,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    private static final int SELECT_FILE = 1;
 
     @BindView(R.id.left)
     ImageView left;
@@ -96,6 +118,9 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.createAccountButton)
     Button createAccountButton;
 
+    @BindView(R.id.profilePic)
+    SimpleDraweeView profilePic;
+
     Call call;
 
     String gender = "";
@@ -111,7 +136,7 @@ public class SignUpActivity extends AppCompatActivity {
 //            myCalendar.set(Calendar.YEAR, year);
 //            myCalendar.set(Calendar.MONTH, monthOfYear);
 //            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel(year,(monthOfYear+1),dayOfMonth);
+            updateLabel(year, (monthOfYear + 1), dayOfMonth);
         }
 
     };
@@ -146,6 +171,52 @@ public class SignUpActivity extends AppCompatActivity {
         spannableString.setSpan(clickableSpan, 17, 22, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         loginText.setText(spannableString);
         loginText.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @OnClick(R.id.profilePic)
+    void setProfilePicture() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.choose_option_dialog);
+        dialog.setTitle(getResources().getString(R.string.app_name));
+        TextView camera = (TextView) dialog.findViewById(R.id.camera);
+        TextView gallery = (TextView) dialog.findViewById(R.id.gallery);
+        TextView textViewCancel = (TextView) dialog.findViewById(R.id.cancel);
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestCameraPermission();
+                dialog.dismiss();
+            }
+        });
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestGalleryPermission();
+                dialog.dismiss();
+            }
+        });
+        textViewCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    boolean showPasswordFlag = false;
+
+    @OnClick(R.id.showPassword)
+    void setShowPassword() {
+        if (showPasswordFlag) {
+            showPasswordFlag = false;
+            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        } else {
+            showPasswordFlag = true;
+            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
     }
 
     private void setReadTerms() {
@@ -191,11 +262,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     String dateOfBirthInput = "";
     SimpleDateFormat sdf;
+
     private void updateLabel(int year, int monthOfYear, int dayOfMonth) {
 //        String inputFormat = "yyyy/mm/dd"; //In which you need put here
 //        sdf = new SimpleDateFormat(inputFormat, Locale.US);
-        dateOfBirthInput = year+"/"+monthOfYear+"/"+dayOfMonth;
-        dateOfBirth.setText(monthOfYear+"/"+dayOfMonth+"/"+year);
+        dateOfBirthInput = year + "-" + monthOfYear + "-" + dayOfMonth;
+        dateOfBirth.setText(monthOfYear + "/" + dayOfMonth + "/" + year);
 
 //        sdf = new SimpleDateFormat("mm/dd/yyyy", Locale.US);
 
@@ -214,10 +286,15 @@ public class SignUpActivity extends AppCompatActivity {
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
+    String base64Pic = "";
+
     @OnClick(R.id.createAccountButton)
     void setCreateAccountButton() {
         if (validation()) {
-//         callingSignUpApi();
+            callingSignUpApi(AppCommon.getInstance(this).getDeviceToken(), this.firstName.getText().toString().trim(), this.middleName.getText().toString().trim(),
+                    this.surName.getText().toString().trim(), gender, this.email.getText().toString().trim(), this.mobile.getText().toString().trim(),
+                    dateOfBirthInput, this.password.getText().toString().trim(),
+                    base64Pic, "App");
         }
     }
 
@@ -257,9 +334,8 @@ public class SignUpActivity extends AppCompatActivity {
         return status;
     }
 
-
-    void callingSignUpApi(String tokenKey, String firstName, String middleName, String surName,
-                          String gender, String email, String mobile, String dateOfBirth,
+    void callingSignUpApi(String tokenKey, final String firstName, final String middleName, final String surName,
+                          final String gender, final String email, final String mobile, final String dateOfBirth,
                           String password, String profilePic, String channelCalling) {
         AppCommon.getInstance(this).setNonTouchableFlags(this);
         if (AppCommon.getInstance(SignUpActivity.this).isConnectingToInternet(SignUpActivity.this)) {
@@ -278,15 +354,26 @@ public class SignUpActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         CustomerSignUpResponse customerSignUpResponse = (CustomerSignUpResponse) response.body();
                         if (customerSignUpResponse.getCode().equals("200")) {
-                            Toast.makeText(SignUpActivity.this, customerSignUpResponse.getMessage(), Toast.LENGTH_LONG).show();
-//                            User user = registrationResponse.getUserEntity();
+                            AppCommon.getInstance(SignUpActivity.this).setCustomerID(customerSignUpResponse.getCustomerId());
 
-//                            try {
-//                                AppCommon.getInstance(HomeActivity.this).setUserLatitude(Double.parseDouble(latitude));
-//                                AppCommon.getInstance(HomeActivity.this).setUserLongitude(Double.parseDouble(longitude));
-//                            } catch (Exception e) {
-//
-//                            }
+                            AppCommon.getInstance(SignUpActivity.this).setFirstName(firstName);
+                            AppCommon.getInstance(SignUpActivity.this).setSurName(surName);
+                            AppCommon.getInstance(SignUpActivity.this).setMiddleName(middleName);
+                            AppCommon.getInstance(SignUpActivity.this).setGender(gender);
+                            AppCommon.getInstance(SignUpActivity.this).setEmailAddress(email);
+                            AppCommon.getInstance(SignUpActivity.this).setMobileNumber(mobile);
+                            AppCommon.getInstance(SignUpActivity.this).setDateOfBirth(dateOfBirth);
+//                            AppCommon.getInstance(SignUpActivity.this).setProfilePic();
+//                            AppCommon.getInstance(SignUpActivity.this).setStatus(
+//                                    loginCustomerResponse.getCustomerDetails().get(0).getStatus());
+                            AppCommon.getInstance(SignUpActivity.this).setIsUserLogIn(true);
+
+                            Intent intent = getIntent();
+                            intent.putExtra("data", true);
+                            setResult(RESULT_OK, intent);
+                            finish();
+
+                            Toast.makeText(SignUpActivity.this, customerSignUpResponse.getMessage(), Toast.LENGTH_LONG).show();
                         } else {
                             AppCommon.showDialog(SignUpActivity.this, customerSignUpResponse.getMessage());
                         }
@@ -313,5 +400,94 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
+    public void requestCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(SignUpActivity.this,
+                    new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA},
+                    200);
+        } else {
+            startCameraIntent();
+        }
+    }
 
+    public void startCameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File file = new File(Environment.getExternalStorageDirectory(),
+                "attachment.jpg");
+        outPutfileUri = FileProvider.getUriForFile(SignUpActivity.this,
+                BuildConfig.APPLICATION_ID + ".provider",
+                file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, outPutfileUri);
+        startActivityForResult(intent, REQUEST_CAMERA);
+
+    }
+
+    public void requestGalleryPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(SignUpActivity.this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(SignUpActivity.this,
+                    new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                    201);
+        } else {
+            startGalleryIntent();
+        }
+    }
+
+
+    public void startGalleryIntent() {
+        Intent galleryIntent = new Intent();
+        galleryIntent.setType("image/*");
+//        galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), SELECT_FILE);
+    }
+
+    private static final int REQUEST_CAMERA = 0;
+    Uri outPutfileUri = Uri.parse("");
+    String isMedia = "0";
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_FILE) {
+                outPutfileUri = data.getData();
+                profilePic.setImageURI(outPutfileUri);
+
+                final InputStream imageStream;
+                try {
+                    imageStream = getContentResolver().openInputStream(outPutfileUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] b = baos.toByteArray();
+                    base64Pic = Base64.encodeToString(b, Base64.DEFAULT);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (requestCode == REQUEST_CAMERA) {
+                Bitmap bitmap = null;
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), outPutfileUri);
+                    String url = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "attachment", null);
+                    outPutfileUri = Uri.parse(url);
+                    profilePic.setImageURI(outPutfileUri);
+                    base64Pic = AppCommon.getInstance(this).getFileToBase64(url);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            isMedia = "1";
+        }
+    }
 }

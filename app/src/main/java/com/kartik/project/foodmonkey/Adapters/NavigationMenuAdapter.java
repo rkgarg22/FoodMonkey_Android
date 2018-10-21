@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.kartik.project.foodmonkey.HomeActivity;
 import com.kartik.project.foodmonkey.Models.NavigationModel;
 import com.kartik.project.foodmonkey.R;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by kartikeya on 23/09/2018.
@@ -57,6 +59,11 @@ public class NavigationMenuAdapter extends RecyclerView.Adapter<NavigationMenuAd
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.parentLayout)
+        void onClickParent(){
+            ((HomeActivity)mContext).setNavigationClick(getAdapterPosition());
         }
     }
 }

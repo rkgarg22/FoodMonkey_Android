@@ -1,27 +1,23 @@
 package com.kartik.project.foodmonkey;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +26,14 @@ import com.google.gson.JsonSyntaxException;
 import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
 import com.kartik.project.foodmonkey.API.ServiceGenerator;
 import com.kartik.project.foodmonkey.Adapters.NavigationMenuAdapter;
+import com.kartik.project.foodmonkey.Adapters.OrderAdapter;
+import com.kartik.project.foodmonkey.Adapters.RecentViewAdapter;
 import com.kartik.project.foodmonkey.Adapters.RestaurantAdapter;
 import com.kartik.project.foodmonkey.ApiEntity.AddTokenEntity;
-import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
+import com.kartik.project.foodmonkey.ApiEntity.CustomerHomeEntity;
+import com.kartik.project.foodmonkey.ApiObject.HomeRestutantObject;
 import com.kartik.project.foodmonkey.ApiResponse.CommonResponse;
-import com.kartik.project.foodmonkey.ApiResponse.ResturantListResponse;
+import com.kartik.project.foodmonkey.ApiResponse.CustomerHomeResponse;
 import com.kartik.project.foodmonkey.Models.NavigationModel;
 
 import java.util.ArrayList;
@@ -83,6 +82,15 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.postalCodeText)
     EditText postalCodeText;
 
+    @BindView(R.id.restaurantLayout)
+    RelativeLayout restaurantLayout;
+
+    @BindView(R.id.takeOutLayout)
+    RelativeLayout takeOutLayout;
+
+    @BindView(R.id.yourOrderLayout)
+    RelativeLayout yourOrderLayout;
+
     Call call;
 
     GPSTracker gpsTracker;
@@ -109,22 +117,39 @@ public class HomeActivity extends AppCompatActivity {
         navigationRecyclerView.setAdapter(navigationMenuAdapter);
 
         String tokenKey = AppCommon.getInstance(this).getDeviceToken();
+        String customerID = AppCommon.getInstance(this).getCustomerID();
         if (tokenKey.equals("")) {
             callingAddTokenApi(FirebaseInstanceId.getInstance().getToken(),
                     getString(R.string.customerType), getString(R.string.callingChannel));
         } else {
-//            callingResturantList(tokenKey, "location", getString(R.string.PostalCodeAPI));
+            callingResturantList(tokenKey, customerID);
         }
+//        setAdapter(customerHomeResponse.getRestutantList());
 
-
-        setAdapter();
-
+        postalCodeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchBy = "postalcode";
+            }
+        });
     }
 
-    void setAdapter() {
-        restaurantRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.restaurant)));
-        menuRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.takeOut)));
-        orderRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.yourOrders)));
+    void setAdapter(HomeRestutantObject restutantList) {
+        if (restutantList.getPopularRestaurants().size() == 0) {
+            restaurantLayout.setVisibility(View.GONE);
+        } else {
+            restaurantRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.restaurant), restutantList.getPopularRestaurants()));
+        }
+        if (restutantList.getOrderedRestaurants().size() == 0) {
+            takeOutLayout.setVisibility(View.GONE);
+        } else {
+            menuRecyclerView.setAdapter(new RecentViewAdapter(this, getString(R.string.takeOut), restutantList.getViewedRestaurants()));
+        }
+        if (restutantList.getViewedRestaurants().size() == 0) {
+            yourOrderLayout.setVisibility(View.GONE);
+        } else {
+            orderRecyclerView.setAdapter(new OrderAdapter(this, getString(R.string.yourOrders), restutantList.getOrderedRestaurants()));
+        }
     }
 
     @OnClick(R.id.left)
@@ -161,6 +186,26 @@ public class HomeActivity extends AppCompatActivity {
 //        Toast.makeText(this, "" + AppCommon.getInstance(this).getUserLatitude(), Toast.LENGTH_SHORT).show();
         Log.d("Latitude-->", "" + AppCommon.getInstance(this).getUserLatitude());
         Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
+        intent.putExtra("searchBy", searchBy);
+        if (searchBy.equals("postalcode")) {
+            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+        } else {
+            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+        }
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.searchBtn)
+    void setSearchBtn() {
+//        Toast.makeText(this, "" + AppCommon.getInstance(this).getUserLatitude(), Toast.LENGTH_SHORT).show();
+        Log.d("Latitude-->", "" + AppCommon.getInstance(this).getUserLatitude());
+        Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
+        intent.putExtra("searchBy", searchBy);
+        if (searchBy.equals("postalcode")) {
+            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+        } else {
+            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+        }
         startActivity(intent);
     }
 
@@ -170,8 +215,11 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    String searchBy = "";
+
     @OnClick(R.id.locationBtn)
     void setLocationBtn() {
+        searchBy = "location";
         if (AppCommon.getInstance(HomeActivity.this).getUserPostalCode().equals("")) {
             gpsTracker.getLocation();
             gpsTracker.getPostalCodeByCoordinates();
@@ -187,32 +235,27 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void callingResturantList(String tokenKey, String searchBy, String postCode) {
+    void callingResturantList(String tokenKey, String customerID) {
         AppCommon.getInstance(this).setNonTouchableFlags(this);
         if (AppCommon.getInstance(HomeActivity.this).isConnectingToInternet(HomeActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             //  final String token = myFirebaseInstanceIDService.getDeviceToken();
-            ResturantListEnity resturantListEnity = new ResturantListEnity(tokenKey, searchBy, postCode);
+            CustomerHomeEntity customerHomeEntity = new CustomerHomeEntity(tokenKey, customerID);
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
-            call = foodMonkeyAppService.resturantList(resturantListEnity);
+            call = foodMonkeyAppService.HomeResturantAPI(customerHomeEntity);
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
                     AppCommon.getInstance(HomeActivity.this).clearNonTouchableFlags(HomeActivity.this);
                     if (response.code() == 200) {
                         progressBar.setVisibility(View.GONE);
-                        ResturantListResponse registrationResponse = (ResturantListResponse) response.body();
-                        if (registrationResponse.getCode().equals("200")) {
-//                            User user = registrationResponse.getUserEntity();
-
-//                            try {
-//                                AppCommon.getInstance(HomeActivity.this).setUserLatitude(Double.parseDouble(latitude));
-//                                AppCommon.getInstance(HomeActivity.this).setUserLongitude(Double.parseDouble(longitude));
-//                            } catch (Exception e) {
-//
-//                            }
-                        } else {
-                            AppCommon.showDialog(HomeActivity.this, registrationResponse.getMessage());
+                        CustomerHomeResponse customerHomeResponse = (CustomerHomeResponse) response.body();
+                        if (response.body() != null) {
+                            if (customerHomeResponse.getCode().equals("200")) {
+                                setAdapter(customerHomeResponse.getRestutantList());
+                            } else {
+                                AppCommon.showDialog(HomeActivity.this, customerHomeResponse.getMessage());
+                            }
                         }
                     } else {
                         AppCommon.showDialog(HomeActivity.this, getString(R.string.serverError));
@@ -254,6 +297,7 @@ public class HomeActivity extends AppCompatActivity {
                         CommonResponse commonResponse = (CommonResponse) response.body();
                         if (commonResponse.getCode().equals("200")) {
                             AppCommon.getInstance(HomeActivity.this).setDeviceToken(tokenKey);
+                            callingResturantList(tokenKey, "");
                         } else {
                             AppCommon.showDialog(HomeActivity.this, commonResponse.getMessage());
                         }
@@ -280,4 +324,32 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    public void setNavigationClick(int adapterPosition) {
+        String title = navigationModelArrayList.get(adapterPosition).getTitle();
+        switch (title) {
+            case "My Account":
+                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                break;
+            case "Signout":
+                AppCommon.getInstance(this).clearSharedPreference();
+                startActivity(new Intent(this, HomeActivity.class));
+                finish();
+                break;
+            case "Refer a friend":
+                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                break;
+            case "My Orders":
+                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                break;
+            case "Help":
+                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                break;
+            case "Terms":
+                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                break;
+            case "Settings":
+                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }

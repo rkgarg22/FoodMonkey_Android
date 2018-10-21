@@ -19,6 +19,7 @@ import com.kartik.project.foodmonkey.Models.InfoModel;
 
 import java.util.ArrayList;
 
+import Infrastructure.AppCommon;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -72,7 +73,12 @@ public class CheckOutActivity extends AppCompatActivity {
 
         addressAdapter = new AddressAdapter(this, addAddressModelArrayList);
 
-        setLayoutVisiblity(false);
+        if (AppCommon.getInstance(this).isUserLogIn()) {
+            setLayoutVisiblity(true);
+        } else {
+//            setLayoutVisiblity(false);
+        }
+
     }
 
     @OnClick(R.id.left)
@@ -96,12 +102,20 @@ public class CheckOutActivity extends AppCompatActivity {
         addAddressModelArrayList.clear();
         addAddressModelArrayList.add(new AddAddressModel("Home", "Eddie Methew, 256 Near ABC LandMark, Street Line 1, Street Line 2, 45874, Bristol"));
         addAddressModelArrayList.add(new AddAddressModel("Bussiness", "Eddie Methew, 256 Near ABC LandMark, Street Line 1, Street Line 2, 45874, Bristol"));
-        }
+    }
 
     @OnClick(R.id.loginButton)
     void setLoginButton() {
-        Intent intent = new Intent(CheckOutActivity.this, LoginActivity.class);
-        startActivityForResult(intent, LOGIN_CODE);
+        if (!AppCommon.getInstance(CheckOutActivity.this).isUserLogIn()) {
+            Intent intent = new Intent(CheckOutActivity.this, LoginActivity.class);
+            startActivityForResult(intent, LOGIN_CODE);
+        }
+    }
+
+    @OnClick(R.id.proceedToPayBtn)
+    void setProceedToPayBtn() {
+        Intent intent = new Intent(CheckOutActivity.this, CompletePaymentActivity.class);
+        startActivity(intent);
     }
 
     @Override

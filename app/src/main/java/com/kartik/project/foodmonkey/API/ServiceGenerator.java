@@ -1,5 +1,8 @@
 package com.kartik.project.foodmonkey.API;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -13,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ServiceGenerator {
-    public static final String API_BASE_URL = "http://food-monkey.com/api/";
+    public static final String API_BASE_URL = "http://food-monkey.com/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -41,9 +44,12 @@ public class ServiceGenerator {
                 }
             });
         }
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         OkHttpClient client = httpClient.build();
-        Retrofit retrofit = builder.client(client).build();
+        Retrofit retrofit = builder.client(client).addConverterFactory(GsonConverterFactory.create(gson)).build();
         return retrofit.create(serviceClass);
     }
 }

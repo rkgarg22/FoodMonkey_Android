@@ -9,8 +9,7 @@
         android:layout_height="30dp"
         android:layout_centerVertical="true"
         android:padding="@dimen/smallMargin"
-        android:layout_marginLeft="@dimen/margin"
-        android:src="@drawable/ic_menu_camera" />
+        android:layout_marginLeft="@dimen/margin" />
 
     <CustomControls.TextViewLatoRegular
         android:id="@+id/childItem"

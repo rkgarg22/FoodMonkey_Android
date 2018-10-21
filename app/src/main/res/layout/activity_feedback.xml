@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.FeedbackActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="@dimen/margin"
+        android:padding="@dimen/largeMargin"
+        android:src="@drawable/food_logo_one" />
+
+    <CustomControls.TextViewLatoRegular
+        android:id="@+id/leaveToWinText"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textSize="@dimen/titleText"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/logo"
+        android:text="@string/leaveFeedForChance"/>
+
+    <CustomControls.TextViewLatoRegular
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textSize="@dimen/titleText"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/leaveToWinText"
+        android:text="£250"/>
+
+
+</RelativeLayout>

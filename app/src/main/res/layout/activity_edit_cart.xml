@@ -19,8 +19,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/largeMargin"
-            android:layout_marginLeft="@dimen/largeMargin">
+            android:layout_marginLeft="@dimen/largeMargin"
+            android:layout_marginRight="@dimen/largeMargin">
 
             <CustomControls.TextViewLatoRegular
                 android:id="@+id/sectionTitle"

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <ImageView
+        android:id="@+id/checkboxImage"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin"
+        android:scaleType="fitXY"
+        android:src="@drawable/check_box" />
+
+    <CustomControls.TextViewLatoRegular
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_toLeftOf="@+id/dropDownImage"
+        android:layout_toRightOf="@+id/checkboxImage"
+        android:text="Visa ****5020 exp 12/20"
+        android:textSize="@dimen/mediumText" />
+
+    <ImageView
+        android:id="@+id/dropDownImage"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin"
+        android:padding="@dimen/smallMargin"
+        android:rotation="270"
+        android:src="@drawable/back_icon"
+        android:tint="@android:color/black" />
+
+</RelativeLayout>

@@ -13,6 +13,7 @@
         android:layout_marginTop="@dimen/largeMarginTop">
 
         <CustomControls.TextViewLatoRegular
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/dateText"
@@ -32,6 +33,7 @@
     </RelativeLayout>
 
     <RatingBar
+        android:id="@+id/ratingBar"
         android:theme="@style/RatingBar"
         android:layout_width="wrap_content"
         style="@style/Widget.AppCompat.RatingBar.Indicator"

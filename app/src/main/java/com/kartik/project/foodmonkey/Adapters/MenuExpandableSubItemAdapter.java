@@ -7,13 +7,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
+import com.kartik.project.foodmonkey.ApiObject.MenuAddOnObject;
 import com.kartik.project.foodmonkey.R;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 /**
  * Created by kartikeya on 07/10/2018.
@@ -22,35 +28,49 @@ import butterknife.ButterKnife;
 public class MenuExpandableSubItemAdapter extends RecyclerView.Adapter<MenuExpandableSubItemAdapter.MyViewHolder> {
 
     Context mContext;
+    ArrayList<MenuAddOnObject> addOn = new ArrayList<>();
 
-    public MenuExpandableSubItemAdapter(Context mContext) {
+    public MenuExpandableSubItemAdapter(Context mContext, ArrayList<MenuAddOnObject> addOn) {
         this.mContext = mContext;
+        this.addOn = addOn;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.custom_categories_item, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.custom_sub_expand_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         holder.underLine.setVisibility(View.GONE);
         holder.parentLayout.setBackgroundResource(android.R.color.white);
         holder.radioButton.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
         holder.radioButton.setButtonTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.colorPrimary)));
-        if (position % 2 == 0) {
-            holder.radioButton.setText("Extra Hot");
-        } else {
-            holder.radioButton.setText("Extreme");
+//        if (position % 2 == 0) {
+        holder.radioButton.setText(addOn.get(position).getAddonName());
+        if (addOn.get(position).isSelected()) {
+            holder.radioButton.setChecked(true);
+        }else {
+            holder.radioButton.setChecked(false);
         }
+
+//        holder.radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+//            }
+//        });
+//        } else {
+//            holder.radioButton.setText("Extreme");
+//        }
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return addOn.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -66,6 +86,16 @@ public class MenuExpandableSubItemAdapter extends RecyclerView.Adapter<MenuExpan
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.radioItem)
+        void setRadioButton() {
+            if (addOn.get(getAdapterPosition()).isSelected()) {
+                addOn.get(getAdapterPosition()).setSelected(false);
+            } else {
+                addOn.get(getAdapterPosition()).setSelected(true);
+            }
+            notifyDataSetChanged();
         }
     }
 }

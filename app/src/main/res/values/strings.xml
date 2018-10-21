@@ -55,7 +55,7 @@
     <string name="takeOut">Take Out Menu</string>
     <string name="yourOrders">Your Orders</string>
     <string name="sponsored">Sponsored</string>
-    <string name="closedRestaurents">Closed Restaurents</string>
+    <string name="closedRestaurents">Closed Restaurants</string>
     <string name="delivery">Delivery</string>
     <string name="takeAway">Takeaway</string>
     <string name="deliveryTakeAway">Delivery + Takeaway</string>
@@ -113,5 +113,26 @@
     <string name="callingChannel">App</string>
     <string name="tryAgain">Try Again</string>
     <string name="addToCartPlus">Add to Cart +</string>
+    <string name="wouldYouLikeToPay">How would you like to pay?</string>
+    <string name="securityNumber">Security number</string>
+    <string name="cvvText">The 3 digit number on the back of your card</string>
+    <string name="payViaPaypal">Pay Via PayPal</string>
+    <string name="payCashOnDeliv">Pay Cash on Delivery</string>
+    <string name="placeMyOrder">Place My Order</string>
+    <string name="addNewCard">Add New Credit/Debit Card</string>
+    <string name="completeYourPayment">Complete Your Payment</string>
+    <string name="nameOnCard">Name on Card</string>
+    <string name="enterName">Enter Name</string>
+    <string name="cardNumber">Card Number</string>
+    <string name="cardFormat">0000-0000-0000-0000</string>
+    <string name="expirationDate">Expiration Date</string>
+    <string name="cvv">CVV</string>
+    <string name="addNewCreditAndDebitCard">Add New Credit/Debit Card</string>
+    <string name="addCard">Add Card</string>
+    <string name="leaveFeedForChance">Leave feed for a chance to win</string>
+    <string name="restaurantTakingPreOrder">restaurants taking pre-orders for later</string>
+    <string name="takeAway_delivery">Takeaway_Delivery</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 
 </resources>

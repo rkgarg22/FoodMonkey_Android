@@ -16,6 +16,18 @@ public class AddTokenEntity {
     @SerializedName("CallingChannel")
     String callingChannel;
 
+    @SerializedName("Resturant_id")
+    int resturantId;
+
+    public AddTokenEntity(String tokenKey) {
+        this.tokenKey = tokenKey;
+    }
+
+    public AddTokenEntity(String tokenKey, int resturantId) {
+        this.tokenKey = tokenKey;
+        this.resturantId = resturantId;
+    }
+
     public AddTokenEntity(String tokenKey, String customerType, String callingChannel) {
         this.tokenKey = tokenKey;
         this.customerType = customerType;
@@ -44,5 +56,13 @@ public class AddTokenEntity {
 
     public void setCallingChannel(String callingChannel) {
         this.callingChannel = callingChannel;
+    }
+
+    public int getResturantId() {
+        return resturantId;
+    }
+
+    public void setResturantId(int resturantId) {
+        this.resturantId = resturantId;
     }
 }

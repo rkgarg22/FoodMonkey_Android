@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.AddNewCardActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <LinearLayout
+        android:id="@+id/nameOnCardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:layout_marginTop="@dimen/largeMargin"
+        android:orientation="vertical">
+
+        <CustomControls.TextViewLatoRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nameOnCard"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/mediumText" />
+
+        <CustomControls.EditTextLatoRegular
+            android:id="@+id/nameOnCard"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/smallMargin"
+            android:background="@drawable/curve_border_background"
+            android:hint="@string/enterName"
+            android:inputType="text"
+            android:paddingStart="@dimen/padding"
+            android:textColor="@android:color/black" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cardNumberLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameOnCardLayout"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:layout_marginTop="@dimen/largeMargin"
+        android:orientation="vertical">
+
+        <CustomControls.TextViewLatoRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cardNumber"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/mediumText" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/smallMargin"
+            android:background="@drawable/curve_border_background">
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/cardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/cardIcon"
+                android:background="@android:color/transparent"
+                android:hint="@string/cardFormat"
+                android:inputType="text"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/cardIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin"
+                android:src="@drawable/visa_card" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/expiryCvvLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardNumberLayout"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/expiryDateLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_marginTop="@dimen/largeMargin"
+            android:layout_weight="0.6"
+            android:orientation="vertical">
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/expirationDate"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/dateSpinnerlayout"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="@dimen/margin"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/curve_border_background"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/dateSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/padding"
+                        android:rotation="270"
+                        android:src="@drawable/back_icon"
+                        android:tint="@android:color/black" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/yearSpinnerLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="3dp"
+                    android:layout_toRightOf="@+id/dateSpinnerlayout"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/curve_border_background"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/yearSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/padding"
+                        android:rotation="270"
+                        android:src="@drawable/back_icon"
+                        android:tint="@android:color/black" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cvvLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_marginTop="@dimen/largeMargin"
+            android:layout_weight="0.4"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/margin"
+                android:layout_marginTop="15dp"
+                android:layout_toLeftOf="@+id/cvvEditText"
+                android:layout_weight="0.2"
+                android:src="@drawable/cv_card" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/cvvText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cvv"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.EditTextLatoRegular
+                    android:id="@+id/cvvEditText"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/cvvText"
+                    android:layout_marginTop="@dimen/smallMargin"
+                    android:background="@drawable/curve_border_background"
+                    android:hint="000"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/padding"
+                    android:textColor="@android:color/black" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <CustomControls.ButtonLatoRegular
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expiryCvvLayout"
+        android:text="@string/addCard"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/largeMargin"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"/>
+
+
+</RelativeLayout>
