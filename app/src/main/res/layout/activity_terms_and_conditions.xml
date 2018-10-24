@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kartik.project.foodmonkey.TermsAndConditionsActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/largeMargin"
+            android:layout_marginRight="@dimen/largeMargin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginBottom="@dimen/margin">
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="General Terms and Conditions of Sale"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="In these Terms and Conditions, except where the context requires otherwise, the terms below can be defined as follows:
+“Takeaway” means the food outlet you want to place an order with
+“FM/us” Food Monkey, which is the trading name of Food Monkey Services Ltd.  The company is registered in England and Wales, under number 11557141, with registered office situated at 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ. This Website/Application is run by FM.
+“Website” refers to www.foodmonkey.co.uk
+“Application” refers to the mobile application of foodmonkey.co.uk used in placing food orders
+These Terms and conditions are made to control and regulate the sales of all goods by FM.  They will also be the bases of the contract between you and us.  Once you indicate your interest in placing an order with us, you will be guided through the whole process of ordering by our Website/Application.  You will be opportune to review and amend an order before finally submitting to us.  Kindly ensure that you have read and understood these Terms and Conditions, and have reviewed your order before proceeding to submit it to us.  We will be glad to clarify any part of these Terms and Conditions that looks unclear to you on your request.
+"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Our Contract"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Note that all orders submitted or placed through us are subject to availability and confirmation of the prices of such orders.  The availability, possible delays from postal issues or natural disasters may affect the dispatch times of orders placed, and FM will not be responsible for such inconsistencies.  Apart from being over 18 years of age, you are also required to have a valid debit or credit card, issued by a bank we deem fit, before proceeding to contract with us.  FM holds the sole right to grant or decline any request you make. We will be sure to inform you via email, SMS, or the website when your order is accepted.  By placing an order, you confirm that every detail you submitted is correct and accurate; including being the legitimate user of the credit or debit card used for such purchases and that you have enough funds that will cover the cost of the goods and its dispatch.
+Once your order is successfully placed on our website, we will acknowledge the same via an email or a webpage.  Note that such webpage or email is never an assurance that your order has been accepted, it remains only an acknowledgement. However, we have a contract once you receive a confirmation from us through the same medium you used in placing the order (either SMS, email, or the other available digital means) through which the ordered items will be delivered to you.  The contract formed will only contain the list of goods marked as “sent” at the time of dispatch.
+"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Pricing and Availability"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="There may be errors as regards the accuracy of the details, descriptions, and prices presented on this website/application.  While we strive to prevent such mistakes, their occurrence, once discovered, will be communicated to you as soon as possible, while providing you with an option of reconfirming your order at the right price, or cancelling it altogether.  In instances where we cannot reach you, the order will be cancelled. If you had already paid for the goods before initiating a cancellation, you have no right to a refund from us.  We will also charge delivery costs, and where applicable, such extra charges will be clearly shown during the process of placing an order, and included in the “Total Cost.”"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Payment "
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food Monkey Services Ltd. is the receiving entity for all online card payments concerning orders placed. Once confirmed, such payments will reflect on your statement as food-monkey.com.  Once we receive your order, we proceed to establish the legitimacy of your payment card, while also checking if they have sufficient funds to fund the transaction you are initiating.  Once the authorisation is completed and the results satisfactory, your card will be debited.  The debited money is seen and treated as full payment for the value of goods you ordered.  After the dispatch of the ordered goods, and the communication of the same via email, SMS, or website page notification, we use the monies you paid for the value of goods you’ve purchased as listed."
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Estimates for Delivery"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Note that we only provide approximate collection and delivery times.  In any case, we do not give an exact time to deliver your order, but we do everything possible to deliver within the approximate delivery time given to you when you ordered.
+Refunds and Charge-backs
+When you pay online via foodmonkey.co.uk, such payments are processed by Food Monkey Services Ltd, and they will appear on your statement as Food Monkey Services Ltd. If you have any cause to seek a refund, charge-backs or disputes of any form concerning orders paid for online, you can get in touch via the channels listed below.  The same goes for the event of the appearance of an unsanctioned transaction on your card and carrying the name or title – Food Monkey Services Ltd.
+Email: fraud@food-monkey.com
+Tel: 0330 1122544
+Address: 71-75 Shelton Street, Covent Gardens, London, WC2H 9JQ.
+"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Cancelling or Adjusting Orders"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You will not be able to an order that has already been confirmed and paid for from your account, and you will not get a refund either. You can only change or cancel an order by contacting the Customer Support Team of FM.  After you’ve placed a request for a change or cancellation of your order, FM will proceed to contact the Takeaway on your behalf concerning your request.  However, this does not guarantee that the request will be accepted, because the processing of the food may have commenced already."
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Feedback"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="In the event where what you get is short of your expectations, you can provide feedback to the Takeaway via the feedback page on Food Monkey website or the mobile application.  Once submitted, such feedbacks will be reviewed by FM and subsequently posted to the profile page of the affected Takeaway.  Such postings, however, are at the sole discretion of the FM Customer Support Team."
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Compensation"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You may seek for compensations in the event of dissatisfaction with the goods or services you received from the takeaway.  In such instances, you are to proceed by contacting the Takeaway directly while presenting your complaints.  Note that there are specific complaint procedures for each Takeaway, ensure that you follow them when lodging your complaints to get results.
+In an instance where you are unable to contact the takeaway or they refuse to handle your complaints, proceed by contacting the FM Customer Support Team, which is the provider of this platform, on 03301122544.  Such contacts must be made within 48 hours of placing the order in question, and when you do, a member of the FM Customer Support will contact the takeaway for you or ask for compensation on your behalf.
+Kindly note that FM is not, in any way, involved with the quality of goods and services offered by the Takeaways.  FM does not also provide, nor have a responsibility or liability for providing any compensation to you in respect of your orders and on behalf of any Takeaway.
+"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Customer Support"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All issues and questions concerning your order will be attended to by the FM Customer Support Team, which is accessible by clicking the “Contact Us” option on the Website/Application, after which you would be required to submit your request using the contact form provided on the page."
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Privacy Policy and Terms of Use"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Terms of Use of our Website/Application and our Privacy Policy both governs the use of our Website/Application.  By this reference, the stipulations of the Privacy Policy and Website/Application Terms of Use have been incorporated into these Terms and Conditions"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Variations"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The sole right and absolute discretion, at any time and without any notice concerning amendment, removal, or adjusting the Services and other pages of this Website/Application shall always lie with foodmonkey.co.uk."
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Invalidity"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="In the event of a proven illegitimacy or invalidity of provisions of these Terms and Conditions, or the inability to enforce the same by any court or other legal authorities, such provision(s) will be considered severed from the other parts and provisions of these Terms and Conditions, thus making the remainder legitimate, valid, and enforceable"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Waiver"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We may take no action in the event of you breaching these terms and conditions. In such instances, we reserve the sole right to use our rights and remedies in future situations involving similar breaches of the terms and conditions herein."
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

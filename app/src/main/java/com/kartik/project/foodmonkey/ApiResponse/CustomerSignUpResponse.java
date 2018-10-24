@@ -1,21 +1,19 @@
 package com.kartik.project.foodmonkey.ApiResponse;
 
 import com.google.gson.annotations.SerializedName;
+import com.kartik.project.foodmonkey.ApiObject.CustomerSignUpObject;
 
 /**
  * Created by kartikeya on 02/10/2018.
  */
 
 public class CustomerSignUpResponse {
-
     @SerializedName("Code")
     private String code;
-
     @SerializedName("Message")
     private String message;
-
-    @SerializedName("Customer_id")
-    private String customerId;
+    @SerializedName("Customer_detail")
+    private CustomerSignUpObject customerDetail;
 
     public String getCode() {
         return code;
@@ -33,11 +31,11 @@ public class CustomerSignUpResponse {
         this.message = message;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public CustomerSignUpObject getCustomerDetail() {
+        return customerDetail;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerDetail(CustomerSignUpObject customerDetail) {
+        this.customerDetail = customerDetail;
     }
 }

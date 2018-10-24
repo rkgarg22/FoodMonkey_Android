@@ -19,8 +19,10 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
 import com.kartik.project.foodmonkey.API.ServiceGenerator;
@@ -34,8 +36,10 @@ import com.kartik.project.foodmonkey.ApiResponse.RestDetailMenuResponse;
 import com.kartik.project.foodmonkey.Fragments.InfoActivity;
 import com.kartik.project.foodmonkey.Fragments.MenuFragment;
 import com.kartik.project.foodmonkey.Fragments.ReviewsFragment;
+import com.kartik.project.foodmonkey.Models.AddItemsToCartModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Infrastructure.AppCommon;
 import butterknife.BindView;
@@ -64,8 +68,8 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.cartToolbarLayout)
     RelativeLayout cartToolbarLayout;
 
-//    @BindView(R.id.searchBarLayout)
-//    RelativeLayout searchBarLayout;
+    @BindView(R.id.displayValue)
+    TextView displayQuantityValue;
 
     @BindView(R.id.itemTitleText)
     TextView itemTitleText;
@@ -115,10 +119,17 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.innerItemsLayout)
     RelativeLayout innerItemsLayout;   // onClick of expandable subchild whole layout to visible
 
+    @BindView(R.id.totalNoOfItemInCart)
+    TextView totalNoOfItemInCart;
+
     boolean searchFlag;
     int resturantID;
 
     Call call;
+
+    AddItemsToCartModel addItemsToCartModel;
+
+    List<AddItemsToCartModel> addItemsToCartModelArrayList=new ArrayList<>();
 
     private void setResturantDetail(ArrayList<ResturantsDetailObject> restaurantDetails) {
         toolbarText.setText(restaurantDetails.get(0).getRestName());
@@ -145,6 +156,8 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         innerItemsRecyclerView.setLayoutManager(new LinearLayoutManager(DetailActivity.this));
         setTabs();
 
+        addItemsToCartModelArrayList=AppCommon.getInstance(this).getAddToCartObject();
+        totalNoOfItemInCart.setText(""+addItemsToCartModelArrayList.size());
         tabLayout.setOnTabSelectedListener(this);
     }
 
@@ -245,17 +258,19 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         setAddItemToCartPopUpVisiblity("cancel", 0, 0);
     }
 
+    String itemID,itemQuantity,itemName,itemRest,itemPrice;
     public void setAddItemToCartPopUpVisiblity(String status, int childPosition, int parentPosition) {
         if (status.equals("subItemDisplay")) {
             addItemToCartPopUp.setVisibility(View.VISIBLE);
             innerItemsLayout.setVisibility(View.VISIBLE);
             loginButton.setText(getString(R.string.addToCartPlus));
+            itemRest=menuCategory.get(parentPosition).getMenuCategoryName().trim();
             itemTitleText.setText(menuCategory.get(parentPosition).getMenuCategoryName().trim());
             callsubItemAdapter(childPosition, parentPosition);
         } else if (status.equals("itemDisplay")) {
             addItemToCartPopUp.setVisibility(View.VISIBLE);
             innerItemsLayout.setVisibility(View.GONE);
-            loginButton.setText(getString(R.string.login));
+            loginButton.setText(getString(R.string.addToCartPlus));
             itemTitleText.setText(menuCategory.get(parentPosition).getMenuCategoryName().trim());
         } else if (status.equals("cancel")) {
             addItemToCartPopUp.setVisibility(View.GONE);
@@ -370,11 +385,35 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @OnClick(R.id.loginButton)
     void setLoginButton() {
-        if (loginButton.getText().toString().trim().toLowerCase().equals(getString(R.string.addToCartPlus).toLowerCase())) {
-            startActivity(new Intent(this, CheckOutActivity.class));
-        } else {
-            startActivity(new Intent(this, LoginActivity.class));
-        }
+        addItemsToCartModelArrayList.add(new AddItemsToCartModel("",itemRest,"","",String.valueOf(quantity)));
+
+        AppCommon.getInstance(this).setAddToCartObject(addItemsToCartModelArrayList);
+        Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+        setAddItemToCartPopUpVisiblity("cancel", 0, 0);
+//        if (loginButton.getText().toString().trim().toLowerCase().equals(getString(R.string.addToCartPlus).toLowerCase())) {
+//            startActivity(new Intent(this, CheckOutActivity.class));
+//        } else {
+//            startActivity(new Intent(this, LoginActivity.class));
+//        }
     }
+
+    //-----------control item number in cart here----------------
+
+    int quantity = 1;
+
+    @OnClick(R.id.removeValue)
+    void setDecreaseQuantity() {
+        if (quantity > 0) {
+            quantity--;
+        }
+        displayQuantityValue.setText("" + quantity);
+    }
+
+    @OnClick(R.id.addValue)
+    void setIncreaseQuantity() {
+        quantity++;
+        displayQuantityValue.setText("" + quantity);
+    }
+
 
 }

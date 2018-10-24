@@ -28,6 +28,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 
+import com.google.gson.Gson;
+import com.kartik.project.foodmonkey.Models.AddItemsToCartModel;
 import com.kartik.project.foodmonkey.R;
 
 import java.io.ByteArrayOutputStream;
@@ -36,8 +38,11 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -657,18 +662,45 @@ public class AppCommon {
 
     public String getFileToBase64(String filePath) {
         Bitmap bmp = null;
-            ByteArrayOutputStream bos = null;
-            byte[] bt = null;
-            String encodeString = null;
-            try{
-                bmp = BitmapFactory.decodeFile(filePath);
-                bos = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.JPEG, 60, bos);
-                bt = bos.toByteArray();
-                encodeString = Base64.encodeToString(bt, Base64.DEFAULT);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            return encodeString;
+        ByteArrayOutputStream bos = null;
+        byte[] bt = null;
+        String encodeString = null;
+        try {
+            bmp = BitmapFactory.decodeFile(filePath);
+            bos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 60, bos);
+            bt = bos.toByteArray();
+            encodeString = Base64.encodeToString(bt, Base64.DEFAULT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return encodeString;
+    }
+
+    public void setAddToCartObject(List<AddItemsToCartModel> addItemsToCartModelArrayList) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.Add_DATA_CART, new Gson().toJson(addItemsToCartModelArrayList));
+        mEditor.apply();
+    }
+
+    public List<AddItemsToCartModel> getAddToCartObject() {
+        List<AddItemsToCartModel> cartData=new ArrayList<>();
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        String jsonCart = mSharedPreferences.getString(MYPerference.Add_DATA_CART, "");
+        Gson gson = new Gson();
+        AddItemsToCartModel[] cartItems = gson.fromJson(jsonCart,
+                AddItemsToCartModel[].class);
+
+        try {
+            cartData= Arrays.asList(cartItems);
+            cartData = new ArrayList<AddItemsToCartModel>(cartData);
+
+        }catch (NullPointerException e)
+        {
+            return cartData;
+        }
+
+        return cartData;
     }
 }

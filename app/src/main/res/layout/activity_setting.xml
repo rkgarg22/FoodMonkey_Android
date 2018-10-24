@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:orientation="vertical"
+    tools:context="com.kartik.project.foodmonkey.SettingActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/largeMargin">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/food_logo_one" />
+
+        <CustomControls.TextViewLatoRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logo"
+            android:gravity="center"
+            android:text="@string/versionNo"
+            android:textColor="@android:color/black" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding"
+                    android:text="Autostart" />
+
+                <ToggleButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/switch_selection"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding"
+                    android:text="@string/servicePermissions" />
+
+                <ToggleButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/switch_selection"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/padding">
+
+                    <CustomControls.TextViewLatoBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/appPermission" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contactsPhoneEtc"
+                        android:textSize="@dimen/smallText" />
+
+                </LinearLayout>
+
+                <ToggleButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/switch_selection"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding"
+                    android:text="@string/notification" />
+
+                <ToggleButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/switch_selection"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding"
+                    android:text="@string/showOnLockScreen" />
+
+                <ToggleButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/switch_selection"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding"
+                    android:text="@string/startInBackground" />
+
+                <ToggleButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/switch_selection"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:paddingBottom="@dimen/largeMargin">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding"
+                    android:text="@string/displayPopUpWindow" />
+
+                <ToggleButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/switch_selection"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn="" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

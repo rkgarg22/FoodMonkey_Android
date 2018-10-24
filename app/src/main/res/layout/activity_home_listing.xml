@@ -130,11 +130,75 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/infoToolbar" />
+        android:layout_below="@+id/infoToolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/openRestRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:id="@+id/preOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_below="@+id/openRestRecyclerView">
+
+                <CustomControls.TextViewLatoBold
+                    android:id="@+id/preOrderTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/toolbarHeight"
+                    android:background="@color/closedRestColor"
+                    android:gravity="center"
+                    android:text="@string/restaurantTakingPreOrder"
+                    android:textSize="@dimen/smallTitleText"
+                    android:visibility="visible" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/preOrderRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/preOrderTitle" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/closeRestLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_below="@+id/preOrderLayout">
+
+                <CustomControls.TextViewLatoBold
+                    android:id="@+id/closeRestTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/toolbarHeight"
+                    android:background="@color/closedRestColor"
+                    android:gravity="center"
+                    android:text="@string/closedRestaurents"
+                    android:textSize="@dimen/smallTitleText"
+                    android:visibility="visible" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/closeRestRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/closeRestTitle" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -142,6 +206,6 @@
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:progressTint="@color/pink"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

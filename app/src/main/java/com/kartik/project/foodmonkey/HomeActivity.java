@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonSyntaxException;
 import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
@@ -46,6 +47,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.kartik.project.foodmonkey.API.ServiceGenerator.API_BASE_URL;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -91,6 +94,18 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.yourOrderLayout)
     RelativeLayout yourOrderLayout;
 
+    @BindView(R.id.profilePic)
+    SimpleDraweeView navProfilePic;
+
+    @BindView(R.id.userName)
+    TextView userName;
+
+    @BindView(R.id.userEmail)
+    TextView userEmail;
+
+    @BindView(R.id.profileLayout)
+    RelativeLayout profileLayout;
+
     Call call;
 
     GPSTracker gpsTracker;
@@ -132,6 +147,18 @@ public class HomeActivity extends AppCompatActivity {
                 searchBy = "postalcode";
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (AppCommon.getInstance(this).isUserLogIn()) {
+            userName.setText(AppCommon.getInstance(this).getFirstName() + " " + AppCommon.getInstance(this).getSurName());
+            userEmail.setText(AppCommon.getInstance(this).getEmailAddress());
+            navProfilePic.setImageURI(API_BASE_URL + AppCommon.getInstance(this).getProfilePic());
+            profileLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     void setAdapter(HomeRestutantObject restutantList) {
@@ -172,8 +199,13 @@ public class HomeActivity extends AppCompatActivity {
 
     void setNavigationData() {
         navigationModelArrayList.clear();
-        navigationModelArrayList.add(new NavigationModel(R.drawable.myaccount_icon, getString(R.string.myAccount)));
-        navigationModelArrayList.add(new NavigationModel(R.drawable.signout_icon, getString(R.string.signOut)));
+        if (AppCommon.getInstance(this).isUserLogIn()) {
+            navigationModelArrayList.add(new NavigationModel(R.drawable.myaccount_icon, getString(R.string.myAccount)));
+            navigationModelArrayList.add(new NavigationModel(R.drawable.signout_icon, getString(R.string.signOut)));
+        } else {
+            navigationModelArrayList.add(new NavigationModel(R.drawable.signout_icon, getString(R.string.logIn)));
+            navigationModelArrayList.add(new NavigationModel(R.drawable.signout_icon, getString(R.string.Signup)));
+        }
         navigationModelArrayList.add(new NavigationModel(R.drawable.referfrnd_icon, getString(R.string.referFriend)));
         navigationModelArrayList.add(new NavigationModel(R.drawable.myorders_icon, getString(R.string.myOrders)));
         navigationModelArrayList.add(new NavigationModel(R.drawable.help_icon, getString(R.string.help)));
@@ -328,7 +360,15 @@ public class HomeActivity extends AppCompatActivity {
         String title = navigationModelArrayList.get(adapterPosition).getTitle();
         switch (title) {
             case "My Account":
-                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                if (!AppCommon.getInstance(this).isUserLogIn()) {
+                    Toast.makeText(this, "Please login before view my account" + adapterPosition, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case "Log In":
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case "Sign Up":
+                startActivity(new Intent(this, SignUpActivity.class));
                 break;
             case "Signout":
                 AppCommon.getInstance(this).clearSharedPreference();
@@ -336,7 +376,7 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
                 break;
             case "Refer a friend":
-                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, ReferFriendActivity.class));
                 break;
             case "My Orders":
                 Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
@@ -345,10 +385,11 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
                 break;
             case "Terms":
-                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, TermsAndConditionsActivity.class));
                 break;
             case "Settings":
-                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, SettingActivity.class));
+//                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
                 break;
         }
     }

@@ -25,4 +25,5 @@ public class MYPerference {
     public static final String DATE_OF_BIRTH = "dateOfBirth";
     public static final String PROFILE_PIC = "profilePic";
     public static final String STATUS = "status";
+    public static final String Add_DATA_CART = "addDataCart";
 }

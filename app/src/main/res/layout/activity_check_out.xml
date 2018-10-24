@@ -59,7 +59,7 @@
                     android:layout_marginTop="@dimen/margin"
                     android:layout_weight="0.6"
                     android:buttonTint="@color/colorPrimary"
-                    android:text="@string/takeAway"
+                    android:text="@string/collections"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/smallTitleText" />
 

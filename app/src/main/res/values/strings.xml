@@ -57,8 +57,8 @@
     <string name="sponsored">Sponsored</string>
     <string name="closedRestaurents">Closed Restaurants</string>
     <string name="delivery">Delivery</string>
-    <string name="takeAway">Takeaway</string>
-    <string name="deliveryTakeAway">Delivery + Takeaway</string>
+    <string name="collections">Collections</string>
+    <string name="deliveryCollections">Delivery + Collections</string>
     <string name="bestMatch">Best match</string>
     <string name="distance">Distance</string>
     <string name="newRadio">New</string>
@@ -131,8 +131,24 @@
     <string name="addCard">Add Card</string>
     <string name="leaveFeedForChance">Leave feed for a chance to win</string>
     <string name="restaurantTakingPreOrder">restaurants taking pre-orders for later</string>
-    <string name="takeAway_delivery">Takeaway_Delivery</string>
+    <string name="collections_delivery">Collections_Delivery</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="logIn">Log In</string>
+    <string name="Signup">Sign Up</string>
+    <string name="copyReferalCode">Copy referal code</string>
+    <string name="helpReferalText">Share this code with your friends. when they order\n delivery or pick up for the first time they\'ll get 15% off.\nThen you will too!</string>
+    <string name="enterMobileNumber">Enter Mobile Number</string>
+    <string name="send">Send</string>
+    <string name="twitter">Twitter</string>
+    <string name="more">More...</string>
+    <string name="versionNo">Version: 2.6.2</string>
+    <string name="servicePermissions">Service Permissions</string>
+    <string name="appPermission">App permissions</string>
+    <string name="contactsPhoneEtc">Contacts, Locations, Phone, SMS</string>
+    <string name="notification">Notifications</string>
+    <string name="showOnLockScreen">Show on Lock Screen</string>
+    <string name="startInBackground">Start in background</string>
+    <string name="displayPopUpWindow">Display pop-up window</string>
 
 </resources>

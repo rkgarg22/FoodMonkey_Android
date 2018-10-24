@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@android:color/white"
-            android:text="@string/takeAway"
+            android:text="@string/collections"
             android:textColor="@android:color/white"
             android:textSize="@dimen/smallTitleText" />
 
@@ -58,7 +58,7 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="@dimen/margin"
             android:buttonTint="@android:color/white"
-            android:text="@string/deliveryTakeAway"
+            android:text="@string/deliveryCollections"
             android:textColor="@android:color/white"
             android:textSize="@dimen/smallTitleText" />
 

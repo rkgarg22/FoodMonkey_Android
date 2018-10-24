@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.ReferFriendActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ImageView
+        android:id="@+id/walletLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin"
+        android:padding="@dimen/margin"
+        android:src="@drawable/wallet_icon" />
+
+    <CustomControls.TextViewLatoBold
+        android:id="@+id/referalCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/walletLogo"
+        android:gravity="center"
+        android:text="H7DWC"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/smallTitleText" />
+
+    <CustomControls.TextViewLatoRegular
+        android:id="@+id/copyReferalCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/referalCode"
+        android:gravity="center"
+        android:text="@string/copyReferalCode"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/mediumText" />
+
+    <CustomControls.TextViewLatoRegular
+        android:id="@+id/helpText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/copyReferalCode"
+        android:layout_marginTop="@dimen/largeMargin"
+        android:gravity="center"
+        android:text="@string/helpReferalText"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/mediumText" />
+
+    <LinearLayout
+        android:id="@+id/numberLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/helpText"
+        android:layout_marginTop="@dimen/margin"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/largeMargin"
+        android:paddingRight="@dimen/largeMargin">
+
+        <CustomControls.EditTextLatoRegular
+            android:id="@+id/mobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/curve_border_background"
+            android:hint="@string/enterMobileNumber"
+            android:inputType="text"
+            android:paddingStart="@dimen/padding"
+            android:textColor="@android:color/black" />
+
+
+        <CustomControls.ButtonLatoRegular
+            android:id="@+id/sendButton"
+            style="@style/Base.V7.Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:background="@color/pink"
+            android:gravity="center"
+            android:text="@string/send"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberLayout"
+        android:layout_marginLeft="@dimen/largeMargin"
+        android:layout_marginRight="@dimen/largeMargin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/margin"
+                android:src="@drawable/fb" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/facebook"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/margin"
+                android:src="@drawable/twitter" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/twitter"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/margin"
+                android:src="@drawable/email" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/email"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/margin"
+                android:src="@drawable/more_button" />
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/more"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:background="@color/lightGrey" />-->
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -69,6 +69,11 @@ public class LoginActivity extends AppCompatActivity {
         setSignUpText();
     }
 
+    @OnClick(R.id.left)
+    void setLeft() {
+        onBackPressed();
+    }
+
     boolean showPasswordFlag = false;
 
     @OnClick(R.id.showPassword)

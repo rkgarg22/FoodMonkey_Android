@@ -5,15 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -24,16 +20,16 @@ import android.widget.TextView;
 import com.google.gson.JsonSyntaxException;
 import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
 import com.kartik.project.foodmonkey.API.ServiceGenerator;
+import com.kartik.project.foodmonkey.Adapters.ClosedRestAdapter;
 import com.kartik.project.foodmonkey.Adapters.HomeListingAdapter;
+import com.kartik.project.foodmonkey.Adapters.OpenResturantAdapter;
 import com.kartik.project.foodmonkey.Adapters.PopUpAdapter;
+import com.kartik.project.foodmonkey.Adapters.PreOrderRestAdapter;
 import com.kartik.project.foodmonkey.ApiEntity.AddTokenEntity;
 import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
 import com.kartik.project.foodmonkey.ApiObject.CuisinesListObject;
-import com.kartik.project.foodmonkey.ApiObject.PreOrderRestObject;
 import com.kartik.project.foodmonkey.ApiObject.RestutantListObject;
-import com.kartik.project.foodmonkey.ApiResponse.CloseResturantObject;
 import com.kartik.project.foodmonkey.ApiResponse.CuisineListResponse;
-import com.kartik.project.foodmonkey.ApiResponse.OpenResturantObject;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantListResponse;
 
 import java.util.ArrayList;
@@ -49,8 +45,29 @@ import retrofit2.Response;
 
 public class HomeListingActivity extends AppCompatActivity {
 
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
+//    @BindView(R.id.recyclerView)
+//    RecyclerView recyclerView;
+
+    @BindView(R.id.openRestRecyclerView)
+    RecyclerView openRestRecyclerView;
+
+    @BindView(R.id.preOrderLayout)
+    RelativeLayout preOrderLayout;
+
+    @BindView(R.id.preOrderTitle)
+    TextView preOrderTitle;
+
+    @BindView(R.id.preOrderRecyclerView)
+    RecyclerView preOrderRecyclerView;
+
+    @BindView(R.id.closeRestLayout)
+    RelativeLayout closeRestLayout;
+
+    @BindView(R.id.closeRestTitle)
+    TextView closeRestTitle;
+
+    @BindView(R.id.closeRestRecyclerView)
+    RecyclerView closeRestRecyclerView;
 
     @BindView(R.id.left)
     ImageView left;
@@ -99,8 +116,16 @@ public class HomeListingActivity extends AppCompatActivity {
         gpsTracker = new GPSTracker(this);
         gpsTracker.getPostalCodeByCoordinates();
         callingListCuisineAPI(AppCommon.getInstance(this).getDeviceToken());
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setNestedScrollingEnabled(false);
+        openRestRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        openRestRecyclerView.setNestedScrollingEnabled(false);
+
+        preOrderRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        preOrderRecyclerView.setNestedScrollingEnabled(false);
+
+        closeRestRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        closeRestRecyclerView.setNestedScrollingEnabled(false);
+
+
         tokenKey = AppCommon.getInstance(this).getDeviceToken();
         if (getIntent() != null) {
             if (getIntent().getStringExtra("searchBy").equals("postalcode")) {
@@ -113,8 +138,8 @@ public class HomeListingActivity extends AppCompatActivity {
                 searchEditText.setText(postcode);
             }
         }
-        deliveryOptions = "";
-        listBy = "";
+        deliveryOptions = "Delivery";
+        listBy = "Best_match";
         cuisines = "";
         postcode = "BD8 7SZ";               // remove it from here to make dynamic postcode
 //        callingResturantList(tokenKey, searchBy, postcode, deliveryOptions, listBy, cuisines, pageNumber);
@@ -142,7 +167,7 @@ public class HomeListingActivity extends AppCompatActivity {
 
     }
 
-//    private void filterDataSearch(Editable s) {
+    //    private void filterDataSearch(Editable s) {
 //        ArrayList<OpenResturantObject> openResturantObjects = new ArrayList<>();
 //        ArrayList<PreOrderRestObject> preOrderRestObjects = new ArrayList<>();
 //        ArrayList<CloseResturantObject> closeResturantObject = new ArrayList<>();
@@ -172,12 +197,37 @@ public class HomeListingActivity extends AppCompatActivity {
 ////        restutantListObject.setCloseResturant(closeResturantObject);
 //        setAdapter(restutantListObject);
 //    }
+    OpenResturantAdapter openResturantAdapter;
+    PreOrderRestAdapter preOrderRestAdapter;
+    ClosedRestAdapter closedRestAdapter;
 
     void setAdapter(RestutantListObject restutantListObject) {
-//        totalRestaurants.setText(restutantListObject.getOpenResturant().size() + restutantListObject.getPreorderResturant().size() + restutantListObject.getCloseResturant().size() + " restaurants");
         totalRestaurants.setText("All restaurants");
-        homeListingAdapter = new HomeListingAdapter(this, restutantListObject);
-        recyclerView.setAdapter(homeListingAdapter);
+        openResturantAdapter = new OpenResturantAdapter(this, restutantListObject.getOpenResturant());
+        preOrderRestAdapter = new PreOrderRestAdapter(this, restutantListObject.getPreorderResturant());
+        closedRestAdapter = new ClosedRestAdapter(this, restutantListObject.getCloseResturant());
+        openRestRecyclerView.setVisibility(View.GONE);
+        preOrderLayout.setVisibility(View.GONE);
+        closeRestLayout.setVisibility(View.GONE);
+
+//        homeListingAdapter = new HomeListingAdapter(this, restutantListObject);
+        if (restutantListObject.getOpenResturant().size() != 0) {
+            openRestRecyclerView.setVisibility(View.VISIBLE);
+        }
+        if (restutantListObject.getPreorderResturant().size() != 0) {
+            preOrderLayout.setVisibility(View.VISIBLE);
+            preOrderTitle.setText(restutantListObject.getPreorderResturant().size() + " " + getString(R.string.restaurantTakingPreOrder));
+        }
+        if (restutantListObject.getCloseResturant().size() != 0) {
+            closeRestLayout.setVisibility(View.VISIBLE);
+            closeRestTitle.setText(getString(R.string.closedRestaurents));
+        }
+
+        openRestRecyclerView.setAdapter(openResturantAdapter);
+        preOrderRecyclerView.setAdapter(preOrderRestAdapter);
+        closeRestRecyclerView.setAdapter(closedRestAdapter);
+
+//        recyclerView.setAdapter(homeListingAdapter);
     }
 
     void setOnClickListerner() {
@@ -224,10 +274,10 @@ public class HomeListingActivity extends AppCompatActivity {
             case "Delivery":
                 deliveryRadio.setChecked(true);
                 break;
-            case "Takeaway":
+            case "Collections":
                 takeAwayRadio.setChecked(true);
                 break;
-            case "Takeaway_Delivery":
+            case "Collections_Delivery":
                 deliveryTakeAwayRadio.setChecked(true);
                 break;
         }
@@ -240,10 +290,10 @@ public class HomeListingActivity extends AppCompatActivity {
                         deliveryOptions = getString(R.string.delivery);
                         break;
                     case R.id.takeAwayRadio:
-                        deliveryOptions = getString(R.string.takeAway);
+                        deliveryOptions = getString(R.string.collections);
                         break;
                     case R.id.deliveryTakeAwayRadio:
-                        deliveryOptions = getString(R.string.takeAway_delivery);
+                        deliveryOptions = getString(R.string.collections_delivery);
                         break;
                 }
                 callingResturantList(tokenKey, searchBy, postcode, deliveryOptions, listBy, cuisines, pageNumber);
@@ -463,8 +513,7 @@ public class HomeListingActivity extends AppCompatActivity {
 
     RestutantListObject restutantListObject;
 
-    void callingResturantList(String tokenKey, String searchBy, String postCode, String deliveryOptions, String listBy, String cuisines, String pageNumber)
-    {
+    void callingResturantList(String tokenKey, String searchBy, String postCode, String deliveryOptions, String listBy, String cuisines, String pageNumber) {
         AppCommon.getInstance(this).setNonTouchableFlags(this);
         if (AppCommon.getInstance(HomeListingActivity.this).isConnectingToInternet(HomeListingActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);

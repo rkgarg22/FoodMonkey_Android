@@ -290,11 +290,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     @OnClick(R.id.createAccountButton)
     void setCreateAccountButton() {
+        String profileInput = "data:image/jpg;base64," + base64Pic;
+        profileInput = profileInput.replaceAll("\\s", "");
         if (validation()) {
             callingSignUpApi(AppCommon.getInstance(this).getDeviceToken(), this.firstName.getText().toString().trim(), this.middleName.getText().toString().trim(),
                     this.surName.getText().toString().trim(), gender, this.email.getText().toString().trim(), this.mobile.getText().toString().trim(),
-                    dateOfBirthInput, this.password.getText().toString().trim(),
-                    base64Pic, "App");
+                    dateOfBirthInput, this.password.getText().toString().trim(), profileInput, "App");
         }
     }
 
@@ -354,7 +355,7 @@ public class SignUpActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         CustomerSignUpResponse customerSignUpResponse = (CustomerSignUpResponse) response.body();
                         if (customerSignUpResponse.getCode().equals("200")) {
-                            AppCommon.getInstance(SignUpActivity.this).setCustomerID(customerSignUpResponse.getCustomerId());
+                            AppCommon.getInstance(SignUpActivity.this).setCustomerID(customerSignUpResponse.getCustomerDetail().getCustomerId());
 
                             AppCommon.getInstance(SignUpActivity.this).setFirstName(firstName);
                             AppCommon.getInstance(SignUpActivity.this).setSurName(surName);
@@ -363,7 +364,7 @@ public class SignUpActivity extends AppCompatActivity {
                             AppCommon.getInstance(SignUpActivity.this).setEmailAddress(email);
                             AppCommon.getInstance(SignUpActivity.this).setMobileNumber(mobile);
                             AppCommon.getInstance(SignUpActivity.this).setDateOfBirth(dateOfBirth);
-//                            AppCommon.getInstance(SignUpActivity.this).setProfilePic();
+                            AppCommon.getInstance(SignUpActivity.this).setProfilePic(customerSignUpResponse.getCustomerDetail().getProfilePicUrl());
 //                            AppCommon.getInstance(SignUpActivity.this).setStatus(
 //                                    loginCustomerResponse.getCustomerDetails().get(0).getStatus());
                             AppCommon.getInstance(SignUpActivity.this).setIsUserLogIn(true);
@@ -390,7 +391,6 @@ public class SignUpActivity extends AppCompatActivity {
                         AppCommon.showDialog(SignUpActivity.this, "Something Went wrong ..Please try again.");
                     } else {
                         AppCommon.showDialog(SignUpActivity.this, getResources().getString(R.string.network_error));
-
                     }
                 }
             });
