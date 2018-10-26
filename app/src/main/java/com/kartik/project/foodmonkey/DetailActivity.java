@@ -129,7 +129,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     AddItemsToCartModel addItemsToCartModel;
 
-    List<AddItemsToCartModel> addItemsToCartModelArrayList=new ArrayList<>();
+    List<AddItemsToCartModel> addItemsToCartModelArrayList = new ArrayList<>();
 
     private void setResturantDetail(ArrayList<ResturantsDetailObject> restaurantDetails) {
         toolbarText.setText(restaurantDetails.get(0).getRestName());
@@ -156,7 +156,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         innerItemsRecyclerView.setLayoutManager(new LinearLayoutManager(DetailActivity.this));
         setTabs();
 
-        addItemsToCartModelArrayList=AppCommon.getInstance(this).getAddToCartObject();
+        addItemsToCartModelArrayList = AppCommon.getInstance(this).getAddToCartObject();
         totalNoOfItemInCart.setText(""+addItemsToCartModelArrayList.size());
         tabLayout.setOnTabSelectedListener(this);
     }
@@ -245,7 +245,8 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @OnClick(R.id.cartToolbarLayout)
     void setCartToolbarLayout() {
-        startActivity(new Intent(this, CheckOutActivity.class));
+        Intent intent=new Intent(this,CheckOutActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.left)
@@ -258,13 +259,14 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         setAddItemToCartPopUpVisiblity("cancel", 0, 0);
     }
 
-    String itemID,itemQuantity,itemName,itemRest,itemPrice;
+    String itemID, itemQuantity, itemName, itemRest, itemPrice;
+
     public void setAddItemToCartPopUpVisiblity(String status, int childPosition, int parentPosition) {
         if (status.equals("subItemDisplay")) {
             addItemToCartPopUp.setVisibility(View.VISIBLE);
             innerItemsLayout.setVisibility(View.VISIBLE);
             loginButton.setText(getString(R.string.addToCartPlus));
-            itemRest=menuCategory.get(parentPosition).getMenuCategoryName().trim();
+            itemRest = menuCategory.get(parentPosition).getMenuCategoryName().trim();
             itemTitleText.setText(menuCategory.get(parentPosition).getMenuCategoryName().trim());
             callsubItemAdapter(childPosition, parentPosition);
         } else if (status.equals("itemDisplay")) {
@@ -272,6 +274,18 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
             innerItemsLayout.setVisibility(View.GONE);
             loginButton.setText(getString(R.string.addToCartPlus));
             itemTitleText.setText(menuCategory.get(parentPosition).getMenuCategoryName().trim());
+            subItemID = String.valueOf(menuCategory.get(parentPosition).getMenuCategoryId());
+            subItemName = menuCategory.get(parentPosition).getMenuCategoryName();
+////            subItemPrice = menuCategory.get(parentPosition).get
+//            for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+//                if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
+//                    addItemsToCartModelArrayList.remove(i);
+//                }/*else if (i == addItemsToCartModelArrayList.size()) {
+//                if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
+//                    addItemsToCartModelArrayList.add(new AddItemsToCartModel(subItemID, itemRest, subItemName, addOnPrice, String.valueOf(quantity)));
+//                }
+//            }*/
+//            }
         } else if (status.equals("cancel")) {
             addItemToCartPopUp.setVisibility(View.GONE);
         }
@@ -385,17 +399,47 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @OnClick(R.id.loginButton)
     void setLoginButton() {
-        addItemsToCartModelArrayList.add(new AddItemsToCartModel("",itemRest,"","",String.valueOf(quantity)));
+        addItemsToCartModelArrayList.add(new AddItemsToCartModel(subItemID, itemRest, subItemName, subItemPrice, String.valueOf(quantity)));
 
         AppCommon.getInstance(this).setAddToCartObject(addItemsToCartModelArrayList);
         Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
         setAddItemToCartPopUpVisiblity("cancel", 0, 0);
+        totalNoOfItemInCart.setText(addItemsToCartModelArrayList.size()+"");
+
 //        if (loginButton.getText().toString().trim().toLowerCase().equals(getString(R.string.addToCartPlus).toLowerCase())) {
 //            startActivity(new Intent(this, CheckOutActivity.class));
 //        } else {
 //            startActivity(new Intent(this, LoginActivity.class));
 //        }
     }
+
+    String subItemID;
+    String subItemName;
+    String subItemPrice;
+
+    public void receiveDataSubItemAdapter(Integer itemId, String addonName, String addOnPrice) {
+        subItemID = String.valueOf(itemId);
+        subItemName = addonName;
+        subItemPrice = addOnPrice;
+        for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+            if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
+                addItemsToCartModelArrayList.remove(i);
+            }/*else if (i == addItemsToCartModelArrayList.size()) {
+                if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
+                    addItemsToCartModelArrayList.add(new AddItemsToCartModel(subItemID, itemRest, subItemName, addOnPrice, String.valueOf(quantity)));
+                }
+            }*/
+        }
+    }
+
+    public void removeDataSubItemAdapter(Integer itemId, String addonName, String addOnPrice) {
+        for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+            if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
+                addItemsToCartModelArrayList.remove(i);
+            }
+        }
+    }
+
 
     //-----------control item number in cart here----------------
 

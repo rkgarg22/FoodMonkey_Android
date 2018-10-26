@@ -84,7 +84,6 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/cartImg"
                 android:paddingLeft="@dimen/padding"
-                android:text="99"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/smallTitleText" />
         </RelativeLayout>

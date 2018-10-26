@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.kartik.project.foodmonkey.ApiObject.MenuAddOnObject;
+import com.kartik.project.foodmonkey.DetailActivity;
 import com.kartik.project.foodmonkey.R;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class MenuExpandableSubItemAdapter extends RecyclerView.Adapter<MenuExpan
         holder.radioButton.setText(addOn.get(position).getAddonName());
         if (addOn.get(position).isSelected()) {
             holder.radioButton.setChecked(true);
-        }else {
+        } else {
             holder.radioButton.setChecked(false);
         }
 
@@ -92,10 +93,15 @@ public class MenuExpandableSubItemAdapter extends RecyclerView.Adapter<MenuExpan
         void setRadioButton() {
             if (addOn.get(getAdapterPosition()).isSelected()) {
                 addOn.get(getAdapterPosition()).setSelected(false);
+                ((DetailActivity) mContext).removeDataSubItemAdapter(addOn.get(getAdapterPosition()).getItemId(),
+                        addOn.get(getAdapterPosition()).getAddonName(), addOn.get(getAdapterPosition()).getAddonPrice());
             } else {
                 addOn.get(getAdapterPosition()).setSelected(true);
+                ((DetailActivity) mContext).receiveDataSubItemAdapter(addOn.get(getAdapterPosition()).getItemId(),
+                        addOn.get(getAdapterPosition()).getAddonName(), addOn.get(getAdapterPosition()).getAddonPrice());
             }
             notifyDataSetChanged();
+
         }
     }
 }

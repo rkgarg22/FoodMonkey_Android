@@ -41,6 +41,17 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
         holder.itemName.setText(arrayList.get(position).getTitle());
         holder.noOfItems.setText(arrayList.get(position).getNoOfItem());
         holder.amountOfItem.setText(arrayList.get(position).getDescription());  // Price of Item
+
+        if (position != 0 && position != arrayList.size()) {
+            if (!arrayList.get(position).getRestId().equals(arrayList.get(position - 1).getRestId())) {
+                holder.restTitle.setText(arrayList.get(position).getRestId());
+                holder.restTitle.setVisibility(View.VISIBLE);
+            }
+        } else if (position == 0) {
+            holder.restTitle.setText(arrayList.get(position).getRestId());
+            holder.restTitle.setVisibility(View.VISIBLE);
+
+        }
     }
 
     @Override
@@ -57,6 +68,9 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
 
         @BindView(R.id.amountOfItem)
         TextView amountOfItem;
+
+        @BindView(R.id.restTitle)
+        TextView restTitle;
 
         public MyViewHolder(View itemView) {
             super(itemView);

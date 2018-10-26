@@ -108,7 +108,8 @@
                 android:gravity="center_vertical"
                 android:text="Pepe's Piri Piri"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/mediumText" />
+                android:textSize="@dimen/mediumText"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="match_parent"
@@ -145,7 +146,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="$12.45"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/mediumText" />
 
@@ -165,7 +165,7 @@
                     android:textSize="@dimen/smallText" />
 
                 <CustomControls.TextViewLatoRegular
-                    android:id="@+id/deliveryFeeAmount"
+                    android:id="@+id/deliveryCharges"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -197,7 +197,7 @@
                     android:textSize="@dimen/mediumText" />
 
                 <CustomControls.TextViewLatoBold
-                    android:id="@+id/totalAmount"
+                    android:id="@+id/totalBill"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -293,5 +293,13 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone"/>
 
 </RelativeLayout>

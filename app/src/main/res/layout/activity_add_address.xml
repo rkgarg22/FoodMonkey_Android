@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.AddAddressActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/largeMarginTop"
+            android:orientation="vertical">
+
+            <CustomControls.TextViewLatoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/deliverAddress"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/mediumText" />
+
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/mobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/mobileNumber"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/houseNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/houseNumber"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/streetLine"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/streetLine1"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/streetLine2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/streetLine2"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/postCode"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/postCode"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/city"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:layout_marginBottom="@dimen/margin"
+                android:background="@drawable/curve_border_background"/>
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/addressNote"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/addressNote"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/goToPayment"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/goToPayment"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

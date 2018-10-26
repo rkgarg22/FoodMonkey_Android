@@ -1,37 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:gravity="center_vertical"
-    android:weightSum="1">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <CustomControls.TextViewLatoRegular
-        android:id="@+id/itemName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.6"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Caramel Chew Chew"
+        android:id="@+id/restTitle"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:text="Pepe's Piri Piri"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/mediumText" />
+        android:textSize="@dimen/mediumText"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/margin"/>
 
-    <CustomControls.TextViewLatoRegular
-        android:id="@+id/noOfItems"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:gravity="end"
-        android:text="x 1"
-        android:textSize="@dimen/mediumText" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:weightSum="1">
 
-    <CustomControls.TextViewLatoRegular
-        android:id="@+id/amountOfItem"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:gravity="end"
-        android:text="$2.49"
-        android:textSize="@dimen/mediumText" />
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/itemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Caramel Chew Chew"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/smallText" />
 
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/noOfItems"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:gravity="end"
+            android:text="x 1"
+            android:textSize="@dimen/smallText" />
+
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/amountOfItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="end"
+            android:text="$2.49"
+            android:textSize="@dimen/smallText" />
+    </LinearLayout>
 </LinearLayout>

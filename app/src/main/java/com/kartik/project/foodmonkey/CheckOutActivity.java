@@ -8,21 +8,32 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonSyntaxException;
+import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
+import com.kartik.project.foodmonkey.API.ServiceGenerator;
 import com.kartik.project.foodmonkey.Adapters.AddressAdapter;
 import com.kartik.project.foodmonkey.Adapters.OrderListAdapter;
+import com.kartik.project.foodmonkey.ApiEntity.CustAddAddressEntity;
+import com.kartik.project.foodmonkey.ApiResponse.CustomerAddressResponse;
 import com.kartik.project.foodmonkey.Models.AddAddressModel;
+import com.kartik.project.foodmonkey.Models.AddItemsToCartModel;
 import com.kartik.project.foodmonkey.Models.InfoModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Infrastructure.AppCommon;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CheckOutActivity extends AppCompatActivity {
 
@@ -44,6 +55,21 @@ public class CheckOutActivity extends AppCompatActivity {
     @BindView(R.id.chooseDeliveryTypeLayout)
     RelativeLayout chooseDeliveryTypeLayout;
 
+    @BindView(R.id.subTotalText)
+    TextView subTotalText;
+
+    @BindView(R.id.totalBill)
+    TextView totalBill;
+
+    @BindView(R.id.deliveryCharges)
+    TextView deliveryCharges;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
+    @BindView(R.id.addNewAddress)
+    TextView addNewAddress;
+
     OrderListAdapter orderListAdapter;
 
     AddressAdapter addressAdapter;
@@ -53,6 +79,8 @@ public class CheckOutActivity extends AppCompatActivity {
 
     public final int LOGIN_CODE = 1000;
 
+    List<AddItemsToCartModel> addItemsToCartModelArrayList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +88,8 @@ public class CheckOutActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         left.setVisibility(View.VISIBLE);
         toolbarText.setText(getString(R.string.checkOut));
+        addItemsToCartModelArrayList = AppCommon.getInstance(this).getAddToCartObject();
+
 //        toolbarText.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
 
         chooseDeliveryRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -67,7 +97,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
         orderListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         orderListRecyclerView.setNestedScrollingEnabled(false);
-        setDummyData();
+        setData();
         orderListAdapter = new OrderListAdapter(CheckOutActivity.this, infoOfOrder);
         orderListRecyclerView.setAdapter(orderListAdapter);
 
@@ -91,13 +121,28 @@ public class CheckOutActivity extends AppCompatActivity {
         startActivity(new Intent(CheckOutActivity.this, EditCartActivity.class));
     }
 
-    void setDummyData() {
+    @OnClick(R.id.addNewAddress)
+    void setAddNewAddress() {
+        startActivity(new Intent(CheckOutActivity.this, AddAddressActivity.class));
+    }
+
+    float totalAmount = 0;
+    float deliveryFee = 1;
+
+    void setData() {
         infoOfOrder.clear();
-        infoOfOrder.add(new InfoModel("Caramel Chew Chew", "$2.49", "x 2"));
-        infoOfOrder.add(new InfoModel("Chocolate Fudge Brownie", "$2.49", "x 1"));
-        infoOfOrder.add(new InfoModel("Cookie Dough", "$2.49", "x 5"));
-        infoOfOrder.add(new InfoModel("Stawberry Shake", "$2.49", "x 1"));
-        infoOfOrder.add(new InfoModel("Cheese Roll", "$2.49", "x 2"));
+        for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+            infoOfOrder.add(new InfoModel(addItemsToCartModelArrayList.get(i).getId(), addItemsToCartModelArrayList.get(i).getRestName(),
+                    addItemsToCartModelArrayList.get(i).getName(), "$" + addItemsToCartModelArrayList.get(i).getPrice(),
+                    "x " + addItemsToCartModelArrayList.get(i).getQuantity()));
+
+            float price = Float.parseFloat(addItemsToCartModelArrayList.get(i).getPrice());
+            int noOfQuantity = Integer.parseInt(addItemsToCartModelArrayList.get(i).getQuantity());
+            totalAmount = totalAmount + (price * noOfQuantity);
+        }
+        subTotalText.setText("" + totalAmount);
+        deliveryCharges.setText("$" + deliveryFee);
+        totalBill.setText("" + (totalAmount + deliveryFee));
 
         addAddressModelArrayList.clear();
         addAddressModelArrayList.add(new AddAddressModel("Home", "Eddie Methew, 256 Near ABC LandMark, Street Line 1, Street Line 2, 45874, Bristol"));
@@ -133,6 +178,8 @@ public class CheckOutActivity extends AppCompatActivity {
         if (status) {
             chooseDeliveryTypeLayout.setVisibility(View.VISIBLE);
             loginLayout.setVisibility(View.GONE);
+
+            // call address API here---
             chooseDeliveryRecyclerView.setAdapter(addressAdapter);
 
         } else {
@@ -140,6 +187,4 @@ public class CheckOutActivity extends AppCompatActivity {
             loginLayout.setVisibility(View.VISIBLE);
         }
     }
-
-
 }

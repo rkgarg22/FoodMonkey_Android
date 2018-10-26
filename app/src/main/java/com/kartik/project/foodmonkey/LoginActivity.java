@@ -160,33 +160,37 @@ public class LoginActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         LoginCustomerResponse loginCustomerResponse = (LoginCustomerResponse) response.body();
                         if (response.body() != null) {
-                            if (loginCustomerResponse.getCode().equals("200")) {
-                                AppCommon.getInstance(LoginActivity.this).setCustomerID(String.valueOf(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getCustomerId()));
-                                AppCommon.getInstance(LoginActivity.this).setFirstName(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getFirstName().trim());
-                                AppCommon.getInstance(LoginActivity.this).setSurName(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getSurName().trim());
-                                AppCommon.getInstance(LoginActivity.this).setMiddleName(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getMiddleIntial().trim());
-                                AppCommon.getInstance(LoginActivity.this).setGender(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getGender().trim());
-                                AppCommon.getInstance(LoginActivity.this).setEmailAddress(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getEmail().trim());
-                                AppCommon.getInstance(LoginActivity.this).setMobileNumber(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getMobile().trim());
-                                AppCommon.getInstance(LoginActivity.this).setDateOfBirth(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getDOB().trim());
-                                AppCommon.getInstance(LoginActivity.this).setProfilePic(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getImageLink().trim());
-                                AppCommon.getInstance(LoginActivity.this).setStatus(
-                                        loginCustomerResponse.getCustomerDetails().get(0).getStatus());
-                                AppCommon.getInstance(LoginActivity.this).setIsUserLogIn(true);
+                            if (loginCustomerResponse.getCode() != null) {
+                                if (loginCustomerResponse.getCode().equals("200")) {
+                                    AppCommon.getInstance(LoginActivity.this).setCustomerID(String.valueOf(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getCustomerId()));
+                                    AppCommon.getInstance(LoginActivity.this).setFirstName(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getFirstName().trim());
+                                    AppCommon.getInstance(LoginActivity.this).setSurName(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getSurName().trim());
+                                    AppCommon.getInstance(LoginActivity.this).setMiddleName(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getMiddleIntial().trim());
+                                    AppCommon.getInstance(LoginActivity.this).setGender(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getGender().trim());
+                                    AppCommon.getInstance(LoginActivity.this).setEmailAddress(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getEmail().trim());
+                                    AppCommon.getInstance(LoginActivity.this).setMobileNumber(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getMobile().trim());
+                                    AppCommon.getInstance(LoginActivity.this).setDateOfBirth(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getDOB().trim());
+                                    AppCommon.getInstance(LoginActivity.this).setProfilePic(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getImageLink().trim());
+                                    AppCommon.getInstance(LoginActivity.this).setStatus(
+                                            loginCustomerResponse.getCustomerDetails().get(0).getStatus());
+                                    AppCommon.getInstance(LoginActivity.this).setIsUserLogIn(true);
 
-                                Intent intent = getIntent();
-                                intent.putExtra("data", true);
-                                setResult(RESULT_OK, intent);
-                                finish();
+                                    Intent intent = getIntent();
+                                    intent.putExtra("data", true);
+                                    setResult(RESULT_OK, intent);
+                                    finish();
+                                } else {
+                                    AppCommon.showDialog(LoginActivity.this, loginCustomerResponse.getMessage());
+                                }
 //                            User user = registrationResponse.getUserEntity();
 
 //                            try {
