@@ -50,9 +50,10 @@ public class SplashActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-
-//        String deviceToken =""+ FirebaseInstanceId.getInstance().getToken();
-//        AppCommon.getInstance(this).setDeviceToken(deviceToken);
+//
+//        if (AppCommon.getInstance(this).getDeviceToken().isEmpty()) {
+//            String deviceToken = "" + FirebaseInstanceId.getInstance().getToken();
+//        }
 
         customSliderPagerAdapter = new CustomSliderPagerAdapter(SplashActivity.this, mResources);
         pager.setAdapter(customSliderPagerAdapter);
@@ -60,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
         dotscount = customSliderPagerAdapter.getCount();
         dots = new ImageView[dotscount];
 
-        for(int i = 0; i < dotscount; i++){
+        for (int i = 0; i < dotscount; i++) {
 
             dots[i] = new ImageView(this);
             dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.indicator_unactive));
@@ -81,7 +82,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                for(int i = 0; i< dotscount; i++){
+                for (int i = 0; i < dotscount; i++) {
                     dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.indicator_unactive));
                 }
 
@@ -115,7 +116,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 500, 3000);
     }
-
 
 
 }

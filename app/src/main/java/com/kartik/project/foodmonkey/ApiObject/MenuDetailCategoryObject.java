@@ -17,6 +17,16 @@ public class MenuDetailCategoryObject implements Serializable{
     @SerializedName("Menus")
     private ArrayList<MenuObject> menus = new ArrayList<>();
 
+    boolean isSelected;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
     public Integer getMenuCategoryId() {
         return menuCategoryId;
     }

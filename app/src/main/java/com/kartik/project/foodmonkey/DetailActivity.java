@@ -30,6 +30,7 @@ import com.kartik.project.foodmonkey.Adapters.MenuExpandableSubItemAdapter;
 import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
 import com.kartik.project.foodmonkey.ApiObject.MenuAddOnObject;
 import com.kartik.project.foodmonkey.ApiObject.MenuDetailCategoryObject;
+import com.kartik.project.foodmonkey.ApiObject.MenuObject;
 import com.kartik.project.foodmonkey.ApiObject.ResturantsDetailObject;
 import com.kartik.project.foodmonkey.ApiObject.ResturantsObject;
 import com.kartik.project.foodmonkey.ApiResponse.RestDetailMenuResponse;
@@ -157,7 +158,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         setTabs();
 
         addItemsToCartModelArrayList = AppCommon.getInstance(this).getAddToCartObject();
-        totalNoOfItemInCart.setText(""+addItemsToCartModelArrayList.size());
+        totalNoOfItemInCart.setText("" + addItemsToCartModelArrayList.size());
         tabLayout.setOnTabSelectedListener(this);
     }
 
@@ -245,7 +246,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @OnClick(R.id.cartToolbarLayout)
     void setCartToolbarLayout() {
-        Intent intent=new Intent(this,CheckOutActivity.class);
+        Intent intent = new Intent(this, CheckOutActivity.class);
         startActivity(intent);
     }
 
@@ -256,38 +257,25 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @OnClick(R.id.cancelPopUp)
     void setCancelPopUp() {
-        setAddItemToCartPopUpVisiblity("cancel", 0, 0);
+        addItemToCartPopUp.setVisibility(View.GONE);
+//        setAddItemToCartPopUpVisiblity("cancel", 0, 0);
     }
 
     String itemID, itemQuantity, itemName, itemRest, itemPrice;
+    MenuObject menuObject;
 
-    public void setAddItemToCartPopUpVisiblity(String status, int childPosition, int parentPosition) {
-        if (status.equals("subItemDisplay")) {
-            addItemToCartPopUp.setVisibility(View.VISIBLE);
-            innerItemsLayout.setVisibility(View.VISIBLE);
-            loginButton.setText(getString(R.string.addToCartPlus));
-            itemRest = menuCategory.get(parentPosition).getMenuCategoryName().trim();
-            itemTitleText.setText(menuCategory.get(parentPosition).getMenuCategoryName().trim());
-            callsubItemAdapter(childPosition, parentPosition);
-        } else if (status.equals("itemDisplay")) {
+    public void setAddItemToCartPopUpVisiblity(MenuObject menus) {//String status, int childPosition, int parentPosition) {
+        loginButton.setText(getString(R.string.addToCartPlus));
+        itemTitleText.setText(menus.getItemName());
+        menuObject = menus;
+        if (menus.getAddOn().size() == 0) {
             addItemToCartPopUp.setVisibility(View.VISIBLE);
             innerItemsLayout.setVisibility(View.GONE);
-            loginButton.setText(getString(R.string.addToCartPlus));
-            itemTitleText.setText(menuCategory.get(parentPosition).getMenuCategoryName().trim());
-            subItemID = String.valueOf(menuCategory.get(parentPosition).getMenuCategoryId());
-            subItemName = menuCategory.get(parentPosition).getMenuCategoryName();
-////            subItemPrice = menuCategory.get(parentPosition).get
-//            for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
-//                if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
-//                    addItemsToCartModelArrayList.remove(i);
-//                }/*else if (i == addItemsToCartModelArrayList.size()) {
-//                if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
-//                    addItemsToCartModelArrayList.add(new AddItemsToCartModel(subItemID, itemRest, subItemName, addOnPrice, String.valueOf(quantity)));
-//                }
-//            }*/
-//            }
-        } else if (status.equals("cancel")) {
-            addItemToCartPopUp.setVisibility(View.GONE);
+        } else {
+            addItemToCartPopUp.setVisibility(View.VISIBLE);
+            innerItemsLayout.setVisibility(View.VISIBLE);
+            callsubItemAdapter(menus.getAddOn());
+//            callsubItemAdapter(childPosition, parentPosition);
         }
     }
 
@@ -309,8 +297,8 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         }
     }
 
-    void callsubItemAdapter(int childPosition, int parentPosition) {
-        ArrayList<MenuAddOnObject> addOn = menuCategory.get(parentPosition).getMenus().get(childPosition).getAddOn();
+    void callsubItemAdapter(ArrayList<MenuAddOnObject> addOn) {//int childPosition, int parentPosition) {
+//        ArrayList<MenuAddOnObject> addOn = menuCategory.get(parentPosition).getMenus().get(childPosition).getAddOn();
         MenuExpandableSubItemAdapter menuExpandableSubItemAdapter = new MenuExpandableSubItemAdapter(this, addOn);
         innerItemsRecyclerView.setAdapter(menuExpandableSubItemAdapter);
     }
@@ -399,12 +387,54 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     @OnClick(R.id.loginButton)
     void setLoginButton() {
-        addItemsToCartModelArrayList.add(new AddItemsToCartModel(subItemID, itemRest, subItemName, subItemPrice, String.valueOf(quantity)));
+        if (menuObject.getAddOn().size() == 0) {
+            for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+                if (!addItemsToCartModelArrayList.get(i).getItemID().equals(String.valueOf(menuObject.getItemId()))) {
+                    addItemsToCartModelArrayList.add(new AddItemsToCartModel(String.valueOf(menuObject.getItemId()), menuObject.getItemName(), menuObject.getItemName(),
+                            menuObject.getItemPrice(), String.valueOf(quantity), String.valueOf(menuObject.getItemId()), String.valueOf(menuObject.getAddOn().get(i).getAddonId()),
+                            String.valueOf(menuObject.getRestId())));
+                } else {
+//                    addItemsToCartModelArrayList.remove(i);
+                    Toast.makeText(this, "Already Exist in cart", Toast.LENGTH_SHORT).show();
+                }
+            }
+            Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+
+        } else {
+            for (int i = 0; i < menuObject.getAddOn().size(); i++) {
+//                if (menuObject.getAddOn().get(i).isSelected()) {
+                if (addItemsToCartModelArrayList.size() != 0) {
+                    for (int j = 0; j < addItemsToCartModelArrayList.size(); j++) {
+                        if (addItemsToCartModelArrayList.get(j).getItemID().equals(String.valueOf(menuObject.getAddOn().get(i).getItemId()))
+                                && menuObject.getAddOn().get(i).isSelected()) {
+                            Toast.makeText(this, "Item Already Added to cart " + menuObject.getAddOn().get(i).getAddonName(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (j == addItemsToCartModelArrayList.size() - 1) {
+                                addItemsToCartModelArrayList.add(new AddItemsToCartModel(String.valueOf(menuObject.getItemId()), menuObject.getItemName(),
+                                        menuObject.getAddOn().get(i).getAddonName(), menuObject.getAddOn().get(i).getAddonPrice(), String.valueOf(quantity),
+                                        String.valueOf(menuObject.getAddOn().get(i).getItemId()), String.valueOf(menuObject.getAddOn().get(i).getAddonId()),
+                                        String.valueOf(menuObject.getRestId())));
+                                Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                } else {
+                    addItemsToCartModelArrayList.add(new AddItemsToCartModel(String.valueOf(menuObject.getItemId()), menuObject.getItemName(),
+                            menuObject.getAddOn().get(i).getAddonName(), menuObject.getAddOn().get(i).getAddonPrice(), String.valueOf(quantity),
+                            String.valueOf(menuObject.getAddOn().get(i).getItemId()), String.valueOf(menuObject.getAddOn().get(i).getAddonId()),
+                            String.valueOf(menuObject.getRestId())));
+                    Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+//        addItemsToCartModelArrayList.add(new AddItemsToCartModel(subItemID, itemRest, subItemName, subItemPrice, String.valueOf(quantity)));
 
         AppCommon.getInstance(this).setAddToCartObject(addItemsToCartModelArrayList);
-        Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
-        setAddItemToCartPopUpVisiblity("cancel", 0, 0);
-        totalNoOfItemInCart.setText(addItemsToCartModelArrayList.size()+"");
+//        Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
+//        setAddItemToCartPopUpVisiblity("cancel", 0, 0);
+        totalNoOfItemInCart.setText(addItemsToCartModelArrayList.size() + "");
+        addItemToCartPopUp.setVisibility(View.GONE);
 
 //        if (loginButton.getText().toString().trim().toLowerCase().equals(getString(R.string.addToCartPlus).toLowerCase())) {
 //            startActivity(new Intent(this, CheckOutActivity.class));
@@ -413,32 +443,32 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 //        }
     }
 
-    String subItemID;
-    String subItemName;
-    String subItemPrice;
+//    String subItemID;
+//    String subItemName;
+//    String subItemPrice;
+//
+//    public void receiveDataSubItemAdapter(Integer itemId, String addonName, String addOnPrice) {
+//        subItemID = String.valueOf(itemId);
+//        subItemName = addonName;
+//        subItemPrice = addOnPrice;
+//        for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+//            if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
+//                addItemsToCartModelArrayList.remove(i);
+//            }/*else if (i == addItemsToCartModelArrayList.size()) {
+//                if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
+//                    addItemsToCartModelArrayList.add(new AddItemsToCartModel(subItemID, itemRest, subItemName, addOnPrice, String.valueOf(quantity)));
+//                }
+//            }*/
+//        }
+//    }
 
-    public void receiveDataSubItemAdapter(Integer itemId, String addonName, String addOnPrice) {
-        subItemID = String.valueOf(itemId);
-        subItemName = addonName;
-        subItemPrice = addOnPrice;
-        for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
-            if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
-                addItemsToCartModelArrayList.remove(i);
-            }/*else if (i == addItemsToCartModelArrayList.size()) {
-                if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
-                    addItemsToCartModelArrayList.add(new AddItemsToCartModel(subItemID, itemRest, subItemName, addOnPrice, String.valueOf(quantity)));
-                }
-            }*/
-        }
-    }
-
-    public void removeDataSubItemAdapter(Integer itemId, String addonName, String addOnPrice) {
-        for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
-            if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
-                addItemsToCartModelArrayList.remove(i);
-            }
-        }
-    }
+//    public void removeDataSubItemAdapter(Integer itemId, String addonName, String addOnPrice) {
+//        for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+//            if (itemId == Integer.parseInt(addItemsToCartModelArrayList.get(i).getId())) {
+//                addItemsToCartModelArrayList.remove(i);
+//            }
+//        }
+//    }
 
 
     //-----------control item number in cart here----------------

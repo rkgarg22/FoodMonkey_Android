@@ -93,12 +93,12 @@ public class MenuExpandableSubItemAdapter extends RecyclerView.Adapter<MenuExpan
         void setRadioButton() {
             if (addOn.get(getAdapterPosition()).isSelected()) {
                 addOn.get(getAdapterPosition()).setSelected(false);
-                ((DetailActivity) mContext).removeDataSubItemAdapter(addOn.get(getAdapterPosition()).getItemId(),
-                        addOn.get(getAdapterPosition()).getAddonName(), addOn.get(getAdapterPosition()).getAddonPrice());
+//                ((DetailActivity) mContext).removeDataSubItemAdapter(addOn.get(getAdapterPosition()).getItemId(),
+//                        addOn.get(getAdapterPosition()).getAddonName(), addOn.get(getAdapterPosition()).getAddonPrice());
             } else {
                 addOn.get(getAdapterPosition()).setSelected(true);
-                ((DetailActivity) mContext).receiveDataSubItemAdapter(addOn.get(getAdapterPosition()).getItemId(),
-                        addOn.get(getAdapterPosition()).getAddonName(), addOn.get(getAdapterPosition()).getAddonPrice());
+//                ((DetailActivity) mContext).receiveDataSubItemAdapter(addOn.get(getAdapterPosition()).getItemId(),
+//                        addOn.get(getAdapterPosition()).getAddonName(), addOn.get(getAdapterPosition()).getAddonPrice());
             }
             notifyDataSetChanged();
 

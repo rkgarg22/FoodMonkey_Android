@@ -1,12 +1,15 @@
 package com.kartik.project.foodmonkey.API;
 
+import com.kartik.project.foodmonkey.ApiEntity.AddToCardEntity;
 import com.kartik.project.foodmonkey.ApiEntity.AddTokenEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustAddAddressEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerHomeEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerSignUpEntity;
 import com.kartik.project.foodmonkey.ApiEntity.LoginEntity;
+import com.kartik.project.foodmonkey.ApiEntity.OrderCheckOutEntity;
 import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
 import com.kartik.project.foodmonkey.ApiEntity.SignUpEntity;
+import com.kartik.project.foodmonkey.ApiResponse.AddToCardResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CommonResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CuisineListResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerAddressResponse;
@@ -14,6 +17,7 @@ import com.kartik.project.foodmonkey.ApiResponse.CustomerHomeResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerSignUpResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ListCustAddResponse;
 import com.kartik.project.foodmonkey.ApiResponse.LoginCustomerResponse;
+import com.kartik.project.foodmonkey.ApiResponse.OrderCheckOutResponse;
 import com.kartik.project.foodmonkey.ApiResponse.RestDetailMenuResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantFeedBackResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantListResponse;
@@ -58,8 +62,15 @@ public interface FoodMonkeyAppService {
     Call<CustomerAddressResponse> AddCustomerNewAddress(@Body CustAddAddressEntity custAddAddressEntity);
 
     @POST("api/customer/customer_address.php")
-    Call<ListCustAddResponse> ListCustomerAddress(@Query("TokenKey") String apikey,
-                                                  @Query("Customer_id") String secret);
+    Call<ListCustAddResponse> ListCustomerAddress(@Body CustAddAddressEntity custAddAddressEntity);
+
+    @POST("api/customer/order_checkout.php")
+    Call<OrderCheckOutResponse> OrderCheckOut(@Body OrderCheckOutEntity custAddAddressEntity);
+
+//    http://food-monkey.com/api/customer/add_card.php
+
+    @POST("api/customer/add_card.php")
+    Call<AddToCardResponse> AddToCard(@Body AddToCardEntity addToCardEntity);
 
 
 }

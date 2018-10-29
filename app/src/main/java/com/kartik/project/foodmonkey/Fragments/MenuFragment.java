@@ -4,12 +4,15 @@ package com.kartik.project.foodmonkey.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import com.kartik.project.foodmonkey.Adapters.DetailProductAdapter;
 import com.kartik.project.foodmonkey.Adapters.MenuExpandableAdapter;
 import com.kartik.project.foodmonkey.ApiObject.MenuDetailCategoryObject;
 import com.kartik.project.foodmonkey.ApiObject.ResturantsDetailObject;
@@ -31,14 +34,21 @@ import butterknife.ButterKnife;
  */
 public class MenuFragment extends Fragment {
 
-    @BindView(R.id.expandableListView)
-    ExpandableListView expandableListView;
+//    @BindView(R.id.expandableListView)
+//    ExpandableListView expandableListView;
+
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
     MenuExpandableAdapter menuExpandableAdapter;
     ArrayList<HeaderDataModel> listDataHeader;
     HashMap<HeaderDataModel, List<ChildAndAddonModel>> listDataChild;
 
     private ArrayList<MenuDetailCategoryObject> menuCategory = new ArrayList<>();
+
+    //------------------------------------------------------------------------
+
+    DetailProductAdapter detailProductAdapter;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -50,18 +60,20 @@ public class MenuFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         ButterKnife.bind(this, view);
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setNestedScrollingEnabled(false);
         if (getArguments() != null) {
             menuCategory = (ArrayList<MenuDetailCategoryObject>) getArguments().getSerializable("allMenus");
             prepareListData(menuCategory);
         }
 
         // preparing list data
-
-        menuExpandableAdapter = new MenuExpandableAdapter(getActivity(), listDataHeader, listDataChild);
+        detailProductAdapter = new DetailProductAdapter(getActivity(), menuCategory);
+        recyclerView.setAdapter(detailProductAdapter);
+//        menuExpandableAdapter = new MenuExpandableAdapter(getActivity(), listDataHeader, listDataChild);
 
         // setting list adapter
-        expandableListView.setAdapter(menuExpandableAdapter);
+//        expandableListView.setAdapter(menuExpandableAdapter);
 
         return view;
     }
@@ -129,8 +141,8 @@ public class MenuFragment extends Fragment {
     }
 
     public void setPopStatus(Context context, String data, int childPosition, int parentPosition) {
-//        Toast.makeText(context, "Working Status " + status, Toast.LENGTH_SHORT).show();
-        ((DetailActivity) context).setAddItemToCartPopUpVisiblity(data, childPosition,parentPosition);
+////        Toast.makeText(context, "Working Status " + status, Toast.LENGTH_SHORT).show();
+//        ((DetailActivity) context).setAddItemToCartPopUpVisiblity(data, childPosition, parentPosition);
     }
 
 }

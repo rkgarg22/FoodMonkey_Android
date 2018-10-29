@@ -168,5 +168,8 @@
     <string name="office">office</string>
     <string name="pleaseSelectAddressType">Please select Address Type</string>
     <string name="pleaseSelectAddressNote">Please select Address Note</string>
+    <string name="addItems">Add Items</string>
+    <string name="done">Done</string>
+    <string name="addAddress">Add Address</string>
 
 </resources>

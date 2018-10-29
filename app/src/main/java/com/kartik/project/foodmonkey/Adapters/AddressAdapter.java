@@ -11,13 +11,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.kartik.project.foodmonkey.ApiObject.CustomerAddressObject;
+import com.kartik.project.foodmonkey.CheckOutActivity;
 import com.kartik.project.foodmonkey.Models.AddAddressModel;
 import com.kartik.project.foodmonkey.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by kartikeya on 01/10/2018.
@@ -26,12 +30,13 @@ import butterknife.ButterKnife;
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.MyViewHolder> {
 
     Context mContext;
-    private RadioButton lastCheckedRB = null;
-    ArrayList<AddAddressModel> addAddressModelArrayList = new ArrayList<>();
+    //    private RadioButton lastCheckedRB = null;
+    List<CustomerAddressObject> customerAddresses = new ArrayList<>();
+//    ArrayList<AddAddressModel> addAddressModelArrayList = new ArrayList<>();
 
-    public AddressAdapter(Context mContext, ArrayList<AddAddressModel> addAddressModelArrayList) {
+    public AddressAdapter(Context mContext, List<CustomerAddressObject> customerAddresses) {
         this.mContext = mContext;
-        this.addAddressModelArrayList = addAddressModelArrayList;
+        this.customerAddresses = customerAddresses;
     }
 
     @NonNull
@@ -43,26 +48,25 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        holder.addressFull.setText(addAddressModelArrayList.get(position).getAddressFull());
-        holder.addressTitle.setText(addAddressModelArrayList.get(position).getAddressTitle());
-        holder.addressFull.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (addAddressModelArrayList.get(holder.getAdapterPosition()).isSelected()) {
-                    holder.addressFull.setChecked(false);
-                    addAddressModelArrayList.get(holder.getAdapterPosition()).setSelected(false);
-                }else {
-                    holder.addressFull.setChecked(true);
-                    addAddressModelArrayList.get(holder.getAdapterPosition()).setSelected(true);
-                }
-            }
-        });
+        String streetLine1 = customerAddresses.get(position).getStreetLine1();
+        String streetLine2 = customerAddresses.get(position).getStreetLine2();
+        String postalCode = customerAddresses.get(position).getPostCode();
+        String houseNo = String.valueOf(customerAddresses.get(position).getHouseNo());
+        String city = customerAddresses.get(position).getCity();
+
+        holder.addressFull.setText(houseNo + "," + streetLine1 + "," + streetLine2 + "," + postalCode + "," + city);
+        holder.addressTitle.setText(customerAddresses.get(position).getAddressName());
+        if (customerAddresses.get(position).isSelected()) {
+            holder.addressFull.setChecked(true);
+        } else {
+            holder.addressFull.setChecked(false);
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return addAddressModelArrayList.size();
+        return customerAddresses.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -75,6 +79,27 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.MyViewHo
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.addressFull)
+        void setAddressFull() {
+            addressFull.setChecked(true);
+            for (int i = 0; i < customerAddresses.size(); i++) {
+                if (getAdapterPosition() != i) {
+                    customerAddresses.get(i).setSelected(false);
+                } else {
+                    customerAddresses.get(i).setSelected(true);
+                }
+            }
+            ((CheckOutActivity)mContext).setAddressID(customerAddresses.get(getAdapterPosition()).getAddressId());
+//            if (customerAddresses.get(getAdapterPosition()).isSelected()) {
+//                addressFull.setChecked(false);
+//                customerAddresses.get(getAdapterPosition()).setSelected(false);
+//            } else {
+//                addressFull.setChecked(true);
+//                customerAddresses.get(getAdapterPosition()).setSelected(true);
+//            }
+            notifyDataSetChanged();
         }
     }
 }

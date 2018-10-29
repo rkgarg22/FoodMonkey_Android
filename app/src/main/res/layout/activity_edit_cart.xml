@@ -13,31 +13,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/addItems"
         android:layout_below="@+id/toolbar">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/largeMargin"
-            android:layout_marginRight="@dimen/largeMargin">
-
-            <CustomControls.TextViewLatoRegular
-                android:id="@+id/sectionTitle"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="@dimen/margin"
-                android:gravity="center_vertical"
-                android:text="Pepe's Piri Piri"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/mediumText" />
-
-            <View
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@+id/sectionTitle"
-                android:background="@color/underline" />
+            android:layout_marginRight="@dimen/largeMargin"
+            android:layout_marginTop="@dimen/margin">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/editCartRecyclerView"
@@ -84,5 +69,33 @@
 
     </ScrollView>
 
+    <CustomControls.ButtonLatoRegular
+        android:id="@+id/addItems"
+        style="@style/Base.V7.Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/done"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginLeft="@dimen/largeMargin"
+        android:layout_marginRight="@dimen/largeMargin"
+        android:background="@color/pink"
+        android:gravity="center"
+        android:text="@string/addItems"
+        android:textColor="@android:color/white" />
+
+    <CustomControls.ButtonLatoRegular
+        android:id="@+id/done"
+        style="@style/Base.V7.Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/largeMargin"
+        android:layout_marginRight="@dimen/largeMargin"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginBottom="@dimen/margin"
+        android:background="@color/pink"
+        android:gravity="center"
+        android:text="@string/done"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>

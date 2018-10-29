@@ -28,6 +28,8 @@ public class CompletePaymentActivity extends AppCompatActivity {
 
     AddCardAdapter addCardAdapter;
 
+    String orderID = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,10 @@ public class CompletePaymentActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         left.setVisibility(View.VISIBLE);
         toolbarText.setText(getString(R.string.completeYourPayment));
+        if (getIntent() != null) {
+            orderID = getIntent().getStringExtra("orderID");
+        }
+
         placeOrderRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         placeOrderRecyclerView.setNestedScrollingEnabled(false);
         addCardAdapter = new AddCardAdapter(this);

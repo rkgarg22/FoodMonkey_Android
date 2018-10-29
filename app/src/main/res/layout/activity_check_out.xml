@@ -202,7 +202,6 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-                    android:text="$13.45"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/smallTitleText" />
 

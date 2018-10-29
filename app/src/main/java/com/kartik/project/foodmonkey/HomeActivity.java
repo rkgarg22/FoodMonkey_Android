@@ -127,9 +127,6 @@ public class HomeActivity extends AppCompatActivity {
         orderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         navigationRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        setNavigationData();
-        NavigationMenuAdapter navigationMenuAdapter = new NavigationMenuAdapter(this, navigationModelArrayList);
-        navigationRecyclerView.setAdapter(navigationMenuAdapter);
 
         String tokenKey = AppCommon.getInstance(this).getDeviceToken();
         String customerID = AppCommon.getInstance(this).getCustomerID();
@@ -159,6 +156,10 @@ public class HomeActivity extends AppCompatActivity {
             navProfilePic.setImageURI(API_BASE_URL + AppCommon.getInstance(this).getProfilePic());
             profileLayout.setVisibility(View.VISIBLE);
         }
+        setNavigationData();
+        NavigationMenuAdapter navigationMenuAdapter = new NavigationMenuAdapter(this, navigationModelArrayList);
+        navigationRecyclerView.setAdapter(navigationMenuAdapter);
+
     }
 
     void setAdapter(HomeRestutantObject restutantList) {
@@ -267,7 +268,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void callingResturantList(String tokenKey, String customerID) {
+    void callingResturantList(final String tokenKey, String customerID) {
         AppCommon.getInstance(this).setNonTouchableFlags(this);
         if (AppCommon.getInstance(HomeActivity.this).isConnectingToInternet(HomeActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
@@ -285,6 +286,9 @@ public class HomeActivity extends AppCompatActivity {
                         if (response.body() != null) {
                             if (customerHomeResponse.getCode().equals("200")) {
                                 setAdapter(customerHomeResponse.getRestutantList());
+                            } else if (customerHomeResponse.getCode().equals("401")) {
+                                if (!tokenKey.isEmpty())
+                                    callingAddTokenApi(tokenKey, getString(R.string.customerType), getString(R.string.callingChannel));
                             } else {
                                 AppCommon.showDialog(HomeActivity.this, customerHomeResponse.getMessage());
                             }

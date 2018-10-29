@@ -43,6 +43,11 @@ public class CustAddAddressEntity
         this.city = city;
     }
 
+    public CustAddAddressEntity(String tokenKey, String customerId) {
+        this.tokenKey = tokenKey;
+        this.customerId = customerId;
+    }
+
     public String getTokenKey() {
         return tokenKey;
     }

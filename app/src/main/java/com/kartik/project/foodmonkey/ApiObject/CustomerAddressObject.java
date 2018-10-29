@@ -6,12 +6,11 @@ import com.google.gson.annotations.SerializedName;
  * Created by kartikeya on 26/10/2018.
  */
 
-public class CustomerAddressObject
-{
+public class CustomerAddressObject {
     @SerializedName("Address_Id")
     private Integer addressId;
     @SerializedName("Mobile_Number")
-    private Integer mobileNumber;
+    private long mobileNumber;
     @SerializedName("Address_Name")
     private String addressName;
     @SerializedName("House_No")
@@ -26,6 +25,8 @@ public class CustomerAddressObject
     private String postCode;
     @SerializedName("City")
 
+    boolean isSelected;
+
     private String city;
 
     public Integer getAddressId() {
@@ -36,11 +37,11 @@ public class CustomerAddressObject
         this.addressId = addressId;
     }
 
-    public Integer getMobileNumber() {
+    public long getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(Integer mobileNumber) {
+    public void setMobileNumber(long mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
@@ -98,5 +99,13 @@ public class CustomerAddressObject
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

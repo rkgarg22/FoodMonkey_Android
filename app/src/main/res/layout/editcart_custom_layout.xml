@@ -1,72 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:layout_toLeftOf="@+id/noOfItemLayout">
+        android:visibility="gone">
 
         <CustomControls.TextViewLatoRegular
-            android:id="@+id/itemTitle"
+            android:id="@+id/sectionTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="Carmel Chew Chew"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:text="Pepe's Piri Piri"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/mediumText" />
 
-        <CustomControls.TextViewLatoRegular
-            android:id="@+id/itemPrice"
+        <View
+            android:id="@+id/line"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="$2.49"
-            android:textSize="@dimen/mediumText" />
+            android:layout_height="0.5dp"
+            android:background="@color/underline" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/noOfItemLayout"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/margin"
-        android:background="@drawable/curve_border_background"
-        android:orientation="horizontal"
-        android:padding="@dimen/smallMargin">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/titleLayout">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/remove" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/noOfItemLayout"
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/itemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Carmel Chew Chew"
+                android:textSize="@dimen/mediumText" />
 
-        <CustomControls.TextViewLatoRegular
-            android:id="@+id/noOfItem"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="888" />
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/itemPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="$2.49"
+                android:textSize="@dimen/mediumText" />
 
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
+        </LinearLayout>
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/add_btn"
-            android:padding="@dimen/smallMargin" />
+        <LinearLayout
+            android:id="@+id/noOfItemLayout"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin"
+            android:background="@drawable/curve_border_background"
+            android:orientation="horizontal"
+            android:padding="@dimen/smallMargin">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/removeQuantity"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/remove" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/noOfItem"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="888" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray" />
+
+            <ImageView
+                android:id="@+id/addQuantity"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/add_btn"
+                android:padding="@dimen/smallMargin" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -1,5 +1,9 @@
 package com.kartik.project.foodmonkey;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -66,13 +70,15 @@ public class AddAddressActivity extends AppCompatActivity {
 
     Call call;
 
-    String[] tabs = {getString(R.string.selectAddressType), getString(R.string.home), getString(R.string.office)};
+    String[] tabs = {"Please select Address Type", "Home", "office"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_address);
         ButterKnife.bind(this);
+        left.setVisibility(View.VISIBLE);
+        toolbarText.setText(getResources().getString(R.string.addNewAddress));
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, R.layout.simple_spinner_item, tabs);
         adapter.setDropDownViewResource(R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
@@ -86,6 +92,11 @@ public class AddAddressActivity extends AppCompatActivity {
                     addressNote.getText().toString().trim(), streetLine.getText().toString().trim(), streetLine2.getText().toString().trim(),
                     postCode.getText().toString().trim(), city.getText().toString().trim());
         }
+    }
+
+    @OnClick(R.id.left)
+    void setLeft() {
+        onBackPressed();
     }
 
     private boolean vaidation() {
@@ -138,7 +149,7 @@ public class AddAddressActivity extends AppCompatActivity {
         if (AppCommon.getInstance(AddAddressActivity.this).isConnectingToInternet(AddAddressActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             //  final String token = myFirebaseInstanceIDService.getDeviceToken();
-            CustAddAddressEntity customerHomeEntity = new CustAddAddressEntity(tokenKey, customerId, addressType, mobileNumber, houseNo, addressNote,
+            final CustAddAddressEntity customerHomeEntity = new CustAddAddressEntity(tokenKey, customerId, addressType, mobileNumber, houseNo, addressNote,
                     streetLine1, streetLine2, postCode, city);
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
             call = foodMonkeyAppService.AddCustomerNewAddress(customerHomeEntity);
@@ -148,9 +159,32 @@ public class AddAddressActivity extends AppCompatActivity {
                     AppCommon.getInstance(AddAddressActivity.this).clearNonTouchableFlags(AddAddressActivity.this);
                     if (response.code() == 200) {
                         progressBar.setVisibility(View.GONE);
-                        CustomerAddressResponse customerHomeResponse = (CustomerAddressResponse) response.body();
                         if (response.body() != null) {
-                            if (customerHomeResponse.getCode().equals("200")) {
+                            CustomerAddressResponse customerHomeResponse = (CustomerAddressResponse) response.body();
+                            if (customerHomeResponse == null) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(AddAddressActivity.this);
+                                builder.setTitle("Successfully Updated");
+                                builder.setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                        finish();
+                                    }
+                                });
+                                builder.show();
+                            } else if (customerHomeResponse.getCode().equals("200")) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(AddAddressActivity.this);
+                                builder.setTitle("Successfully Updated");
+                                builder.setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                        Intent intent = new Intent();
+                                        setResult(Activity.RESULT_OK, intent);
+                                        finish();
+                                    }
+                                });
+                                builder.show();
                             } else {
                                 AppCommon.showDialog(AddAddressActivity.this, customerHomeResponse.getMessage());
                             }
