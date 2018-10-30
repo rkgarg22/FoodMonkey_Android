@@ -89,7 +89,7 @@ public class HomeOrderedObject {
     private Integer isSponsoredRest;
 
     @SerializedName("Image_Link")
-    private Object imageLink;
+    private String imageLink;
 
     @SerializedName("AggregateFeedback")
     private String aggregateFeedback;
@@ -117,6 +117,28 @@ public class HomeOrderedObject {
 
     @SerializedName("is_menuadded")
     private Integer isMenuadded;
+
+    @SerializedName("Cousine1")
+    private String Cousine1;
+
+    @SerializedName("Cousine2")
+    private String Cousine2;
+
+    public String getCousine2() {
+        return Cousine2;
+    }
+
+    public void setCousine2(String cousine2) {
+        Cousine2 = cousine2;
+    }
+
+    public String getCousine1() {
+        return Cousine1;
+    }
+
+    public void setCousine1(String cousine1) {
+        Cousine1 = cousine1;
+    }
 
     public Integer getRestId() {
         return restId;
@@ -334,11 +356,11 @@ public class HomeOrderedObject {
         this.isSponsoredRest = isSponsoredRest;
     }
 
-    public Object getImageLink() {
+    public String getImageLink() {
         return imageLink;
     }
 
-    public void setImageLink(Object imageLink) {
+    public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
 

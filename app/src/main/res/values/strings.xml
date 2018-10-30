@@ -171,5 +171,10 @@
     <string name="addItems">Add Items</string>
     <string name="done">Done</string>
     <string name="addAddress">Add Address</string>
+    <string name="pleaseEnterCardName">Please enter card name</string>
+    <string name="pleaseEnterValidCardNumber">Please enter valid card number</string>
+    <string name="pleaseEnterCVV">Please enter CVV number</string>
+    <string name="pleaseEnterSelectedMonth">Please select card expiry month</string>
+    <string name="pleaseEnterSelectedYear">Please select card expiry year</string>
 
 </resources>

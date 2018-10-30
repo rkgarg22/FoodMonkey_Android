@@ -169,14 +169,14 @@ public class HomeActivity extends AppCompatActivity {
             restaurantRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.restaurant), restutantList.getPopularRestaurants()));
         }
         if (restutantList.getOrderedRestaurants().size() == 0) {
-            takeOutLayout.setVisibility(View.GONE);
-        } else {
-            menuRecyclerView.setAdapter(new RecentViewAdapter(this, getString(R.string.takeOut), restutantList.getViewedRestaurants()));
-        }
-        if (restutantList.getViewedRestaurants().size() == 0) {
             yourOrderLayout.setVisibility(View.GONE);
         } else {
             orderRecyclerView.setAdapter(new OrderAdapter(this, getString(R.string.yourOrders), restutantList.getOrderedRestaurants()));
+        }
+        if (restutantList.getViewedRestaurants().size() == 0) {
+            takeOutLayout.setVisibility(View.GONE);
+        } else {
+            menuRecyclerView.setAdapter(new RecentViewAdapter(this, getString(R.string.takeOut), restutantList.getViewedRestaurants()));
         }
     }
 

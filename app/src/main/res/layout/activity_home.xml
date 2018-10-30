@@ -37,7 +37,7 @@
                     app:roundAsCircle="true"
                     android:layout_marginLeft="@dimen/margin"
                     android:layout_centerVertical="true"
-                    app:placeholderImage="@drawable/dummy_user" />
+                    app:placeholderImage="@drawable/user_dummy" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

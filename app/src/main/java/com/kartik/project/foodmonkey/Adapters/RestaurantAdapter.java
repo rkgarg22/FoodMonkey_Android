@@ -92,7 +92,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         @OnClick({R.id.seeMore, R.id.parentLayout})
         void setSeeMore() {
             int restID = popularRestaurants.get(getAdapterPosition()).getRestId();
-            Toast.makeText(mContext, "Currently under development", Toast.LENGTH_LONG).show();
+//            Toast.makeText(mContext, "Currently under development", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(mContext, DetailActivity.class);
             intent.putExtra("restID", restID);
             mContext.startActivity(intent);

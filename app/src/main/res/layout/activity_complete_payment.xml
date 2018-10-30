@@ -35,6 +35,7 @@
                 android:layout_height="180dp"
                 android:layout_below="@+id/payText"
                 android:layout_margin="@dimen/margin"
+                android:visibility="gone"
                 android:background="@drawable/card_bg">
 
                 <RelativeLayout
@@ -43,7 +44,7 @@
                     android:layout_height="40dp">
 
                     <ImageView
-                        android:id="@+id/checkboxImage"
+                        android:id="@+id/cardCheckBox"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_centerVertical="true"
@@ -52,12 +53,13 @@
                         android:src="@drawable/checkbox_click" />
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/cardNumberText"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/margin"
                         android:layout_toLeftOf="@+id/dropDownImage"
-                        android:layout_toRightOf="@+id/checkboxImage"
+                        android:layout_toRightOf="@+id/cardCheckBox"
                         android:text="0 Visa ****5020 exp 12/20"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/mediumText" />
@@ -81,7 +83,7 @@
                     android:layout_width="40dp"
                     android:layout_height="30dp"
                     android:layout_below="@+id/selectCardLayout"
-                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginStart="@dimen/margin"
                     android:src="@drawable/visa_card" />
 
                 <CustomControls.TextViewLatoRegular
@@ -142,7 +144,7 @@
                 android:layout_below="@+id/parentSelectedCardLayout">
 
                 <ImageView
-                    android:id="@+id/checkbox2Image"
+                    android:id="@+id/payPalCheckBox"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
@@ -156,7 +158,7 @@
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin"
-                    android:layout_toRightOf="@+id/checkbox2Image"
+                    android:layout_toRightOf="@+id/payPalCheckBox"
                     android:text="@string/payViaPaypal"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/mediumText" />
@@ -167,7 +169,7 @@
                     android:layout_below="@+id/payViaPayPalText"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin"
-                    android:layout_toRightOf="@+id/checkbox2Image"
+                    android:layout_toRightOf="@+id/payPalCheckBox"
                     android:text="johndoe@gmail.com"
                     android:textSize="@dimen/mediumText" />
 
@@ -196,7 +198,7 @@
                 android:layout_marginTop="1dp">
 
                 <ImageView
-                    android:id="@+id/checkbox3Image"
+                    android:id="@+id/codCheckBox"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
@@ -210,7 +212,7 @@
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin"
-                    android:layout_toRightOf="@+id/checkbox3Image"
+                    android:layout_toRightOf="@+id/codCheckBox"
                     android:text="@string/payCashOnDeliv"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/mediumText" />
@@ -256,5 +258,13 @@
 
         </RelativeLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone"/>
 
 </RelativeLayout>

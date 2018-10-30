@@ -73,6 +73,7 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/cardFormat"
                 android:inputType="text"
+                android:maxLength="16"
                 android:paddingEnd="@dimen/padding"
                 android:paddingStart="@dimen/padding"
                 android:textColor="@android:color/black" />
@@ -258,5 +259,12 @@
         android:layout_marginLeft="@dimen/margin"
         android:layout_marginRight="@dimen/margin"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone" />
 
 </RelativeLayout>

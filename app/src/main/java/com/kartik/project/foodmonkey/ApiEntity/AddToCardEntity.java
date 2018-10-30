@@ -11,24 +11,24 @@ public class AddToCardEntity {
     String tokenKey;
 
     @SerializedName("Customer_id")
-    String customerId;
+    int customerId;
 
     @SerializedName("NameOnCard")
     String nameOnCard;
 
     @SerializedName("CardNumber")
-    String cardNumber;
+    long cardNumber;
 
     @SerializedName("ExpDate")
-    String expDate;
+    int expDate;
 
     @SerializedName("ExpYear")
-    String expYear;
+    int expYear;
 
     @SerializedName("CVV")
-    String CVV;
+    int CVV;
 
-    public AddToCardEntity(String tokenKey, String customerId, String nameOnCard, String cardNumber, String expDate, String expYear, String CVV) {
+    public AddToCardEntity(String tokenKey, int customerId, String nameOnCard, long cardNumber, int expDate, int expYear, int CVV) {
         this.tokenKey = tokenKey;
         this.customerId = customerId;
         this.nameOnCard = nameOnCard;
@@ -46,11 +46,11 @@ public class AddToCardEntity {
         this.tokenKey = tokenKey;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -62,35 +62,35 @@ public class AddToCardEntity {
         this.nameOnCard = nameOnCard;
     }
 
-    public String getCardNumber() {
+    public long getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(String cardNumber) {
+    public void setCardNumber(long cardNumber) {
         this.cardNumber = cardNumber;
     }
 
-    public String getExpDate() {
+    public int getExpDate() {
         return expDate;
     }
 
-    public void setExpDate(String expDate) {
+    public void setExpDate(int expDate) {
         this.expDate = expDate;
     }
 
-    public String getExpYear() {
+    public int getExpYear() {
         return expYear;
     }
 
-    public void setExpYear(String expYear) {
+    public void setExpYear(int expYear) {
         this.expYear = expYear;
     }
 
-    public String getCVV() {
+    public int getCVV() {
         return CVV;
     }
 
-    public void setCVV(String CVV) {
+    public void setCVV(int CVV) {
         this.CVV = CVV;
     }
 }

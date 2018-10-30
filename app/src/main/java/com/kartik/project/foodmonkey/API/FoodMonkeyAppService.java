@@ -2,6 +2,7 @@ package com.kartik.project.foodmonkey.API;
 
 import com.kartik.project.foodmonkey.ApiEntity.AddToCardEntity;
 import com.kartik.project.foodmonkey.ApiEntity.AddTokenEntity;
+import com.kartik.project.foodmonkey.ApiEntity.CardListingEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustAddAddressEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerHomeEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerSignUpEntity;
@@ -10,6 +11,7 @@ import com.kartik.project.foodmonkey.ApiEntity.OrderCheckOutEntity;
 import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
 import com.kartik.project.foodmonkey.ApiEntity.SignUpEntity;
 import com.kartik.project.foodmonkey.ApiResponse.AddToCardResponse;
+import com.kartik.project.foodmonkey.ApiResponse.CardListingResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CommonResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CuisineListResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerAddressResponse;
@@ -71,6 +73,9 @@ public interface FoodMonkeyAppService {
 
     @POST("api/customer/add_card.php")
     Call<AddToCardResponse> AddToCard(@Body AddToCardEntity addToCardEntity);
+
+    @POST("api/customer/card_list.php")
+    Call<CardListingResponse> CardListing(@Body CardListingEntity cardListingEntity);// token and customer ID only needed
 
 
 }
