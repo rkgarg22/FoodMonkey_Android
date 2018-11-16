@@ -10,6 +10,7 @@ import com.kartik.project.foodmonkey.ApiEntity.LoginEntity;
 import com.kartik.project.foodmonkey.ApiEntity.OrderCheckOutEntity;
 import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
 import com.kartik.project.foodmonkey.ApiEntity.SignUpEntity;
+import com.kartik.project.foodmonkey.ApiResponse.AddPaymentsEntity;
 import com.kartik.project.foodmonkey.ApiResponse.AddToCardResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CardListingResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CommonResponse;
@@ -71,11 +72,14 @@ public interface FoodMonkeyAppService {
 
 //    http://food-monkey.com/api/customer/add_card.php
 
-    @POST("api/customer/add_card.php")
-    Call<AddToCardResponse> AddToCard(@Body AddToCardEntity addToCardEntity);
+//    @POST("api/customer/add_card.php")// not used
+//    Call<AddToCardResponse> AddToCard(@Body AddToCardEntity addToCardEntity);
 
-    @POST("api/customer/card_list.php")
-    Call<CardListingResponse> CardListing(@Body CardListingEntity cardListingEntity);// token and customer ID only needed
+//    @POST("api/customer/card_list.php")// not used
+//    Call<CardListingResponse> CardListing(@Body CardListingEntity cardListingEntity);// token and customer ID only needed
+
+    @POST("api/customer/add_paymentmethod.php")
+    Call<CardListingResponse> AddPaymentMethods(@Body AddPaymentsEntity addPaymentsEntity);// token and customer ID only needed
 
 
 }

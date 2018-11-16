@@ -115,6 +115,9 @@
             android:name=".AddAddressActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".MyAccountActivty" />
+        <activity android:name=".EditAccountActivity" />
+        <activity android:name=".PersonalAccountActivity"></activity>
     </application>
 
 </manifest>

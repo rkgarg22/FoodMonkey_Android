@@ -25,6 +25,8 @@ public class ResturantListEnity {
     private String callingChannel;
     @SerializedName("Resturant_id")
     private String resturantID;
+    @SerializedName("Customer_id")
+    private String customerId;
 
     public ResturantListEnity(String tokenKey, String searchBy, String postCode, String deliveryOptions, String listBy, String cuisines, String pageNumber, String callingChannel) {
         this.tokenKey = tokenKey;
@@ -37,9 +39,10 @@ public class ResturantListEnity {
         this.callingChannel = callingChannel;
     }
 
-    public ResturantListEnity(String tokenKey, String resturantID) {
+    public ResturantListEnity(String tokenKey, String resturantID, String customerId) {
         this.tokenKey = tokenKey;
         this.resturantID = resturantID;
+        this.customerId = customerId;
     }
 
     public String getTokenKey() {
@@ -112,5 +115,13 @@ public class ResturantListEnity {
 
     public void setResturantID(String resturantID) {
         this.resturantID = resturantID;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 }

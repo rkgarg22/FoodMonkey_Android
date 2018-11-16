@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.PersonalAccountActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:orientation="vertical">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/profilePic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/largeMarginTop"
+                app:placeholderImage="@drawable/dummy_user"
+                app:roundAsCircle="true" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/userprofile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="EDDI METHEW"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/smallTitleText" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gender"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallTitleText" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/mediumText" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallTitleText" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="xyz123@gmail.com"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/mediumText" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mobile"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallTitleText" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="+44 123456789"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/mediumText" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dateOfBirth"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallTitleText" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sept. 17 2018"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/mediumText" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallTitleText" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="256 Near ABC LandMark, Streen Lane 1, Bristol"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/mediumText" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/business"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallTitleText" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="256 Near ABC LandMark, Streen Lane 1, Bristol"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/mediumText" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/editAccount"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/editAccount"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

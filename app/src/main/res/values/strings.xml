@@ -176,5 +176,18 @@
     <string name="pleaseEnterCVV">Please enter CVV number</string>
     <string name="pleaseEnterSelectedMonth">Please select card expiry month</string>
     <string name="pleaseEnterSelectedYear">Please select card expiry year</string>
+    <string name="personalAccountDetail">Personal Account Detail</string>
+    <string name="fingerPrint">Fingerprint</string>
+    <string name="facialRecognition">Facial Recognition</string>
+    <string name="changePassword">Change Password</string>
+    <string name="feedback">FeedBack</string>
+    <string name="logOut">Logout</string>
+    <string name="changePhoto">Change Photo</string>
+    <string name="save">Save</string>
+    <string name="manageAddress">Manage Address</string>
+    <string name="editAccount">Edit Account</string>
+    <string name="gender">Gender</string>
+    <string name="dateOfBirth">Date of birth</string>
+    <string name="business">Business</string>
 
 </resources>

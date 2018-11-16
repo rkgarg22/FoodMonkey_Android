@@ -533,7 +533,6 @@ public class HomeListingActivity extends AppCompatActivity {
                                 restutantListObject = customerHomeResponse.getRestutantList();
                                 setAdapter(restutantListObject);
 //                            User user = registrationResponse.getUserEntity();
-
 //                            try {
 //                                AppCommon.getInstance(HomeActivity.this).setUserLatitude(Double.parseDouble(latitude));
 //                                AppCommon.getInstance(HomeActivity.this).setUserLongitude(Double.parseDouble(longitude));

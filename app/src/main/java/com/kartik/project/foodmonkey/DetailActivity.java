@@ -152,7 +152,8 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         if (getIntent() != null) {
             resturantID = getIntent().getIntExtra("restID", 0);
         }
-        callingResturantDetail(AppCommon.getInstance(DetailActivity.this).getDeviceToken(), String.valueOf(resturantID));
+        callingResturantDetail(AppCommon.getInstance(DetailActivity.this).getDeviceToken(), String.valueOf(resturantID),
+                AppCommon.getInstance(this).getCustomerID());
 
         innerItemsRecyclerView.setLayoutManager(new LinearLayoutManager(DetailActivity.this));
         setTabs();
@@ -319,12 +320,12 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 
     private ArrayList<MenuDetailCategoryObject> menuCategory = new ArrayList<>();
 
-    void callingResturantDetail(String tokenKey, String resturantID) {
+    void callingResturantDetail(String tokenKey, String resturantID, String customerID) {
         AppCommon.getInstance(this).setNonTouchableFlags(this);
         if (AppCommon.getInstance(DetailActivity.this).isConnectingToInternet(DetailActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             //  final String token = myFirebaseInstanceIDService.getDeviceToken();
-            ResturantListEnity resturantListEnity = new ResturantListEnity(tokenKey, resturantID);
+            ResturantListEnity resturantListEnity = new ResturantListEnity(tokenKey, resturantID, customerID);
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
             call = foodMonkeyAppService.getResturanetDetailAndMenus(resturantListEnity);
             call.enqueue(new Callback() {

@@ -10,7 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SettingActivity extends AppCompatActivity {
+public class EditAccountActivity extends AppCompatActivity {
 
     @BindView(R.id.left)
     ImageView left;
@@ -21,10 +21,11 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_edit_account);
         ButterKnife.bind(this);
         left.setVisibility(View.VISIBLE);
-        toolbarText.setText(getString(R.string.settings));
+        left.setImageResource(R.drawable.back_icon);
+        toolbarText.setText(getString(R.string.editAccount));
     }
 
     @OnClick(R.id.left)

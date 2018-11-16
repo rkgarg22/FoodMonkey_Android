@@ -6,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by kartikeya on 12/10/2018.
  */
 
-public class OpenResturantObject
-{
+public class OpenResturantObject {
     @SerializedName("Rest_Id")
     private Integer restId;
     @SerializedName("Rest_Name")
@@ -52,10 +51,10 @@ public class OpenResturantObject
     private String emergContactName;
     @SerializedName("Emerg_Contact_Number")
     private String emergContactNumber;
-    @SerializedName("Opening_Hours")
-    private String openingHours;
-    @SerializedName("Closing_Hours")
-    private String closingHours;
+    //    @SerializedName("Opening_Hours")
+//    private String openingHours;
+//    @SerializedName("Closing_Hours")
+//    private String closingHours;
     @SerializedName("Password")
     private String password;
     @SerializedName("DeliveryOption")
@@ -84,6 +83,46 @@ public class OpenResturantObject
     private String distance;
     @SerializedName("is_menuadded")
     private Integer isMenuadded;
+
+    @SerializedName("Monday_open")
+    private String mondayOpen;
+    @SerializedName("Monday_close")
+    private String mondayClose;
+    @SerializedName("Tuesday_open")
+    private String tuesdayOpen;
+    @SerializedName("Tuesday_close")
+    private String tuesdayClose;
+    @SerializedName("Wednesday_open")
+    private String wednesdayOpen;
+    @SerializedName("Wednesday_close")
+    private String wednesdayClose;
+    @SerializedName("Thursday_open")
+    private String thursdayOpen;
+    @SerializedName("Thursday_close")
+    private String thursdayClose;
+    @SerializedName("Friday_open")
+    private String fridayOpen;
+    @SerializedName("Saturday_open")
+    private String saturdayOpen;
+    @SerializedName("Saturday_close")
+    private String saturdayClose;
+    @SerializedName("Sunday_open")
+    private String sundayOpen;
+    @SerializedName("Sunday_close")
+    private String sundayClose;
+    @SerializedName("Friday_close")
+    private String fridayClose;
+    @SerializedName("Delivery_Time")
+    private String Delivery_Time;
+    @SerializedName("Collection_Time")
+    private String Collection_Time;
+    @SerializedName("Rest_Telephone")
+    private String Rest_Telephone;
+    @SerializedName("Collection_From_Time")
+    private String Collection_From_Time;
+    @SerializedName("Delivery_From_Time")
+    private String Delivery_From_Time;
+
 
     public Integer getRestId() {
         return restId;
@@ -260,22 +299,22 @@ public class OpenResturantObject
     public void setEmergContactNumber(String emergContactNumber) {
         this.emergContactNumber = emergContactNumber;
     }
-
-    public String getOpeningHours() {
-        return openingHours;
-    }
-
-    public void setOpeningHours(String openingHours) {
-        this.openingHours = openingHours;
-    }
-
-    public String getClosingHours() {
-        return closingHours;
-    }
-
-    public void setClosingHours(String closingHours) {
-        this.closingHours = closingHours;
-    }
+//
+//    public String getOpeningHours() {
+//        return openingHours;
+//    }
+//
+//    public void setOpeningHours(String openingHours) {
+//        this.openingHours = openingHours;
+//    }
+//
+//    public String getClosingHours() {
+//        return closingHours;
+//    }
+//
+//    public void setClosingHours(String closingHours) {
+//        this.closingHours = closingHours;
+//    }
 
     public String getPassword() {
         return password;
@@ -389,4 +428,155 @@ public class OpenResturantObject
         this.isMenuadded = isMenuadded;
     }
 
+    public String getMondayOpen() {
+        return mondayOpen;
+    }
+
+    public void setMondayOpen(String mondayOpen) {
+        this.mondayOpen = mondayOpen;
+    }
+
+    public String getMondayClose() {
+        return mondayClose;
+    }
+
+    public void setMondayClose(String mondayClose) {
+        this.mondayClose = mondayClose;
+    }
+
+    public String getTuesdayOpen() {
+        return tuesdayOpen;
+    }
+
+    public void setTuesdayOpen(String tuesdayOpen) {
+        this.tuesdayOpen = tuesdayOpen;
+    }
+
+    public String getTuesdayClose() {
+        return tuesdayClose;
+    }
+
+    public void setTuesdayClose(String tuesdayClose) {
+        this.tuesdayClose = tuesdayClose;
+    }
+
+    public String getWednesdayOpen() {
+        return wednesdayOpen;
+    }
+
+    public void setWednesdayOpen(String wednesdayOpen) {
+        this.wednesdayOpen = wednesdayOpen;
+    }
+
+    public String getWednesdayClose() {
+        return wednesdayClose;
+    }
+
+    public void setWednesdayClose(String wednesdayClose) {
+        this.wednesdayClose = wednesdayClose;
+    }
+
+    public String getThursdayOpen() {
+        return thursdayOpen;
+    }
+
+    public void setThursdayOpen(String thursdayOpen) {
+        this.thursdayOpen = thursdayOpen;
+    }
+
+    public String getThursdayClose() {
+        return thursdayClose;
+    }
+
+    public void setThursdayClose(String thursdayClose) {
+        this.thursdayClose = thursdayClose;
+    }
+
+    public String getFridayOpen() {
+        return fridayOpen;
+    }
+
+    public void setFridayOpen(String fridayOpen) {
+        this.fridayOpen = fridayOpen;
+    }
+
+    public String getSaturdayOpen() {
+        return saturdayOpen;
+    }
+
+    public void setSaturdayOpen(String saturdayOpen) {
+        this.saturdayOpen = saturdayOpen;
+    }
+
+    public String getSaturdayClose() {
+        return saturdayClose;
+    }
+
+    public void setSaturdayClose(String saturdayClose) {
+        this.saturdayClose = saturdayClose;
+    }
+
+    public String getSundayOpen() {
+        return sundayOpen;
+    }
+
+    public void setSundayOpen(String sundayOpen) {
+        this.sundayOpen = sundayOpen;
+    }
+
+    public String getSundayClose() {
+        return sundayClose;
+    }
+
+    public void setSundayClose(String sundayClose) {
+        this.sundayClose = sundayClose;
+    }
+
+    public String getFridayClose() {
+        return fridayClose;
+    }
+
+    public void setFridayClose(String fridayClose) {
+        this.fridayClose = fridayClose;
+    }
+
+    public String getDelivery_Time() {
+        return Delivery_Time;
+    }
+
+    public void setDelivery_Time(String delivery_Time) {
+        Delivery_Time = delivery_Time;
+    }
+
+    public String getCollection_Time() {
+        return Collection_Time;
+    }
+
+    public void setCollection_Time(String collection_Time) {
+        Collection_Time = collection_Time;
+    }
+
+    public String getRest_Telephone() {
+        return Rest_Telephone;
+    }
+
+    public void setRest_Telephone(String rest_Telephone) {
+        Rest_Telephone = rest_Telephone;
+    }
+
+    public String getCollection_From_Time() {
+        return Collection_From_Time;
+    }
+
+    public void setCollection_From_Time(String collection_From_Time) {
+        Collection_From_Time = collection_From_Time;
+    }
+
+    public String getDelivery_From_Time() {
+        return Delivery_From_Time;
+    }
+
+    public void setDelivery_From_Time(String delivery_From_Time) {
+        Delivery_From_Time = delivery_From_Time;
+    }
 }

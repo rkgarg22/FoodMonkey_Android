@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.kartik.project.foodmonkey.EditAccountActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/profilePic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/largeMarginTop"
+                    app:placeholderImage="@drawable/dummy_user"
+                    app:roundAsCircle="true" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/change_photo" />
+            </RelativeLayout>
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/userprofile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/changePhoto"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/mediumText" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/background_border"
+                android:padding="@dimen/smallMargin">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/editIcon"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="@dimen/largeMargin"
+                    android:text="hey ther " />
+
+                <ImageView
+                    android:id="@+id/editIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/edit_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/background_border"
+                android:padding="@dimen/smallMargin">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/editIcon2"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="@dimen/largeMargin"
+                    android:text="Male" />
+
+                <ImageView
+                    android:id="@+id/editIcon2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/edit_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/background_border"
+                android:padding="@dimen/smallMargin">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/editIcon3"
+                    android:background="@android:color/transparent"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/largeMargin"
+                    android:text="XYZ1123@gmail.com" />
+
+                <ImageView
+                    android:id="@+id/editIcon3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/edit_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/background_border"
+                android:padding="@dimen/smallMargin">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/editIcon4"
+                    android:background="@android:color/transparent"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/largeMargin"
+                    android:text="+44 123456789" />
+
+                <ImageView
+                    android:id="@+id/editIcon4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/edit_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/background_border"
+                android:padding="@dimen/smallMargin">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/editIcon5"
+                    android:background="@android:color/transparent"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/largeMargin"
+                    android:text="Sept. 17 2018" />
+
+                <ImageView
+                    android:id="@+id/editIcon5"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/edit_icon" />
+            </RelativeLayout>
+
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/manageAddress"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/marginTop"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/manageAddress"
+                android:textColor="@android:color/white" />
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/saveButton"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/save"
+                android:layout_marginBottom="@dimen/largeMargin"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -93,10 +93,10 @@ public class AddNewCardActivity extends AppCompatActivity {
     @OnClick(R.id.addToCartBtn)
     void setAddToCartBtn() {
         if (validation()) {
-            callingAddCard(AppCommon.getInstance(this).getDeviceToken(), Integer.parseInt(AppCommon.getInstance(this).getCustomerID()),
-                    nameOnCard.getText().toString().trim(), Long.valueOf(cardNumber.getText().toString().trim()),
-                    Integer.valueOf(monthSpinner.getSelectedItem().toString()), Integer.valueOf(yearSpinner.getSelectedItem().toString()),
-                    Integer.valueOf(cvvEditText.getText().toString().trim()));
+//            callingAddCard(AppCommon.getInstance(this).getDeviceToken(), Integer.parseInt(AppCommon.getInstance(this).getCustomerID()),
+//                    nameOnCard.getText().toString().trim(), Long.valueOf(cardNumber.getText().toString().trim()),
+//                    Integer.valueOf(monthSpinner.getSelectedItem().toString()), Integer.valueOf(yearSpinner.getSelectedItem().toString()),
+//                    Integer.valueOf(cvvEditText.getText().toString().trim()));
         }
     }
 
@@ -111,7 +111,7 @@ public class AddNewCardActivity extends AppCompatActivity {
             final AddToCardEntity customerHomeEntity = new AddToCardEntity(tokenKey, customerID, nameOnCard, cardNumber,
                     expDate, expYear, cvv);
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
-            call = foodMonkeyAppService.AddToCard(customerHomeEntity);
+//            call = foodMonkeyAppService.AddToCard(customerHomeEntity);
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {

@@ -245,6 +245,12 @@ public class HomeActivity extends AppCompatActivity {
     @OnClick(R.id.menuSeeMore)
     void setMenuSeeMore() {
         Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
+        intent.putExtra("searchBy", searchBy);
+        if (searchBy.equals("postalcode")) {
+            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+        } else {
+            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+        }
         startActivity(intent);
     }
 
@@ -265,6 +271,12 @@ public class HomeActivity extends AppCompatActivity {
     @OnClick(R.id.orderSeeMore)
     void setOrderSeeMore() {
         Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
+        intent.putExtra("searchBy", searchBy);
+        if (searchBy.equals("postalcode")) {
+            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+        } else {
+            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+        }
         startActivity(intent);
     }
 
@@ -272,7 +284,6 @@ public class HomeActivity extends AppCompatActivity {
         AppCommon.getInstance(this).setNonTouchableFlags(this);
         if (AppCommon.getInstance(HomeActivity.this).isConnectingToInternet(HomeActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
-            //  final String token = myFirebaseInstanceIDService.getDeviceToken();
             CustomerHomeEntity customerHomeEntity = new CustomerHomeEntity(tokenKey, customerID);
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
             call = foodMonkeyAppService.HomeResturantAPI(customerHomeEntity);
@@ -366,6 +377,8 @@ public class HomeActivity extends AppCompatActivity {
             case "My Account":
                 if (!AppCommon.getInstance(this).isUserLogIn()) {
                     Toast.makeText(this, "Please login before view my account" + adapterPosition, Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(this, MyAccountActivty.class));
                 }
                 break;
             case "Log In":

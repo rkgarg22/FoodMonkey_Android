@@ -121,7 +121,7 @@ public class CompletePaymentActivity extends AppCompatActivity {
             CardListingEntity cardListingEntity = new CardListingEntity(AppCommon.getInstance(this).getDeviceToken(),
                     AppCommon.getInstance(this).getCustomerID());
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
-            call = foodMonkeyAppService.CardListing(cardListingEntity);
+//            call = foodMonkeyAppService.CardListing(cardListingEntity);
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
