@@ -10,32 +10,16 @@ public class AddToCardEntity {
     @SerializedName("TokenKey")
     String tokenKey;
 
-    @SerializedName("Customer_id")
-    int customerId;
+    @SerializedName("Stripe_Customer_Id")
+    String stripeCustomerId ;
 
-    @SerializedName("NameOnCard")
-    String nameOnCard;
+    @SerializedName("Stripe_Token")
+    String stripeToken;
 
-    @SerializedName("CardNumber")
-    long cardNumber;
-
-    @SerializedName("ExpDate")
-    int expDate;
-
-    @SerializedName("ExpYear")
-    int expYear;
-
-    @SerializedName("CVV")
-    int CVV;
-
-    public AddToCardEntity(String tokenKey, int customerId, String nameOnCard, long cardNumber, int expDate, int expYear, int CVV) {
+    public AddToCardEntity(String tokenKey, String stripeCustomerId, String stripeToken) {
         this.tokenKey = tokenKey;
-        this.customerId = customerId;
-        this.nameOnCard = nameOnCard;
-        this.cardNumber = cardNumber;
-        this.expDate = expDate;
-        this.expYear = expYear;
-        this.CVV = CVV;
+        this.stripeCustomerId = stripeCustomerId;
+        this.stripeToken = stripeToken;
     }
 
     public String getTokenKey() {
@@ -46,51 +30,19 @@ public class AddToCardEntity {
         this.tokenKey = tokenKey;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public String getStripeCustomerId() {
+        return stripeCustomerId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setStripeCustomerId(String stripeCustomerId) {
+        this.stripeCustomerId = stripeCustomerId;
     }
 
-    public String getNameOnCard() {
-        return nameOnCard;
+    public String getStripeToken() {
+        return stripeToken;
     }
 
-    public void setNameOnCard(String nameOnCard) {
-        this.nameOnCard = nameOnCard;
-    }
-
-    public long getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(long cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
-    public int getExpDate() {
-        return expDate;
-    }
-
-    public void setExpDate(int expDate) {
-        this.expDate = expDate;
-    }
-
-    public int getExpYear() {
-        return expYear;
-    }
-
-    public void setExpYear(int expYear) {
-        this.expYear = expYear;
-    }
-
-    public int getCVV() {
-        return CVV;
-    }
-
-    public void setCVV(int CVV) {
-        this.CVV = CVV;
+    public void setStripeToken(String stripeToken) {
+        this.stripeToken = stripeToken;
     }
 }

@@ -33,7 +33,7 @@
                 app:roundAsCircle="true" />
 
             <CustomControls.TextViewLatoRegular
-                android:id="@+id/userprofile"
+                android:id="@+id/userNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -66,6 +66,7 @@
                         android:textSize="@dimen/smallTitleText" />
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/genderText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Male"
@@ -100,6 +101,7 @@
                         android:textSize="@dimen/smallTitleText" />
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/emailText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="xyz123@gmail.com"
@@ -135,6 +137,7 @@
                         android:textSize="@dimen/smallTitleText" />
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/mobileNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="+44 123456789"
@@ -170,6 +173,7 @@
                         android:textSize="@dimen/smallTitleText" />
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/dateOfBirth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sept. 17 2018"
@@ -205,11 +209,13 @@
                         android:textSize="@dimen/smallTitleText" />
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/homeAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="256 Near ABC LandMark, Streen Lane 1, Bristol"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/mediumText" />
+                    <!--android:text="256 Near ABC LandMark, Streen Lane 1, Bristol"-->
+
 
                 </LinearLayout>
 
@@ -240,11 +246,12 @@
                         android:textSize="@dimen/smallTitleText" />
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/bussinessText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="256 Near ABC LandMark, Streen Lane 1, Bristol"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/mediumText" />
+                    <!--android:text="256 Near ABC LandMark, Streen Lane 1, Bristol"-->
 
                 </LinearLayout>
 
@@ -267,5 +274,12 @@
 
     </ScrollView>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressBackgroundTint="@color/pink"
+        android:visibility="gone" />
 
 </RelativeLayout>

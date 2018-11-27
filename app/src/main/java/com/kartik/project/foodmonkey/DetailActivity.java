@@ -389,18 +389,26 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     @OnClick(R.id.loginButton)
     void setLoginButton() {
         if (menuObject.getAddOn().size() == 0) {
-            for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
-                if (!addItemsToCartModelArrayList.get(i).getItemID().equals(String.valueOf(menuObject.getItemId()))) {
-                    addItemsToCartModelArrayList.add(new AddItemsToCartModel(String.valueOf(menuObject.getItemId()), menuObject.getItemName(), menuObject.getItemName(),
-                            menuObject.getItemPrice(), String.valueOf(quantity), String.valueOf(menuObject.getItemId()), String.valueOf(menuObject.getAddOn().get(i).getAddonId()),
-                            String.valueOf(menuObject.getRestId())));
-                } else {
+            if (addItemsToCartModelArrayList.size() != 0) {
+                for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+                    if (!addItemsToCartModelArrayList.get(i).getItemID().equals(String.valueOf(menuObject.getItemId()))) {
+                        addItemsToCartModelArrayList.add(new AddItemsToCartModel(String.valueOf(menuObject.getItemId()), menuObject.getItemName(), menuObject.getItemName(),
+                                menuObject.getItemPrice(), String.valueOf(quantity), String.valueOf(menuObject.getItemId()), "",
+                                String.valueOf(menuObject.getRestId())));
+                    } else {
+                        if ((i - 1) == addItemsToCartModelArrayList.size()) {
+                            break;
+                        }
 //                    addItemsToCartModelArrayList.remove(i);
-                    Toast.makeText(this, "Already Exist in cart", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Already Exist in cart", Toast.LENGTH_SHORT).show();
+                    }
                 }
+            } else {
+                addItemsToCartModelArrayList.add(new AddItemsToCartModel(String.valueOf(menuObject.getItemId()), menuObject.getItemName(), menuObject.getItemName(),
+                        menuObject.getItemPrice(), String.valueOf(quantity), String.valueOf(menuObject.getItemId()), "",
+                        String.valueOf(menuObject.getRestId())));
             }
             Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
-
         } else {
             for (int i = 0; i < menuObject.getAddOn().size(); i++) {
 //                if (menuObject.getAddOn().get(i).isSelected()) {

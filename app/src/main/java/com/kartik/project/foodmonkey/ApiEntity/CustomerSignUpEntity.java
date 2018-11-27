@@ -40,9 +40,16 @@ public class CustomerSignUpEntity {
     @SerializedName("CallingChannel")
     String channelCalling;
 
+    @SerializedName("LoginType")
+    String loginType;
+
+    @SerializedName("GoogleorFbId")
+    String googleorFbId;
+
     public CustomerSignUpEntity(String tokenKey, String firstName, String middleName, String surName,
                                 String gender, String email, String mobile, String dateOfBirth,
-                                String password, String profilePic, String channelCalling) {
+                                String password, String profilePic, String channelCalling,
+                                String loginType, String googleorFbId) {
         this.tokenKey = tokenKey;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -54,6 +61,8 @@ public class CustomerSignUpEntity {
         this.password = password;
         this.profilePic = profilePic;
         this.channelCalling = channelCalling;
+        this.loginType = loginType;
+        this.googleorFbId = googleorFbId;
     }
 
     public String getTokenKey() {
@@ -142,5 +151,21 @@ public class CustomerSignUpEntity {
 
     public void setChannelCalling(String channelCalling) {
         this.channelCalling = channelCalling;
+    }
+
+    public String getLoginType() {
+        return loginType;
+    }
+
+    public void setLoginType(String loginType) {
+        this.loginType = loginType;
+    }
+
+    public String getGoogleorFbId() {
+        return googleorFbId;
+    }
+
+    public void setGoogleorFbId(String googleorFbId) {
+        this.googleorFbId = googleorFbId;
     }
 }

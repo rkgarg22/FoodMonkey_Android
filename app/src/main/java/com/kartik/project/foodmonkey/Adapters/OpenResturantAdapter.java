@@ -20,8 +20,11 @@ import com.kartik.project.foodmonkey.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import Infrastructure.AppCommon;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.kartik.project.foodmonkey.API.ServiceGenerator.API_BASE_URL;
 
 /**
  * Created by kartikeya on 21/10/2018.
@@ -55,8 +58,10 @@ public class OpenResturantAdapter extends RecyclerView.Adapter<OpenResturantAdap
         holder.numberOfReview.setText("" + openResturant.get(position).getNumberOfReviews());
         holder.deliveryText.setText("£ " + openResturant.get(position).getDelivery());
         holder.minSpendText.setText("£ " + openResturant.get(position).getMinSpend());
-        holder.distanceText.setText(openResturant.get(position).getDistance().substring(0, 3) + " miles");
+//        holder.distanceText.setText(openResturant.get(position).getDistance().substring(0, 3) + " miles");
+        holder.distanceText.setText(openResturant.get(position).getDistance() + " miles");
         holder.ratingBar.setRating(Float.parseFloat(openResturant.get(position).getAggregateFeedback()));
+        holder.displayPic.setController(AppCommon.getDraweeController(holder.displayPic, API_BASE_URL + openResturant.get(position).getImageLink(), 100));
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override

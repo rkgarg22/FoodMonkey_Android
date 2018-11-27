@@ -2,15 +2,14 @@ package com.kartik.project.foodmonkey.ApiObject;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
- * Created by kartikeya on 22/10/2018.
- *
+ * Created by kartikeya on 26/11/2018.
  */
 
-public class CustomerSignUpObject
-{
-    @SerializedName("Customer_id")
-    private String customerId;
+public class CustomerObject implements Serializable {
     @SerializedName("First_Name")
     private String firstName;
     @SerializedName("Middle_Intial")
@@ -25,26 +24,10 @@ public class CustomerSignUpObject
     private String mobile;
     @SerializedName("DOB")
     private String dOB;
-    @SerializedName("Password")
-    private String password;
     @SerializedName("Image_Link")
     private String imageLink;
-    @SerializedName("Status")
-    private Integer status;
-    @SerializedName("Registration_date")
-    private String registrationDate;
-    @SerializedName("Stripe_Customer_Id")
-    private String stripeCustomerId;
-    @SerializedName("Refer_Code")
-    private String referCode;
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
+    @SerializedName("Addresses")
+    private List<AddressObjects> addresses = null;
 
     public String getFirstName() {
         return firstName;
@@ -102,14 +85,6 @@ public class CustomerSignUpObject
         this.dOB = dOB;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getImageLink() {
         return imageLink;
     }
@@ -118,35 +93,11 @@ public class CustomerSignUpObject
         this.imageLink = imageLink;
     }
 
-    public Integer getStatus() {
-        return status;
+    public List<AddressObjects> getAddresses() {
+        return addresses;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(String registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public String getStripeCustomerId() {
-        return stripeCustomerId;
-    }
-
-    public void setStripeCustomerId(String stripeCustomerId) {
-        this.stripeCustomerId = stripeCustomerId;
-    }
-
-    public String getReferCode() {
-        return referCode;
-    }
-
-    public void setReferCode(String referCode) {
-        this.referCode = referCode;
+    public void setAddresses(List<AddressObjects> addresses) {
+        this.addresses = addresses;
     }
 }

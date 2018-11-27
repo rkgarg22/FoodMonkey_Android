@@ -11,33 +11,114 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout" />
 
-    <ImageView
-        android:id="@+id/logo"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/toolbar"
-        android:layout_margin="@dimen/margin"
-        android:padding="@dimen/largeMargin"
-        android:src="@drawable/food_logo_one" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
 
-    <CustomControls.TextViewLatoRegular
-        android:id="@+id/leaveToWinText"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:textSize="@dimen/titleText"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/logo"
-        android:text="@string/leaveFeedForChance"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <CustomControls.TextViewLatoRegular
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:textSize="@dimen/titleText"
-        android:textColor="@color/colorPrimary"
-        android:layout_below="@+id/leaveToWinText"
-        android:text="£250"/>
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="@dimen/margin"
+                android:padding="@dimen/largeMargin"
+                android:src="@drawable/food_logo_one" />
 
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/leaveToWinText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/logo"
+                android:gravity="center"
+                android:text="@string/leaveFeedForChance"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/titleText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/leaveToWinText"
+                android:gravity="center"
+                android:text="£250"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/amount"
+                android:layout_centerHorizontal="true"
+                android:progressTint="@color/colorPrimary" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/tapToRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ratingBar"
+                android:gravity="center"
+                android:text="@string/tapAStarToRate"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/titleText" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tapToRate"
+                android:layout_marginLeft="@dimen/largeMargin"
+                android:layout_marginRight="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:hint="@string/title"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/padding"
+                android:singleLine="true" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/review"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/title"
+                android:layout_marginLeft="@dimen/largeMargin"
+                android:layout_marginRight="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/curve_border_background"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:hint="@string/reviewOptional"
+                android:maxLines="6"
+                android:paddingStart="@dimen/padding"
+                android:paddingTop="@dimen/smallMargin" />
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/postFeedBack"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/review"
+                android:layout_margin="@dimen/largeMargin"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/postFeedBack"
+                android:textColor="@android:color/white" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone" />
 
 </RelativeLayout>

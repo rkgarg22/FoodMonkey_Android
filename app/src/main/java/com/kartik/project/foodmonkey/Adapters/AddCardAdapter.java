@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kartik.project.foodmonkey.ApiObject.CardListObject;
+import com.kartik.project.foodmonkey.ApiObject.StripeDataObject;
 import com.kartik.project.foodmonkey.CompletePaymentActivity;
 import com.kartik.project.foodmonkey.R;
 
@@ -28,9 +29,9 @@ import butterknife.OnClick;
 public class AddCardAdapter extends RecyclerView.Adapter<AddCardAdapter.MyViewHolder> {
 
     Context mContext;
-    List<CardListObject> cardList = new ArrayList<>();
+    List<StripeDataObject> cardList = new ArrayList<>();
 
-    public AddCardAdapter(Context mContext, List<CardListObject> cardList) {
+    public AddCardAdapter(Context mContext, List<StripeDataObject> cardList) {
         this.mContext = mContext;
         this.cardList = cardList;
     }
@@ -61,8 +62,9 @@ public class AddCardAdapter extends RecyclerView.Adapter<AddCardAdapter.MyViewHo
 //        });
 //
 //        holder.cvvNumberText.setText("" + cardList.get(position).getCVV());
-        String cardNumber = String.valueOf(cardList.get(position).getCardNumber());
-        holder.hiddenCardNumberText.setText("****-****-****-" + cardNumber.substring(11, 15));
+        String cardNumber = String.valueOf(cardList.get(position).getLast4());
+        holder.hiddenCardNumberText.setText(cardList.get(position).getBrand() + "****" + cardNumber + " exp"
+                + cardList.get(position).getExpMonth() + "/" + cardList.get(position).getExpYear());
 //        holder.hiddenCardNumberText2.setText("****-****-****-" + cardNumber.substring(11, 15));
         if (cardList.get(position).isSelected()) {
             holder.checkboxImageInner.setImageResource(R.drawable.checkbox_click);

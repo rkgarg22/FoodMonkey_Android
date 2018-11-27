@@ -153,7 +153,8 @@ public class HomeActivity extends AppCompatActivity {
         if (AppCommon.getInstance(this).isUserLogIn()) {
             userName.setText(AppCommon.getInstance(this).getFirstName() + " " + AppCommon.getInstance(this).getSurName());
             userEmail.setText(AppCommon.getInstance(this).getEmailAddress());
-            navProfilePic.setImageURI(API_BASE_URL + AppCommon.getInstance(this).getProfilePic());
+//            navProfilePic.setImageURI(API_BASE_URL + AppCommon.getInstance(this).getProfilePic());
+            navProfilePic.setController(AppCommon.getDraweeController(navProfilePic, AppCommon.getInstance(this).getProfilePic(),100));
             profileLayout.setVisibility(View.VISIBLE);
         }
         setNavigationData();

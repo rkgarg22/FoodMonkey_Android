@@ -317,6 +317,7 @@
                 android:weightSum="1">
 
                 <RelativeLayout
+                    android:id="@+id/facebookBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
@@ -342,10 +343,19 @@
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/smallTitleText" />
 
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="30dp"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/googleBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"

@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">FoodMonkey</string>
-    <string name="facebook_app_id">5061065330892</string> <!--dummy keys -->
-    <string name="fb_login_protocol_scheme">fb5061065330892</string>
+
+    <string name="facebook_app_id">269240333781695</string>
+    <string name="fb_login_protocol_scheme">fb269240333781695</string>
+
+    <string name="stripePbKey">pk_test_6Y79q9xXnWtKnV0JQJa087Yl</string>
+    <string name="stripeSecKey">sk_test_eGA1vmXgPmvLErBrWCIifKyG</string>
 
     <string name="PostalCodeAPI">BD11EZ</string>
 
@@ -189,5 +193,12 @@
     <string name="gender">Gender</string>
     <string name="dateOfBirth">Date of birth</string>
     <string name="business">Business</string>
+    <string name="tapAStarToRate">Tap a Star to Rate</string>
+    <string name="title">Title</string>
+    <string name="reviewOptional">Review (Optional)</string>
+    <string name="postFeedBack">Post Feedback</string>
+    <string name="pleaseEnterTitle">Please enter Title</string>
+    <string name="pleaseGiveSomeRate">Please give some rating</string>
+    <string name="whereToFindUs">Where to find us</string>
 
 </resources>

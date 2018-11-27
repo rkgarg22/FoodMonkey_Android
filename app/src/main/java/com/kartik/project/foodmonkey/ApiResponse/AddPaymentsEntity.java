@@ -13,18 +13,37 @@ public class AddPaymentsEntity {
     @SerializedName("Order_id")
     String orderId;
 
-    @SerializedName("Cardid")
-    String cardId;
+    @SerializedName("Payment_Method_Nonce")
+    String paymentMethodNonce;
+
+    @SerializedName("Stripe_Cardid")
+    String stripCardId;
 
     @SerializedName("Payment_Method")
     String paymentMethod;
 
 
-    public AddPaymentsEntity(String tokenKey, String orderId, String cardId, String paymentMethod) {
+    public AddPaymentsEntity(String tokenKey, String orderId, String stripCardId, String paymentMethod) {
         this.tokenKey = tokenKey;
         this.orderId = orderId;
-        this.cardId = cardId;
+        this.stripCardId = stripCardId;
         this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentMethodNonce() {
+        return paymentMethodNonce;
+    }
+
+    public void setPaymentMethodNonce(String paymentMethodNonce) {
+        this.paymentMethodNonce = paymentMethodNonce;
+    }
+
+    public String getStripCardId() {
+        return stripCardId;
+    }
+
+    public void setStripCardId(String stripCardId) {
+        this.stripCardId = stripCardId;
     }
 
     public String getTokenKey() {
@@ -43,12 +62,12 @@ public class AddPaymentsEntity {
         this.orderId = orderId;
     }
 
-    public String getCardId() {
-        return cardId;
+    public String getStripeCardId() {
+        return stripCardId;
     }
 
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
+    public void setStripeCardId(String cardId) {
+        this.stripCardId = cardId;
     }
 
     public String getPaymentMethod() {

@@ -87,57 +87,28 @@ public class MenuFragment extends Fragment {
         listDataChild = new HashMap<HeaderDataModel, List<ChildAndAddonModel>>();
 
         List<ChildAndAddonModel> childAndAddonModels = new ArrayList<ChildAndAddonModel>();
-
-        for (int i = 0; i < menuCategory.size(); i++) {
-            listDataHeader.add(i, new HeaderDataModel(
-                    menuCategory.get(i).getMenuCategoryId(),
-                    menuCategory.get(i).getMenuCategoryName()));
-            for (int j = 0; j < menuCategory.get(i).getMenus().size(); j++) {
-                childAndAddonModels.add(i, new ChildAndAddonModel(
-                        menuCategory.get(i).getMenus().get(j).getItemId(),
-                        menuCategory.get(i).getMenus().get(j).getRestId(),
-                        menuCategory.get(i).getMenus().get(j).getAddOn().size(),
-                        menuCategory.get(i).getMenus().get(j).getItemName(),
-                        menuCategory.get(i).getMenus().get(j).getItemPrice(),
-                        menuCategory.get(i).getMenus().get(j).getItemDesc(),
-                        menuCategory.get(i).getMenus().get(j).getItemStatus(),
-                        menuCategory.get(i).getMenus().get(j).getIsItemNonVeg()
-                ));
+        try {
+            for (int i = 0; i < menuCategory.size(); i++) {
+                listDataHeader.add(i, new HeaderDataModel(
+                        menuCategory.get(i).getMenuCategoryId(),
+                        menuCategory.get(i).getMenuCategoryName()));
+                for (int j = 0; j < menuCategory.get(i).getMenus().size(); j++) {
+                    childAndAddonModels.add(i, new ChildAndAddonModel(
+                            menuCategory.get(i).getMenus().get(j).getItemId(),
+                            menuCategory.get(i).getMenus().get(j).getRestId(),
+                            menuCategory.get(i).getMenus().get(j).getAddOn().size(),
+                            menuCategory.get(i).getMenus().get(j).getItemName(),
+                            menuCategory.get(i).getMenus().get(j).getItemPrice(),
+                            menuCategory.get(i).getMenus().get(j).getItemDesc(),
+                            menuCategory.get(i).getMenus().get(j).getItemStatus(),
+                            menuCategory.get(i).getMenus().get(j).getIsItemNonVeg()
+                    ));
+                }
+                listDataChild.put(listDataHeader.get(i), childAndAddonModels); // Header, Child data
             }
-            listDataChild.put(listDataHeader.get(i), childAndAddonModels); // Header, Child data
+        } catch (IndexOutOfBoundsException e) {
+            Toast.makeText(getActivity(), "No Data Found", Toast.LENGTH_SHORT).show();
         }
-
-//        listDataHeader.add("Popular");
-//        listDataHeader.add("Grilled Collection");
-//        listDataHeader.add("Sides Collection");
-//        listDataHeader.add("Salads");
-//        listDataHeader.add("Extras");
-//
-//        // Adding child data
-//        List<String> extras = new ArrayList<String>();
-//        extras.add("Hummus");
-//        extras.add("Coles law");
-//        extras.add("Chicken XL");
-//        extras.add("Prime Pitta");
-//
-//        List<String> iceCream = new ArrayList<String>();
-//        iceCream.add("Caramel Chew Chew");
-//        iceCream.add("Chocolate Fudge Brownie");
-//        iceCream.add("Cookie Dough");
-//        iceCream.add("Stawberry Cheesecake");
-//
-//        List<String> comingSoon = new ArrayList<String>();
-//        comingSoon.add("2 Guns");
-//        comingSoon.add("The Smurfs 2");
-//        comingSoon.add("The Spectacular Now");
-//        comingSoon.add("The Canyons");
-//        comingSoon.add("Europa Report");
-//
-//        listDataChild.put(listDataHeader.get(0), extras); // Header, Child data
-//        listDataChild.put(listDataHeader.get(1), iceCream);
-//        listDataChild.put(listDataHeader.get(2), comingSoon);
-//        listDataChild.put(listDataHeader.get(3), comingSoon);
-//        listDataChild.put(listDataHeader.get(4), comingSoon);
     }
 
     public void setPopStatus(Context context, String data, int childPosition, int parentPosition) {

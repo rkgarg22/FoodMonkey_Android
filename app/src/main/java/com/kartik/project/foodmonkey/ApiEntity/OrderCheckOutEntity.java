@@ -26,9 +26,16 @@ public class OrderCheckOutEntity {
     private String quantity;
     @SerializedName("Addon_Id")
     private String addonId;
+    @SerializedName("CouponCode")
+    private String couponCode;
+    @SerializedName("Preorder_DateTime")
+    private String preorderDateTime;
+    @SerializedName("Preorder_Comments")
+    private String preorderComments;
 
     public OrderCheckOutEntity(String tokenKey, Integer customerId, Integer resturantId, Integer addressId, float orderAmount,
-                               String deliveryOption, String itemId, String quantity, String addonId) {
+                               String deliveryOption, String itemId, String quantity, String addonId, String couponCode,
+                               String preorderDateTime, String preorderComments) {
         this.tokenKey = tokenKey;
         this.customerId = customerId;
         this.resturantId = resturantId;
@@ -38,6 +45,9 @@ public class OrderCheckOutEntity {
         this.itemId = itemId;
         this.quantity = quantity;
         this.addonId = addonId;
+        this.couponCode = couponCode;
+        this.preorderDateTime = preorderDateTime;
+        this.preorderComments = preorderComments;
     }
 
     public String getTokenKey() {
@@ -110,5 +120,29 @@ public class OrderCheckOutEntity {
 
     public void setAddonId(String addonId) {
         this.addonId = addonId;
+    }
+
+    public String getCouponCode() {
+        return couponCode;
+    }
+
+    public void setCouponCode(String couponCode) {
+        this.couponCode = couponCode;
+    }
+
+    public String getPreorderDateTime() {
+        return preorderDateTime;
+    }
+
+    public void setPreorderDateTime(String preorderDateTime) {
+        this.preorderDateTime = preorderDateTime;
+    }
+
+    public String getPreorderComments() {
+        return preorderComments;
+    }
+
+    public void setPreorderComments(String preorderComments) {
+        this.preorderComments = preorderComments;
     }
 }

@@ -7,36 +7,14 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class AddToCardResponse {
-    @SerializedName("Code")
-    String code;
-
     @SerializedName("Message")
-    String message;
+    private StripeMessage message;
 
-    @SerializedName("Card_id")
-    String cardId;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
+    public StripeMessage getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(StripeMessage message) {
         this.message = message;
-    }
-
-    public String getCardId() {
-        return cardId;
-    }
-
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
     }
 }

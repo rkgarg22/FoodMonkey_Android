@@ -1,35 +1,39 @@
 package com.kartik.project.foodmonkey.API;
 
+import com.kartik.project.foodmonkey.ApiEntity.AddFeedBackEnitity;
 import com.kartik.project.foodmonkey.ApiEntity.AddToCardEntity;
 import com.kartik.project.foodmonkey.ApiEntity.AddTokenEntity;
+import com.kartik.project.foodmonkey.ApiEntity.BrainTreeEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CardListingEntity;
+import com.kartik.project.foodmonkey.ApiEntity.CommonEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustAddAddressEntity;
+import com.kartik.project.foodmonkey.ApiEntity.CustProfileEditEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerHomeEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerSignUpEntity;
 import com.kartik.project.foodmonkey.ApiEntity.LoginEntity;
 import com.kartik.project.foodmonkey.ApiEntity.OrderCheckOutEntity;
 import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
-import com.kartik.project.foodmonkey.ApiEntity.SignUpEntity;
 import com.kartik.project.foodmonkey.ApiResponse.AddPaymentsEntity;
 import com.kartik.project.foodmonkey.ApiResponse.AddToCardResponse;
-import com.kartik.project.foodmonkey.ApiResponse.CardListingResponse;
+import com.kartik.project.foodmonkey.ApiResponse.BrainTreePaymentResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CommonResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CuisineListResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerAddressResponse;
+import com.kartik.project.foodmonkey.ApiResponse.CustomerDetailResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerHomeResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerSignUpResponse;
+import com.kartik.project.foodmonkey.ApiResponse.GetBrainTreeResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ListCustAddResponse;
 import com.kartik.project.foodmonkey.ApiResponse.LoginCustomerResponse;
 import com.kartik.project.foodmonkey.ApiResponse.OrderCheckOutResponse;
+import com.kartik.project.foodmonkey.ApiResponse.PaymentMethodResponse;
 import com.kartik.project.foodmonkey.ApiResponse.RestDetailMenuResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantFeedBackResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantListResponse;
-import com.kartik.project.foodmonkey.ApiResponse.SignUpResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * Created by kartikeya on 01/10/2018.
@@ -70,16 +74,34 @@ public interface FoodMonkeyAppService {
     @POST("api/customer/order_checkout.php")
     Call<OrderCheckOutResponse> OrderCheckOut(@Body OrderCheckOutEntity custAddAddressEntity);
 
-//    http://food-monkey.com/api/customer/add_card.php
-
-//    @POST("api/customer/add_card.php")// not used
-//    Call<AddToCardResponse> AddToCard(@Body AddToCardEntity addToCardEntity);
-
 //    @POST("api/customer/card_list.php")// not used
 //    Call<CardListingResponse> CardListing(@Body CardListingEntity cardListingEntity);// token and customer ID only needed
+//
+//    @POST("api/customer/add_paymentmethod.php")
+//    Call<CardListingResponse> AddPaymentMethods(@Body AddPaymentsEntity addPaymentsEntity);// token and customer ID only needed
 
     @POST("api/customer/add_paymentmethod.php")
-    Call<CardListingResponse> AddPaymentMethods(@Body AddPaymentsEntity addPaymentsEntity);// token and customer ID only needed
+    Call<PaymentMethodResponse> AddPaymentMethods(@Body AddPaymentsEntity addPaymentsEntity);// token and customer ID only needed
 
+    @POST("api/customer/customer_profile_edit.php")
+    Call<CommonResponse> ProfileEdit(@Body CustProfileEditEntity custProfileEditEntity);// token and customer ID only needed
+
+    @POST("api/braintree/braintree_token.php")
+    Call<GetBrainTreeResponse> GetBrainTreeToken(@Body AddTokenEntity addTokenEntity);// token  only needed
+
+    @POST("api/braintree/braintree_payment.php")
+    Call<BrainTreePaymentResponse> GetBrainTreePayment(@Body BrainTreeEntity brainTreeEntity);// token  only needed
+
+    @POST("api/customer/customer_details.php")
+    Call<CustomerDetailResponse> GetCustomerDetail(@Body CommonEntity commonEntity);
+
+    @POST("api/customer/customer_feedback.php")
+    Call<CommonResponse> AddCustomerFeedBack(@Body AddFeedBackEnitity addFeedBackEnitity); // Not Implemented Yet...
+
+    @POST("api/customer/add_card.php")// not used
+    Call<AddToCardResponse> AddToCard(@Body AddToCardEntity addToCardEntity);
+
+    @POST("api/customer/card_list.php")// not used
+    Call<AddToCardResponse> CardListing(@Body CardListingEntity cardListingEntity);// token and customer ID only needed
 
 }

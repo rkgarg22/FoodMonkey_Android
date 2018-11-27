@@ -35,6 +35,7 @@
             android:layout_marginTop="@dimen/smallMargin"
             android:background="@drawable/curve_border_background"
             android:hint="@string/enterName"
+            android:maxLength="16"
             android:inputType="text"
             android:paddingStart="@dimen/padding"
             android:textColor="@android:color/black" />
@@ -72,7 +73,7 @@
                 android:layout_toLeftOf="@+id/cardIcon"
                 android:background="@android:color/transparent"
                 android:hint="@string/cardFormat"
-                android:inputType="text"
+                android:inputType="number"
                 android:maxLength="16"
                 android:paddingEnd="@dimen/padding"
                 android:paddingStart="@dimen/padding"
@@ -235,7 +236,7 @@
                     android:layout_marginTop="@dimen/smallMargin"
                     android:background="@drawable/curve_border_background"
                     android:hint="000"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:paddingStart="@dimen/padding"
                     android:textColor="@android:color/black" />
 

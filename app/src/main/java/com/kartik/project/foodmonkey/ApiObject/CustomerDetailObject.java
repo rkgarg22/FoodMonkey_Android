@@ -6,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by kartikeya on 17/10/2018.
  */
 
-public class CustomerDetailObject
-{
+public class CustomerDetailObject {
     @SerializedName("Customer_id")
     private Integer customerId;
     @SerializedName("First_Name")
@@ -32,6 +31,8 @@ public class CustomerDetailObject
     private Integer status;
     @SerializedName("Registration_date")
     private String registrationDate;
+    @SerializedName("Stripe_Customer_Id")
+    private String stripeCustomerId;
 
     public Integer getCustomerId() {
         return customerId;
@@ -127,5 +128,21 @@ public class CustomerDetailObject
 
     public void setRegistrationDate(String registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public String getdOB() {
+        return dOB;
+    }
+
+    public void setdOB(String dOB) {
+        this.dOB = dOB;
+    }
+
+    public String getStripeCustomerId() {
+        return stripeCustomerId;
+    }
+
+    public void setStripeCustomerId(String stripeCustomerId) {
+        this.stripeCustomerId = stripeCustomerId;
     }
 }

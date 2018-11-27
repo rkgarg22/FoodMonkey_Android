@@ -47,11 +47,11 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_centerVertical="true"
                     android:layout_marginTop="@dimen/marginTop"
                     android:background="@android:color/transparent"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:layout_centerVertical="true"
                     android:paddingEnd="@dimen/padding"
                     android:paddingStart="@dimen/padding"
                     android:textColor="@android:color/black"
@@ -111,6 +111,7 @@
                 android:weightSum="1">
 
                 <RelativeLayout
+                    android:id="@+id/facebookBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
@@ -137,9 +138,20 @@
                         android:textSize="@dimen/smallTitleText" />
 
 
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="30dp"
+                        android:visibility="gone" />
+
+
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/googleBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
@@ -266,7 +278,7 @@
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:progressTint="@color/pink"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 
 </RelativeLayout>

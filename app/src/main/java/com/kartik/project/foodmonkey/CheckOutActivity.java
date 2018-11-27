@@ -199,14 +199,15 @@ public class CheckOutActivity extends AppCompatActivity {
         validationToProceedPay();
     }
 
-    private void callingOrderCheckOut(String tokenKey, Integer customerId, Integer resturantId, Integer addressId, float orderAmount,
-                                      String deliveryOption, String itemId, String quantity, String addonId) {
+    private void callingOrderCheckOut(String tokenKey, Integer customerId, Integer resturantId, Integer addressId, final float orderAmount,
+                                      String deliveryOption, String itemId, String quantity, String addonId,
+                                      String couponCode, String preOrderDateTime, String preOrderComments) {
         AppCommon.getInstance(CheckOutActivity.this).setNonTouchableFlags(CheckOutActivity.this);
         if (AppCommon.getInstance(CheckOutActivity.this).isConnectingToInternet(CheckOutActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             //  final String token = myFirebaseInstanceIDService.getDeviceToken();
             OrderCheckOutEntity orderCheckOutEntity = new OrderCheckOutEntity(tokenKey, customerId, resturantId, addressId, orderAmount,
-                    deliveryOption, itemId, quantity, addonId);
+                    deliveryOption, itemId, quantity, addonId, couponCode,preOrderDateTime,preOrderComments);
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
             call = foodMonkeyAppService.OrderCheckOut(orderCheckOutEntity);
             call.enqueue(new Callback() {
@@ -221,6 +222,7 @@ public class CheckOutActivity extends AppCompatActivity {
                                 Toast.makeText(CheckOutActivity.this, "Order Added Successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(CheckOutActivity.this, CompletePaymentActivity.class);
                                 intent.putExtra("orderID", orderCheckOutResponse.getOrderId());
+                                intent.putExtra("totalAmount",orderAmount);
                                 startActivity(intent);
 //                                setAdapter(restDetailMenuResponse.getResturantFeedbackList());
 
@@ -262,7 +264,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
         String itemID = "", quanities = "", addOnIDs = "";
         int restID = 0;
-        float totalAmount=this.totalAmount + deliveryFee;
+        float totalAmount = this.totalAmount + deliveryFee;
         for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
             if (itemID.isEmpty()) {
                 itemID = addItemsToCartModelArrayList.get(i).getItemID();
@@ -284,11 +286,11 @@ public class CheckOutActivity extends AppCompatActivity {
 
         if (addressID == -1) {
             Toast.makeText(this, "Please select Address to deliver", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             callingOrderCheckOut(AppCommon.getInstance(CheckOutActivity.this).getDeviceToken(),
                     Integer.parseInt(AppCommon.getInstance(CheckOutActivity.this).getCustomerID()),
                     restID, addressID, totalAmount,
-                    deliveryOption, itemID, quanities, addOnIDs);
+                    deliveryOption, itemID, quanities, addOnIDs,"","","");
         }
     }
 
@@ -347,11 +349,16 @@ public class CheckOutActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         ListCustAddResponse listCustAddResponse = (ListCustAddResponse) response.body();
                         if (response.body() != null) {
-                            if (listCustAddResponse.getCode().equals("200")) {
-                                setAddressListingAdapter(listCustAddResponse.getCustomerAddresses());
-                            } else {
+                            try {
+                                if (listCustAddResponse.getCode().equals("200")) {
+                                    setAddressListingAdapter(listCustAddResponse.getCustomerAddresses());
+                                } else {
+                                    AppCommon.showDialog(CheckOutActivity.this, listCustAddResponse.getMessage());
+                                }
+                            } catch (NullPointerException e) {
                                 AppCommon.showDialog(CheckOutActivity.this, listCustAddResponse.getMessage());
                             }
+
                         }
                     } else {
                         AppCommon.showDialog(CheckOutActivity.this, getString(R.string.serverError));

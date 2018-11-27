@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -23,6 +24,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,19 +38,46 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
+import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
 import com.kartik.project.foodmonkey.API.ServiceGenerator;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerSignUpEntity;
+import com.kartik.project.foodmonkey.ApiObject.CustomerSignUpObject;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerSignUpResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -60,7 +89,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignUpActivity extends AppCompatActivity {
+import static com.kartik.project.foodmonkey.API.ServiceGenerator.API_BASE_URL;
+
+public class SignUpActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final int SELECT_FILE = 1;
 
@@ -121,6 +152,17 @@ public class SignUpActivity extends AppCompatActivity {
     @BindView(R.id.profilePic)
     SimpleDraweeView profilePic;
 
+    @BindView(R.id.login_button)
+    LoginButton fbBtn;
+
+    CallbackManager callbackManager;
+
+    private GoogleSignInOptions gso;
+
+    private GoogleApiClient mGoogleApiClient;
+
+    private int RC_SIGN_IN = 100;
+
     Call call;
 
     String gender = "";
@@ -146,6 +188,17 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
+        callbackManager = CallbackManager.Factory.create();
+
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(new Scope(Scopes.PLUS_LOGIN))
+                .requestScopes(new Scope(Scopes.PROFILE))
+                .requestEmail().build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
         left.setVisibility(View.VISIBLE);
         toolbarText.setText(getString(R.string.signUp));
         setLoginText();
@@ -295,7 +348,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (validation()) {
             callingSignUpApi(AppCommon.getInstance(this).getDeviceToken(), this.firstName.getText().toString().trim(), this.middleName.getText().toString().trim(),
                     this.surName.getText().toString().trim(), gender, this.email.getText().toString().trim(), this.mobile.getText().toString().trim(),
-                    dateOfBirthInput, this.password.getText().toString().trim(), profileInput, "App");
+                    dateOfBirthInput, this.password.getText().toString().trim(), profileInput, "App", "Direct", "");
         }
     }
 
@@ -337,13 +390,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     void callingSignUpApi(String tokenKey, final String firstName, final String middleName, final String surName,
                           final String gender, final String email, final String mobile, final String dateOfBirth,
-                          String password, String profilePic, String channelCalling) {
+                          String password, String profilePic, String channelCalling, String loginType, String socailID) {
         AppCommon.getInstance(this).setNonTouchableFlags(this);
         if (AppCommon.getInstance(SignUpActivity.this).isConnectingToInternet(SignUpActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             //  final String token = myFirebaseInstanceIDService.getDeviceToken();
             CustomerSignUpEntity customerSignUpEntity = new CustomerSignUpEntity(tokenKey, firstName, middleName, surName, gender,
-                    email, mobile, dateOfBirth, password, profilePic, channelCalling);
+                    email, mobile, dateOfBirth, password, profilePic, channelCalling, loginType, socailID);
 
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
             call = foodMonkeyAppService.customerSignUp(customerSignUpEntity);
@@ -355,20 +408,22 @@ public class SignUpActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         CustomerSignUpResponse customerSignUpResponse = (CustomerSignUpResponse) response.body();
                         if (customerSignUpResponse.getCode().equals("200")) {
-                            AppCommon.getInstance(SignUpActivity.this).setCustomerID(customerSignUpResponse.getCustomerDetail().getCustomerId());
+                            CustomerSignUpObject customerSignUpObject = customerSignUpResponse.getCustomerDetail().get(0);
 
-                            AppCommon.getInstance(SignUpActivity.this).setFirstName(firstName);
-                            AppCommon.getInstance(SignUpActivity.this).setSurName(surName);
-                            AppCommon.getInstance(SignUpActivity.this).setMiddleName(middleName);
-                            AppCommon.getInstance(SignUpActivity.this).setGender(gender);
-                            AppCommon.getInstance(SignUpActivity.this).setEmailAddress(email);
-                            AppCommon.getInstance(SignUpActivity.this).setMobileNumber(mobile);
-                            AppCommon.getInstance(SignUpActivity.this).setDateOfBirth(dateOfBirth);
-                            AppCommon.getInstance(SignUpActivity.this).setProfilePic(customerSignUpResponse.getCustomerDetail().getProfilePicUrl());
+                            AppCommon.getInstance(SignUpActivity.this).setCustomerID(customerSignUpObject.getCustomerId());
+                            AppCommon.getInstance(SignUpActivity.this).setFirstName(customerSignUpObject.getFirstName());
+                            AppCommon.getInstance(SignUpActivity.this).setSurName(customerSignUpObject.getSurName());
+                            AppCommon.getInstance(SignUpActivity.this).setMiddleName(customerSignUpObject.getMiddleIntial());
+                            AppCommon.getInstance(SignUpActivity.this).setGender(customerSignUpObject.getGender());
+                            AppCommon.getInstance(SignUpActivity.this).setEmailAddress(customerSignUpObject.getEmail());
+                            AppCommon.getInstance(SignUpActivity.this).setMobileNumber(customerSignUpObject.getMobile());
+                            AppCommon.getInstance(SignUpActivity.this).setDateOfBirth(customerSignUpObject.getdOB());
+                            AppCommon.getInstance(SignUpActivity.this).setProfilePic("http://food-monkey.com" + customerSignUpResponse.getCustomerDetail().get(0).getImageLink());
+                            AppCommon.getInstance(SignUpActivity.this).setStripeCustID(customerSignUpObject.getStripeCustomerId());
+                            AppCommon.getInstance(SignUpActivity.this).setReferCode(customerSignUpObject.getReferCode());
 //                            AppCommon.getInstance(SignUpActivity.this).setStatus(
 //                                    loginCustomerResponse.getCustomerDetails().get(0).getStatus());
                             AppCommon.getInstance(SignUpActivity.this).setIsUserLogIn(true);
-
                             Intent intent = getIntent();
                             intent.putExtra("data", true);
                             setResult(RESULT_OK, intent);
@@ -486,8 +541,146 @@ public class SignUpActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            } else if (requestCode == RC_SIGN_IN) {
+                GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+                //Calling a new function to handle signin
+                handleSignInResult(result);
+            } else {
+                callbackManager.onActivityResult(requestCode, resultCode, data);
             }
             isMedia = "1";
         }
+    }
+
+    @OnClick(R.id.facebookBtn)
+    void setOnFb() {
+        authorizeFaceBook();
+    }
+
+    @OnClick(R.id.googleBtn)
+    void setOnGoogleBtn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+
+    /*--------------------------------Facebook SetUp -------------------------*/
+    void authorizeFaceBook() {
+//        fbBtn.performClick();
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"));
+        fbBtn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                if (AccessToken.getCurrentAccessToken() != null) {
+                    requestingFacebookData(loginResult.getAccessToken());
+                }
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+    }
+
+    private void requestingFacebookData(AccessToken accessToken) {
+        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                JSONObject json = response.getJSONObject();
+                System.out.println("Json data :" + json);
+                if (json != null) {
+                    try {
+                        if (json.getString("email").equals("") || json.getString("email").equals(null)) {
+                            AppCommon.getInstance(SignUpActivity.this).showDialog(SignUpActivity.this, "Email not Found! Please Use Normal Signup");
+                        } else {
+                            String facebookId = json.getString("id");
+                            String fbEmail = json.getString("email");
+                            String firstName = json.getString("name");
+//                            String birthday = json.getString("birthday");
+                            String uri = "https://graph.facebook.com/" + facebookId + "/picture?type=normal";
+                            URL profilePictureUrl = new URL("https://graph.facebook.com/" + facebookId + "/picture?type=normal");
+
+                            //  String gender = json.getString("gender");
+                            //  int password = AppCommon.getInstance(Login_and_Register_Activity.this).rendomPassword();
+//                            register(firstName, "", fbEmail, "", "", facebookId, "facebook", uri, "");
+                            callingSignUpApi(AppCommon.getInstance(SignUpActivity.this).getDeviceToken(), firstName, "", "S"
+                                    , "", fbEmail, "", "", "", uri, "App",
+                                    "Facebook", facebookId);
+                        }
+                    } catch (JSONException e) {
+                        AppCommon.getInstance(SignUpActivity.this).showDialog(SignUpActivity.this, "Email not Found! Please Use Normal Signup");
+                        e.printStackTrace();
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,link,email,picture");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
+    /*---------------------------------Google Sign Up Stuff-----------------------------*/
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        //If the login succeed
+        Uri imageUrl = null;
+        String imageStr;
+        if (result.isSuccess()) {
+            //Getting google account
+            GoogleSignInAccount acct = result.getSignInAccount();
+            String name = acct.getDisplayName();
+            String email = acct.getEmail();
+            String gen = "";
+            try {
+                imageUrl = acct.getPhotoUrl();
+                Person person = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+                int gender = person.getGender();
+                switch (gender) {
+                    case 1:
+                        gen = "Female";
+                        break;
+                    case 0:
+                        gen = "Male";
+                        break;
+                    case 2:
+                        gen = "Either";
+                        break;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String googleId = acct.getId();
+            if (imageUrl == null)
+                imageStr = "";
+            else
+                imageStr = imageUrl.toString();
+//            register(name, "", email, "", "", googleId, "gmail", imageStr, gen);
+            callingSignUpApi(AppCommon.getInstance(SignUpActivity.this).getDeviceToken(), name, "", "S"
+                    , gen, email, "", "", "", imageStr, "App",
+                    "Google", googleId);
+
+            Log.i("loginInfo", name + " " + email + " " + imageStr);
+
+
+        } else {
+            //If login fails
+            Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+
     }
 }

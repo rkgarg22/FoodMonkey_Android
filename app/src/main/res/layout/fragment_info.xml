@@ -10,9 +10,36 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/mapLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin"
+                android:paddingTop="@dimen/margin"
+                android:text="@string/whereToFindUs"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallTitleText" />
+
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/map"
+                android:layout_marginRight="@dimen/margin"
+                android:layout_marginLeft="@dimen/margin"
+                android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/layout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/mapLayout"
             android:layout_marginLeft="@dimen/margin"
             android:layout_marginRight="@dimen/margin"
             android:orientation="vertical">
@@ -55,28 +82,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/underline1"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text="@string/openningHour"
             android:textColor="@android:color/black"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginRight="@dimen/margin"
             android:textSize="@dimen/smallTitleText" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/openingHourRecyclerView"
             android:layout_width="match_parent"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginRight="@dimen/margin"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/openingHrText" />
+            android:layout_below="@+id/openingHrText"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin" />
 
         <View
             android:id="@+id/underline2"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_marginTop="@dimen/margin"
             android:layout_below="@+id/openingHourRecyclerView"
+            android:layout_marginTop="@dimen/margin"
             android:background="@color/underline" />
 
         <CustomControls.TextViewLatoBold
@@ -84,11 +111,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/underline2"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text="@string/deliveryAreas"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginRight="@dimen/margin"
             android:textColor="@android:color/black"
             android:textSize="@dimen/smallTitleText" />
 
@@ -96,9 +123,9 @@
             android:id="@+id/deliveryRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/deliveryText"
             android:layout_marginLeft="@dimen/margin"
-            android:layout_marginRight="@dimen/margin"
-            android:layout_below="@+id/deliveryText" />
+            android:layout_marginRight="@dimen/margin" />
 
     </RelativeLayout>
 

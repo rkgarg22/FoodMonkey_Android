@@ -51,10 +51,12 @@ public class OpenResturantObject {
     private String emergContactName;
     @SerializedName("Emerg_Contact_Number")
     private String emergContactNumber;
-    //    @SerializedName("Opening_Hours")
+
+//    @SerializedName("Opening_Hours")
 //    private String openingHours;
 //    @SerializedName("Closing_Hours")
 //    private String closingHours;
+
     @SerializedName("Password")
     private String password;
     @SerializedName("DeliveryOption")
@@ -70,7 +72,7 @@ public class OpenResturantObject {
     @SerializedName("IsCurrentlyOnline")
     private Integer isCurrentlyOnline;
     @SerializedName("DiscountOffer")
-    private Object discountOffer;
+    private Integer discountOffer;
     @SerializedName("IsHalal")
     private Integer isHalal;
     @SerializedName("IsPreorder")
@@ -372,11 +374,11 @@ public class OpenResturantObject {
         this.isCurrentlyOnline = isCurrentlyOnline;
     }
 
-    public Object getDiscountOffer() {
+    public Integer getDiscountOffer() {
         return discountOffer;
     }
 
-    public void setDiscountOffer(Object discountOffer) {
+    public void setDiscountOffer(Integer discountOffer) {
         this.discountOffer = discountOffer;
     }
 

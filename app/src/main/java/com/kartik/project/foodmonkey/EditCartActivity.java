@@ -99,7 +99,6 @@ public class EditCartActivity extends AppCompatActivity {
         returnIntent.putExtra("totalValue",this.totalValue);
         setResult(Activity.RESULT_OK,returnIntent);
         finish();
-
     }
 
     @OnClick(R.id.addItems)

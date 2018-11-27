@@ -1,8 +1,8 @@
 package com.kartik.project.foodmonkey;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,6 +18,11 @@ import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
 import com.kartik.project.foodmonkey.API.ServiceGenerator;
 import com.kartik.project.foodmonkey.ApiEntity.AddToCardEntity;
 import com.kartik.project.foodmonkey.ApiResponse.AddToCardResponse;
+import com.stripe.android.Stripe;
+import com.stripe.android.TokenCallback;
+import com.stripe.android.model.Card;
+import com.stripe.android.model.Token;
+import com.stripe.exception.AuthenticationException;
 
 import java.util.ArrayList;
 
@@ -70,7 +75,7 @@ public class AddNewCardActivity extends AppCompatActivity {
         toolbarText.setText(getString(R.string.addNewCreditAndDebitCard));
 
         monthList.clear();
-        for (int i = 1; i <= 30; i++) {
+        for (int i = 1; i <= 12; i++) {
             monthList.add("" + i);
         }
         for (int i = 1; i <= 15; i++) {
@@ -92,7 +97,11 @@ public class AddNewCardActivity extends AppCompatActivity {
 
     @OnClick(R.id.addToCartBtn)
     void setAddToCartBtn() {
+        AppCommon.getInstance(this).onHideKeyboard(this);
         if (validation()) {
+            addCardToStripe(nameOnCard.getText().toString().trim(), cardNumber.getText().toString().trim(),
+                    Integer.valueOf(monthSpinner.getSelectedItem().toString()), Integer.valueOf(yearSpinner.getSelectedItem().toString()),
+                    cvvEditText.getText().toString().trim());
 //            callingAddCard(AppCommon.getInstance(this).getDeviceToken(), Integer.parseInt(AppCommon.getInstance(this).getCustomerID()),
 //                    nameOnCard.getText().toString().trim(), Long.valueOf(cardNumber.getText().toString().trim()),
 //                    Integer.valueOf(monthSpinner.getSelectedItem().toString()), Integer.valueOf(yearSpinner.getSelectedItem().toString()),
@@ -100,18 +109,89 @@ public class AddNewCardActivity extends AppCompatActivity {
         }
     }
 
+    private void addCardToStripe(String cardName, String cardNumber, Integer expMonth, Integer expYear, String cvv) {
+        Card card = new Card(
+                cardNumber,
+                expMonth,
+                expYear,
+                cvv
+        );
+        card.validateCard();
+        card.validateCVC();
+        if (!card.validateCard()) {
+            Toast.makeText(this, "Invalid Card, Please check and try again!!", Toast.LENGTH_SHORT).show();
+        } else {
+            Stripe stripe = null;
+            try {
+                stripe = new Stripe(getString(R.string.stripePbKey));
+                stripe.createToken(card, new TokenCallback() {
+                            public void onSuccess(Token token) {
+                                // Send token to your server
+                                callingAddCard(AppCommon.getInstance(AddNewCardActivity.this).getDeviceToken(),
+                                        AppCommon.getInstance(AddNewCardActivity.this).getStripeCustID(),
+                                        token.getId());
+//                                com.stripe.Stripe.apiKey = getString(R.string.stripeSecKey);
+////                          Create a Customer:
+//                                final Map<String, Object> chargeParams = new HashMap<>();
+//                                chargeParams.put("source", token.getId());
+//                                chargeParams.put("email", AppCommon.getInstance(AddNewCardActivity.this).getEmailAddress());
+//                                new Thread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        try {
+//                                            Customer customer = Customer.create(chargeParams);
+//                                            AlertDialog.Builder builder = new AlertDialog.Builder(AddNewCardActivity.this);
+//                                            builder.setTitle("Card SuccessFully Added");
+//                                            builder.setNegativeButton(getResources().getString(R.string.ok),
+//                                                    new DialogInterface.OnClickListener() {
+//                                                        @Override
+//                                                        public void onClick(DialogInterface dialogInterface, int i) {
+////                                                            dialogInterface.dismiss();
+//                                                            Intent intent = new Intent();
+////                                                            intent.putExtra("customerID")
+//                                                            setResult(RESULT_OK, intent);
+//                                                            finish();
+//                                                        }
+//                                                    });
+//                                            builder.show();
+//                                        } catch (AuthenticationException e) {
+//                                            e.printStackTrace();
+//                                        } catch (InvalidRequestException e) {
+//                                            e.printStackTrace();
+//                                        } catch (APIConnectionException e) {
+//                                            e.printStackTrace();
+//                                        } catch (CardException e) {
+//                                            e.printStackTrace();
+//                                        } catch (APIException e) {
+//                                            e.printStackTrace();
+//                                        }
+//                                    }
+//                                }).start();
+                            }
+
+                            public void onError(Exception error) {
+                                // Show localized error message
+                                Toast.makeText(AddNewCardActivity.this, error.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                );
+            } catch (AuthenticationException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     Call call;
 
-    private void callingAddCard(String tokenKey, int customerID, String nameOnCard, long cardNumber,
-                                int expDate, int expYear, int cvv) {
+    private void callingAddCard(String tokenKey, String stripeCustomerID, String stripeToken) {
         AppCommon.getInstance(this).setNonTouchableFlags(this);
         if (AppCommon.getInstance(AddNewCardActivity.this).isConnectingToInternet(AddNewCardActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             //  final String token = myFirebaseInstanceIDService.getDeviceToken();
-            final AddToCardEntity customerHomeEntity = new AddToCardEntity(tokenKey, customerID, nameOnCard, cardNumber,
-                    expDate, expYear, cvv);
+            final AddToCardEntity addToCardEntity = new AddToCardEntity(tokenKey, stripeCustomerID, stripeToken);
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
-//            call = foodMonkeyAppService.AddToCard(customerHomeEntity);
+            call = foodMonkeyAppService.AddToCard(addToCardEntity);
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
@@ -120,14 +200,13 @@ public class AddNewCardActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         if (response.body() != null) {
                             AddToCardResponse addToCardResponse = (AddToCardResponse) response.body();
-                            if (addToCardResponse.getCode().equals("200")) {
-                                Toast.makeText(AddNewCardActivity.this, addToCardResponse.getMessage(),
-                                        Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent();
-                                setResult(RESULT_OK,intent);
-                                finish();
-                            } else {
-                                AppCommon.showDialog(AddNewCardActivity.this, addToCardResponse.getMessage());
+                            if (addToCardResponse != null) {
+                                if (addToCardResponse.getMessage().getData() != null) {
+                                    Toast.makeText(AddNewCardActivity.this, "SuccessFullyAdded", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent();
+                                    setResult(RESULT_OK, intent);
+                                    finish();
+                                }
                             }
                         }
                     } else {

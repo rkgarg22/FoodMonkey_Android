@@ -19,11 +19,15 @@ public class LoginEntity {
     @SerializedName("CallingChannel")
     String callingChannel;
 
-    public LoginEntity(String tokenKey, String email, String password, String callingChannel) {
+    @SerializedName("LoginType")
+    String loginType;
+
+    public LoginEntity(String tokenKey, String email, String password, String callingChannel, String loginType) {
         this.tokenKey = tokenKey;
         this.email = email;
         this.password = password;
         this.callingChannel = callingChannel;
+        this.loginType = loginType;
     }
 
     public String getTokenKey() {
@@ -56,5 +60,13 @@ public class LoginEntity {
 
     public void setCallingChannel(String callingChannel) {
         this.callingChannel = callingChannel;
+    }
+
+    public String getLoginType() {
+        return loginType;
+    }
+
+    public void setLoginType(String loginType) {
+        this.loginType = loginType;
     }
 }

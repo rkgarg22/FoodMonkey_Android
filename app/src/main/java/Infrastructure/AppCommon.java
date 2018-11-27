@@ -24,10 +24,18 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Patterns;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.DraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.google.gson.Gson;
 import com.kartik.project.foodmonkey.Models.AddItemsToCartModel;
 import com.kartik.project.foodmonkey.R;
@@ -62,6 +70,21 @@ public class AppCommon {
         }
         mContext = _Context;
         return mInstance;
+    }
+
+    public void onHideKeyboard(Activity activity) {
+        try {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+//Find the currently focused view, so we can grab the correct window token from it.
+            View view = activity.getCurrentFocus();
+//If no view currently has focus, create a new one, just so we can grab a window token from it
+            if (view == null) {
+                view = new View(activity);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        } catch (NullPointerException e) {
+
+        }
     }
 
     public boolean isUserLogIn() {
@@ -660,6 +683,31 @@ public class AppCommon {
         return mSharedPreferences.getString(MYPerference.STATUS, "");
     }
 
+
+    public void setStripeCustID(String id) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.StripeCusID, id);
+        mEditor.apply();
+    }
+
+    public String getStripeCustID() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.StripeCusID, "");
+    }
+
+    public void setReferCode(String referCode) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.ReferCode, referCode);
+        mEditor.apply();
+    }
+
+    public String getReferCode() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.ReferCode, "");
+    }
+
     public String getFileToBase64(String filePath) {
         Bitmap bmp = null;
         ByteArrayOutputStream bos = null;
@@ -685,7 +733,7 @@ public class AppCommon {
     }
 
     public List<AddItemsToCartModel> getAddToCartObject() {
-        List<AddItemsToCartModel> cartData=new ArrayList<>();
+        List<AddItemsToCartModel> cartData = new ArrayList<>();
         SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
         String jsonCart = mSharedPreferences.getString(MYPerference.Add_DATA_CART, "");
         Gson gson = new Gson();
@@ -693,14 +741,40 @@ public class AppCommon {
                 AddItemsToCartModel[].class);
 
         try {
-            cartData= Arrays.asList(cartItems);
+            cartData = Arrays.asList(cartItems);
             cartData = new ArrayList<AddItemsToCartModel>(cartData);
 
-        }catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             return cartData;
         }
 
         return cartData;
     }
+
+    public static DraweeController getDraweeController(DraweeView imageView, String imageUrl, int size) {
+        Uri uri = Uri.parse(imageUrl);
+
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(size, size))
+                .setProgressiveRenderingEnabled(false)
+                .build();
+
+        return Fresco.newDraweeControllerBuilder()
+                .setOldController(imageView.getController())
+                .setImageRequest(request)
+                .build();
+    }
+
+    public void setBrainTreeToken(String braintreeToken) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString(MYPerference.BrainTreeToken, braintreeToken);
+        mEditor.apply();
+    }
+
+    public String getBrainTreeToken() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(MYPerference.BrainTreeToken, "");
+    }
+
 }

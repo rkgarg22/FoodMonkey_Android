@@ -62,7 +62,7 @@ public class PreOrderRestObject {
     @SerializedName("IsSponsoredRest")
     private Integer isSponsoredRest;
     @SerializedName("Image_Link")
-    private Object imageLink;
+    private String imageLink;
     @SerializedName("AggregateFeedback")
     private String aggregateFeedback;
     @SerializedName("NumberOfReviews")
@@ -70,7 +70,7 @@ public class PreOrderRestObject {
     @SerializedName("IsCurrentlyOnline")
     private Integer isCurrentlyOnline;
     @SerializedName("DiscountOffer")
-    private Object discountOffer;
+    private Integer discountOffer;
     @SerializedName("IsHalal")
     private Integer isHalal;
     @SerializedName("IsPreorder")
@@ -300,11 +300,11 @@ public class PreOrderRestObject {
         this.isSponsoredRest = isSponsoredRest;
     }
 
-    public Object getImageLink() {
+    public String getImageLink() {
         return imageLink;
     }
 
-    public void setImageLink(Object imageLink) {
+    public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
 
@@ -332,11 +332,11 @@ public class PreOrderRestObject {
         this.isCurrentlyOnline = isCurrentlyOnline;
     }
 
-    public Object getDiscountOffer() {
+    public Integer getDiscountOffer() {
         return discountOffer;
     }
 
-    public void setDiscountOffer(Object discountOffer) {
+    public void setDiscountOffer(Integer discountOffer) {
         this.discountOffer = discountOffer;
     }
 
