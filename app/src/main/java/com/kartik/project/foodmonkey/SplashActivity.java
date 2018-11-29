@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.google.firebase.FirebaseApp;
@@ -30,6 +31,7 @@ import java.util.TimerTask;
 import Infrastructure.AppCommon;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -40,6 +42,9 @@ public class SplashActivity extends AppCompatActivity {
     @BindView(R.id.SliderDots)
     LinearLayout sliderDots;
 
+    @BindView(R.id.skip)
+    TextView skip;
+
     int currentPage = 0;
 
     private int dotscount;
@@ -49,6 +54,20 @@ public class SplashActivity extends AppCompatActivity {
     int[] mResources = {R.drawable.splash_one, R.drawable.splash_two, R.drawable.splash_three};
 
     CustomSliderPagerAdapter customSliderPagerAdapter;
+
+    Timer timer = new Timer();
+
+    final Handler handler = new Handler();
+
+    final Runnable Update = new Runnable() {
+        public void run() {
+            if (currentPage == 2) {
+                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                finish();
+            }
+            pager.setCurrentItem(currentPage++, true);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,19 +123,7 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         });
-
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == 2) {
-                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                    finish();
-                }
-                pager.setCurrentItem(currentPage++, true);
-            }
-        };
-
-        Timer timer = new Timer(); // This will create a new Thread
+        // This will create a new Thread
         timer.schedule(new TimerTask() { // task to be scheduled
 
             @Override
@@ -140,6 +147,16 @@ public class SplashActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("msg", "printHashKey()", e);
         }
+    }
+
+    @OnClick(R.id.skip)
+    void setSkip() {
+        timer.cancel();
+        handler.removeCallbacks(Update);
+        startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+        finish();
+
+
     }
 
 }

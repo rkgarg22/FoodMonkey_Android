@@ -200,5 +200,12 @@
     <string name="pleaseEnterTitle">Please enter Title</string>
     <string name="pleaseGiveSomeRate">Please give some rating</string>
     <string name="whereToFindUs">Where to find us</string>
+    <string name="orderIsConfirmed">Your Order is confirmed and currently preparing</string>
+    <string name="orderIsOnTheWay">Your order is on the way</string>
+    <string name="orderIsOnDelivered">Your order is delivered</string>
+    <string name="thanksForOrder">Thanks for your order!</string>
+    <string name="mobileOrEmail">Mobile or Email</string>
+    <string name="skip">SKIP</string>
+    <string name="locationOrPostalCode">Enter a location or enable your location</string>
 
 </resources>

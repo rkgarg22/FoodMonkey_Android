@@ -2,13 +2,14 @@ package com.kartik.project.foodmonkey.ApiObject;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by kartikeya on 10/10/2018.
  */
 
-public class HomeRestutantObject {
+public class HomeRestutantObject implements Serializable {
 
 
     @SerializedName("Popular_Restaurants")

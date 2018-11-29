@@ -108,6 +108,10 @@ public class HomeListingActivity extends AppCompatActivity {
 
     String pageNumber = "";
 
+    OpenResturantAdapter openResturantAdapter;
+    PreOrderRestAdapter preOrderRestAdapter;
+    ClosedRestAdapter closedRestAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +137,7 @@ public class HomeListingActivity extends AppCompatActivity {
                 postcode = getIntent().getStringExtra("postalCode");
                 searchEditText.setText(postcode);
             } else {
-                searchBy = "Loction";
+                searchBy = "Location";
                 postcode = getIntent().getStringExtra("postalCode");
                 searchEditText.setText(postcode);
             }
@@ -141,7 +145,7 @@ public class HomeListingActivity extends AppCompatActivity {
         deliveryOptions = "Delivery";
         listBy = "Best_match";
         cuisines = "";
-        postcode = "BD8 7SZ";               // remove it from here to make dynamic postcode
+//        postcode = "BD8 7SZ";               // remove it from here to make dynamic postcode
 //        callingResturantList(tokenKey, searchBy, postcode, deliveryOptions, listBy, cuisines, pageNumber);
         callingResturantList(tokenKey, searchBy, postcode, deliveryOptions, listBy, cuisines, pageNumber);
         setOnClickListerner();
@@ -197,9 +201,6 @@ public class HomeListingActivity extends AppCompatActivity {
 ////        restutantListObject.setCloseResturant(closeResturantObject);
 //        setAdapter(restutantListObject);
 //    }
-    OpenResturantAdapter openResturantAdapter;
-    PreOrderRestAdapter preOrderRestAdapter;
-    ClosedRestAdapter closedRestAdapter;
 
     void setAdapter(RestutantListObject restutantListObject) {
         totalRestaurants.setText("All restaurants");

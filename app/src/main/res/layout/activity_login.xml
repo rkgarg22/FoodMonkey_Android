@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/curve_border_background"
-                android:hint="@string/email"
+                android:hint="@string/mobileOrEmail"
                 android:inputType="text"
                 android:paddingStart="@dimen/padding"
                 android:textColor="@android:color/black" />

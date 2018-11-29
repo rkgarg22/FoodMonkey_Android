@@ -1,6 +1,8 @@
 package com.kartik.project.foodmonkey;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,7 +34,10 @@ import com.kartik.project.foodmonkey.Adapters.RecentViewAdapter;
 import com.kartik.project.foodmonkey.Adapters.RestaurantAdapter;
 import com.kartik.project.foodmonkey.ApiEntity.AddTokenEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerHomeEntity;
+import com.kartik.project.foodmonkey.ApiObject.HomeOrderedObject;
+import com.kartik.project.foodmonkey.ApiObject.HomePopularObject;
 import com.kartik.project.foodmonkey.ApiObject.HomeRestutantObject;
+import com.kartik.project.foodmonkey.ApiObject.HomeViewedObject;
 import com.kartik.project.foodmonkey.ApiResponse.CommonResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerHomeResponse;
 import com.kartik.project.foodmonkey.Models.NavigationModel;
@@ -69,6 +74,9 @@ public class HomeActivity extends AppCompatActivity {
 
     @BindView(R.id.locationBtn)
     ImageView locationBtn;
+
+    @BindView(R.id.cancelBtn)
+    ImageView cancelBtn;
 
     @BindView(R.id.navigationRecyclerView)
     RecyclerView navigationRecyclerView;
@@ -109,6 +117,13 @@ public class HomeActivity extends AppCompatActivity {
     Call call;
 
     GPSTracker gpsTracker;
+
+
+    private ArrayList<HomePopularObject> popularRestaurants =new ArrayList<>();
+
+    private ArrayList<HomeViewedObject> viewedRestaurants = new ArrayList<>();
+
+    private ArrayList<HomeOrderedObject> orderedRestaurants = new ArrayList<>();
 
     ArrayList<NavigationModel> navigationModelArrayList = new ArrayList<>();
 
@@ -154,7 +169,7 @@ public class HomeActivity extends AppCompatActivity {
             userName.setText(AppCommon.getInstance(this).getFirstName() + " " + AppCommon.getInstance(this).getSurName());
             userEmail.setText(AppCommon.getInstance(this).getEmailAddress());
 //            navProfilePic.setImageURI(API_BASE_URL + AppCommon.getInstance(this).getProfilePic());
-            navProfilePic.setController(AppCommon.getDraweeController(navProfilePic, AppCommon.getInstance(this).getProfilePic(),100));
+            navProfilePic.setController(AppCommon.getDraweeController(navProfilePic, AppCommon.getInstance(this).getProfilePic(), 100));
             profileLayout.setVisibility(View.VISIBLE);
         }
         setNavigationData();
@@ -167,17 +182,23 @@ public class HomeActivity extends AppCompatActivity {
         if (restutantList.getPopularRestaurants().size() == 0) {
             restaurantLayout.setVisibility(View.GONE);
         } else {
-            restaurantRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.restaurant), restutantList.getPopularRestaurants()));
+            popularRestaurants=restutantList.getPopularRestaurants();
+            restaurantRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.restaurant),
+                    restutantList.getPopularRestaurants()));
         }
         if (restutantList.getOrderedRestaurants().size() == 0) {
             yourOrderLayout.setVisibility(View.GONE);
         } else {
-            orderRecyclerView.setAdapter(new OrderAdapter(this, getString(R.string.yourOrders), restutantList.getOrderedRestaurants()));
+            orderedRestaurants=restutantList.getOrderedRestaurants();
+            orderRecyclerView.setAdapter(new OrderAdapter(this, getString(R.string.yourOrders),
+                    restutantList.getOrderedRestaurants()));
         }
         if (restutantList.getViewedRestaurants().size() == 0) {
             takeOutLayout.setVisibility(View.GONE);
         } else {
-            menuRecyclerView.setAdapter(new RecentViewAdapter(this, getString(R.string.takeOut), restutantList.getViewedRestaurants()));
+            viewedRestaurants=restutantList.getViewedRestaurants();
+            menuRecyclerView.setAdapter(new RecentViewAdapter(this, getString(R.string.takeOut),
+                    restutantList.getViewedRestaurants()));
         }
     }
 
@@ -217,7 +238,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.restSeeMore)
     void setRestSeeMore() {
-//        Toast.makeText(this, "" + AppCommon.getInstance(this).getUserLatitude(), Toast.LENGTH_SHORT).show();
         Log.d("Latitude-->", "" + AppCommon.getInstance(this).getUserLatitude());
         Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
         intent.putExtra("searchBy", searchBy);
@@ -229,18 +249,27 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.cancelBtn)
+    void setOnCancelBtn() {
+        postalCodeText.setText("");
+    }
+
     @OnClick(R.id.searchBtn)
     void setSearchBtn() {
-//        Toast.makeText(this, "" + AppCommon.getInstance(this).getUserLatitude(), Toast.LENGTH_SHORT).show();
-        Log.d("Latitude-->", "" + AppCommon.getInstance(this).getUserLatitude());
-        Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
-        intent.putExtra("searchBy", searchBy);
-        if (searchBy.equals("postalcode")) {
-            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+        if (postalCodeText.getText().toString().isEmpty()) {
+            AppCommon.showDialog(HomeActivity.this,getString(R.string.locationOrPostalCode));
         } else {
-            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+//            Toast.makeText(this, "" + AppCommon.getInstance(this).getUserLatitude(), Toast.LENGTH_SHORT).show();
+            Log.d("Latitude-->", "" + AppCommon.getInstance(this).getUserLatitude());
+            Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
+            intent.putExtra("searchBy", searchBy);
+            if (searchBy.equals("postalcode")) {
+                intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+            } else {
+                intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+            }
+            startActivity(intent);
         }
-        startActivity(intent);
     }
 
     @OnClick(R.id.menuSeeMore)
@@ -318,7 +347,6 @@ public class HomeActivity extends AppCompatActivity {
                         AppCommon.showDialog(HomeActivity.this, "No resturant found");
                     } else {
                         AppCommon.showDialog(HomeActivity.this, getResources().getString(R.string.network_error));
-
                     }
                 }
             });
@@ -389,14 +417,30 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SignUpActivity.class));
                 break;
             case "Signout":
-                AppCommon.getInstance(this).clearSharedPreference();
-                startActivity(new Intent(this, HomeActivity.class));
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                builder.setTitle(title);
+                builder.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.dismiss();
+                        AppCommon.getInstance(HomeActivity.this).clearSharedPreference();
+                        startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                        finish();
+                    }
+                });
+                builder.show();
                 break;
             case "Refer a friend":
                 startActivity(new Intent(this, ReferFriendActivity.class));
                 break;
             case "My Orders":
+                startActivity(new Intent(this, YourOrderActivity.class));
                 Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
                 break;
             case "Help":

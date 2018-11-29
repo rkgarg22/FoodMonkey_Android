@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -15,7 +16,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -58,7 +58,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
-import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.kartik.project.foodmonkey.API.FoodMonkeyAppService;
 import com.kartik.project.foodmonkey.API.ServiceGenerator;
@@ -88,8 +87,6 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.kartik.project.foodmonkey.API.ServiceGenerator.API_BASE_URL;
 
 public class SignUpActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -169,18 +166,36 @@ public class SignUpActivity extends AppCompatActivity implements GoogleApiClient
 
     Calendar myCalendar = Calendar.getInstance();
 
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+    /*DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
         @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             // TODO Auto-generated method stub
+            Calendar myCalendar = Calendar.getInstance();
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            String myFormat = "dd/MM/yy"; //Change as you need
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
 //            myCalendar.set(Calendar.YEAR, year);
 //            myCalendar.set(Calendar.MONTH, monthOfYear);
 //            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel(year, (monthOfYear + 1), dayOfMonth);
+//            updateLabel(year, (monthOfYear + 1), dayOfMonth);
         }
 
+    };*/
+
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            AppCommon.getInstance(SignUpActivity.this).onHideKeyboard(SignUpActivity.this);
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            dateOfBirthInput = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+            updateLabel();
+        }
     };
 
     @Override
@@ -316,19 +331,26 @@ public class SignUpActivity extends AppCompatActivity implements GoogleApiClient
     String dateOfBirthInput = "";
     SimpleDateFormat sdf;
 
-    private void updateLabel(int year, int monthOfYear, int dayOfMonth) {
-//        String inputFormat = "yyyy/mm/dd"; //In which you need put here
-//        sdf = new SimpleDateFormat(inputFormat, Locale.US);
-        dateOfBirthInput = year + "-" + monthOfYear + "-" + dayOfMonth;
-        dateOfBirth.setText(monthOfYear + "/" + dayOfMonth + "/" + year);
+//    private void updateLabel(int year, int monthOfYear, int dayOfMonth) {
+////        String inputFormat = "yyyy/mm/dd"; //In which you need put here
+////        sdf = new SimpleDateFormat(inputFormat, Locale.US);
+//        dateOfBirthInput = year + "-" + monthOfYear + "-" + dayOfMonth;
+//        dateOfBirth.setText(monthOfYear + "/" + dayOfMonth + "/" + year);
+//
+////        sdf = new SimpleDateFormat("mm/dd/yyyy", Locale.US);
+//
+////        dateOfBirth.setText(sdf.format(myCalendar.getTime()));
+//    }
 
-//        sdf = new SimpleDateFormat("mm/dd/yyyy", Locale.US);
-
-//        dateOfBirth.setText(sdf.format(myCalendar.getTime()));
+    private void updateLabel() {
+        String myFormat = "dd MMM yyyy"; //In which you need put here 2018-06-18
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        dateOfBirth.setText(sdf.format(myCalendar.getTime()));
     }
 
     @OnClick(R.id.left)
     void setLeft() {
+        AppCommon.getInstance(SignUpActivity.this).onHideKeyboard(SignUpActivity.this);
         onBackPressed();
     }
 

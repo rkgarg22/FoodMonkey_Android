@@ -26,25 +26,30 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:background="@drawable/curve_border_background">
 
                 <CustomControls.EditTextLatoRegular
                     android:id="@+id/postalCodeText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toLeftOf="@+id/locationBtn"
+                    android:layout_toLeftOf="@+id/cancelBtn"
                     android:background="@android:color/transparent"
-                    android:drawableRight="@drawable/close"
-                    android:hint="BD87SZ"
+                    android:hint="Search"
                     android:paddingLeft="@dimen/largeMargin" />
+
+                <ImageView
+                    android:id="@+id/cancelBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:padding="7dp"
+                    android:layout_toLeftOf="@+id/locationBtn"
+                    android:src="@drawable/close" />
 
                 <ImageView
                     android:id="@+id/locationBtn"
                     android:layout_width="45dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/margin"
-                    android:layout_marginRight="@dimen/margin"
                     android:layout_toLeftOf="@+id/searchBtn"
                     android:padding="@dimen/padding"
                     android:src="@drawable/location" />
@@ -54,7 +59,6 @@
                     android:layout_width="45dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:layout_marginLeft="@dimen/marginLeft"
                     android:background="@color/colorPrimary"
                     android:padding="@dimen/padding"
                     android:src="@drawable/search" />

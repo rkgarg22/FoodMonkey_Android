@@ -26,10 +26,13 @@ import com.kartik.project.foodmonkey.ApiResponse.GetBrainTreeResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ListCustAddResponse;
 import com.kartik.project.foodmonkey.ApiResponse.LoginCustomerResponse;
 import com.kartik.project.foodmonkey.ApiResponse.OrderCheckOutResponse;
+import com.kartik.project.foodmonkey.ApiResponse.OrderStatusResponse;
 import com.kartik.project.foodmonkey.ApiResponse.PaymentMethodResponse;
 import com.kartik.project.foodmonkey.ApiResponse.RestDetailMenuResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantFeedBackResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantListResponse;
+
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -98,10 +101,14 @@ public interface FoodMonkeyAppService {
     @POST("api/customer/customer_feedback.php")
     Call<CommonResponse> AddCustomerFeedBack(@Body AddFeedBackEnitity addFeedBackEnitity); // Not Implemented Yet...
 
-    @POST("api/customer/add_card.php")// not used
+    @POST("api/customer/add_card.php")
+// not used
     Call<AddToCardResponse> AddToCard(@Body AddToCardEntity addToCardEntity);
 
-    @POST("api/customer/card_list.php")// not used
+    @POST("api/customer/card_list.php") // not used
     Call<AddToCardResponse> CardListing(@Body CardListingEntity cardListingEntity);// token and customer ID only needed
+
+    @POST("api/customer/customer_order_status.php")// not used
+    Call<OrderStatusResponse> CustomerOrderStatus(@Body HashMap<String, String> hashMap);// token and customer ID only needed
 
 }
