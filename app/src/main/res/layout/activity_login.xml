@@ -81,7 +81,6 @@
 
             <CustomControls.ButtonLatoRegular
                 android:id="@+id/loginButton"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/forgotPassword"

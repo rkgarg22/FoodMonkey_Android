@@ -68,9 +68,20 @@ public class AddAddressActivity extends AppCompatActivity {
     @BindView(R.id.spinner)
     Spinner spinner;
 
+//    @BindView(R.id.name)
+//    EditText name;
+//
+    @BindView(R.id.deliveryDetail)
+    TextView deliveryDetail;
+
+//    @BindView(R.id.addressNoteNew)
+//    EditText addressNoteNew;
+
     Call call;
 
     String[] tabs = {"Please select Address Type", "Home", "office"};
+
+    String comingFrom = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +90,28 @@ public class AddAddressActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         left.setVisibility(View.VISIBLE);
         toolbarText.setText(getResources().getString(R.string.addNewAddress));
+
+        if (getIntent() != null) {
+            comingFrom = getIntent().getStringExtra("comingFrom");
+            if (comingFrom.equals("manageAddress")) {
+//                name.setVisibility(View.VISIBLE);
+//                mobileNumber.setVisibility(View.GONE);
+//                spinner.setVisibility(View.GONE);
+                deliveryDetail.setVisibility(View.GONE);
+//                addressNoteNew.setVisibility(View.VISIBLE);
+//                addressNote.setVisibility(View.GONE);
+                goToPayment.setText(getString(R.string.addAddress));
+            } else {
+//                name.setVisibility(View.GONE);
+//                mobileNumber.setVisibility(View.VISIBLE);
+//                spinner.setVisibility(View.VISIBLE);
+                deliveryDetail.setVisibility(View.VISIBLE);
+//                addressNoteNew.setVisibility(View.GONE);
+//                addressNote.setVisibility(View.VISIBLE);
+                goToPayment.setText(getString(R.string.goToPayment));
+            }
+        }
+
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, R.layout.simple_spinner_item, tabs);
         adapter.setDropDownViewResource(R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
@@ -163,7 +196,7 @@ public class AddAddressActivity extends AppCompatActivity {
                             CustomerAddressResponse customerHomeResponse = (CustomerAddressResponse) response.body();
                             if (customerHomeResponse == null) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(AddAddressActivity.this);
-                                builder.setTitle("Successfully Updated");
+                                builder.setTitle(customerHomeResponse.getMessage());
                                 builder.setNegativeButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {

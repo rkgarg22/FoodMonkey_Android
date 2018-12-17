@@ -8,6 +8,7 @@ import com.kartik.project.foodmonkey.ApiEntity.CardListingEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CommonEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustAddAddressEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustProfileEditEntity;
+import com.kartik.project.foodmonkey.ApiEntity.CustomerEditAddressEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerHomeEntity;
 import com.kartik.project.foodmonkey.ApiEntity.CustomerSignUpEntity;
 import com.kartik.project.foodmonkey.ApiEntity.LoginEntity;
@@ -16,6 +17,7 @@ import com.kartik.project.foodmonkey.ApiEntity.ResturantListEnity;
 import com.kartik.project.foodmonkey.ApiResponse.AddPaymentsEntity;
 import com.kartik.project.foodmonkey.ApiResponse.AddToCardResponse;
 import com.kartik.project.foodmonkey.ApiResponse.BrainTreePaymentResponse;
+import com.kartik.project.foodmonkey.ApiResponse.ChangePassForgotResp;
 import com.kartik.project.foodmonkey.ApiResponse.CommonResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CuisineListResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerAddressResponse;
@@ -31,6 +33,11 @@ import com.kartik.project.foodmonkey.ApiResponse.PaymentMethodResponse;
 import com.kartik.project.foodmonkey.ApiResponse.RestDetailMenuResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantFeedBackResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ResturantListResponse;
+import com.kartik.project.foodmonkey.ApiResponse.SendOTPEmailResponse;
+import com.kartik.project.foodmonkey.ApiResponse.SendingOTP_Response;
+import com.kartik.project.foodmonkey.ApiResponse.StripeAPIResponse;
+import com.kartik.project.foodmonkey.ApiResponse.VaildNumberResponse;
+import com.stripe.net.StripeResponse;
 
 import java.util.HashMap;
 
@@ -102,13 +109,34 @@ public interface FoodMonkeyAppService {
     Call<CommonResponse> AddCustomerFeedBack(@Body AddFeedBackEnitity addFeedBackEnitity); // Not Implemented Yet...
 
     @POST("api/customer/add_card.php")
-// not used
     Call<AddToCardResponse> AddToCard(@Body AddToCardEntity addToCardEntity);
 
-    @POST("api/customer/card_list.php") // not used
+    @POST("api/customer/card_list.php")
     Call<AddToCardResponse> CardListing(@Body CardListingEntity cardListingEntity);// token and customer ID only needed
 
-    @POST("api/customer/customer_order_status.php")// not used
+    @POST("api/customer/pay_with_card.php")
+    Call<StripeAPIResponse> payWithStripAPI(@Body HashMap<String,String>hashMap);
+
+    @POST("api/customer/customer_order_status.php")
+// not used
     Call<OrderStatusResponse> CustomerOrderStatus(@Body HashMap<String, String> hashMap);// token and customer ID only needed
+
+    @POST("api/customer/customer_edit_address.php")
+    Call<CommonResponse> CustomerEditAddress(@Body CustomerEditAddressEntity customerEditAddressEntity);// token and customer ID only needed
+
+    @POST("api/customer/send_mobile_otp.php")
+    Call<SendingOTP_Response> SendingOTPRequest(@Body HashMap<String,String> hashMap);// token and customer ID only needed
+
+    @POST("api/customer/verify_mobile_otp.php")
+    Call<CommonResponse> RecieveOTPRequest(@Body HashMap<String,String> hashMap);// token and customer ID only needed
+
+    @POST("api/customer/forget_change_password.php")
+    Call<ChangePassForgotResp> ForgetChangePassword(@Body HashMap<String,String> hashMap);
+
+    @POST("api/customer/forget_password.php")
+    Call<VaildNumberResponse> VerifyValidEmailNumber(@Body HashMap<String,String> hashMap);
+
+    @POST("api/customer/send_email_otp.php")
+    Call<SendOTPEmailResponse> SendEmailOTP_API(@Body HashMap<String,String> hashMap);
 
 }

@@ -73,6 +73,11 @@ public class OpenResturantAdapter extends RecyclerView.Adapter<OpenResturantAdap
 
             }
         });
+        if (openResturant.get(position).getIsSponsoredRest() == 1) {
+            holder.sponsoredText.setVisibility(View.VISIBLE);
+        } else {
+            holder.sponsoredText.setVisibility(View.GONE);
+        }
 
     }
 

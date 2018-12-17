@@ -2,11 +2,13 @@ package com.kartik.project.foodmonkey.ApiObject;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by kartikeya on 10/10/2018.
  */
 
-public class HomeOrderedObject {
+public class HomeOrderedObject implements Serializable {
     @SerializedName("Rest_Id")
     private Integer restId;
 

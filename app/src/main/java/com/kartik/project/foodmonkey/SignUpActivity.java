@@ -440,7 +440,7 @@ public class SignUpActivity extends AppCompatActivity implements GoogleApiClient
                             AppCommon.getInstance(SignUpActivity.this).setEmailAddress(customerSignUpObject.getEmail());
                             AppCommon.getInstance(SignUpActivity.this).setMobileNumber(customerSignUpObject.getMobile());
                             AppCommon.getInstance(SignUpActivity.this).setDateOfBirth(customerSignUpObject.getdOB());
-                            AppCommon.getInstance(SignUpActivity.this).setProfilePic("http://food-monkey.com" + customerSignUpResponse.getCustomerDetail().get(0).getImageLink());
+                            AppCommon.getInstance(SignUpActivity.this).setProfilePic("http://food-monkey.com" + customerSignUpResponse.getCustomerDetail().get(0).getProfileUrl());
                             AppCommon.getInstance(SignUpActivity.this).setStripeCustID(customerSignUpObject.getStripeCustomerId());
                             AppCommon.getInstance(SignUpActivity.this).setReferCode(customerSignUpObject.getReferCode());
 //                            AppCommon.getInstance(SignUpActivity.this).setStatus(

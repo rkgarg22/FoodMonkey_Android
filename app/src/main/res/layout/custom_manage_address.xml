@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CustomControls.TextViewRawLineRegular
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:paddingLeft="@dimen/padding"
+        android:textSize="@dimen/mediumText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="@dimen/margin"
+        android:background="@color/underline"
+        android:layout_margin="@dimen/margin"
+        android:orientation="vertical">
+
+        <CustomControls.TextViewRawLineBold
+            android:layout_marginTop="@dimen/margin"
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding"
+            android:textSize="@dimen/mediumText" />
+
+        <CustomControls.TextViewRawLineRegular
+            android:id="@+id/descriptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="@dimen/margin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/edit"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                android:layout_weight="0.5"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/edit"
+                android:textColor="@android:color/white" />
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/delete"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding"
+                android:layout_weight="0.5"
+                android:background="@color/gray"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -180,7 +180,7 @@ public class CompletePaymentActivity extends AppCompatActivity {
         }
     }
 
-    private void callingAddMethodAPI(String orderId, String paymentMethod) {
+    private void callingAddMethodAPI(final String orderId, String paymentMethod) {
         AppCommon.getInstance(CompletePaymentActivity.this).setNonTouchableFlags(CompletePaymentActivity.this);
         if (AppCommon.getInstance(CompletePaymentActivity.this).isConnectingToInternet(CompletePaymentActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
@@ -202,10 +202,12 @@ public class CompletePaymentActivity extends AppCompatActivity {
 //                                    paymentMethod = "Paypal";
                                     callingBrainTreeToken();
                                 } else if (COD) {
+                                    Toast.makeText(CompletePaymentActivity.this, "Cash On Delivery", Toast.LENGTH_SHORT).show();
 //                                    paymentMethod = "Cash";
                                 } else {
 //                                    paymentMethod = "Card";
                                     // add Stripe payment via card here-----------------
+                                    callingStripeMethod(amount,stripeCardID,orderId);
                                 }
 //                                submitPaymentPaypal();
                             } else {
@@ -234,7 +236,6 @@ public class CompletePaymentActivity extends AppCompatActivity {
             AppCommon.showDialog(CompletePaymentActivity.this, getResources().getString(R.string.network_error));
         }
     }
-
 
    /*   --------------------Calling BrainTreeMethods-----------------   */
 
@@ -370,12 +371,64 @@ public class CompletePaymentActivity extends AppCompatActivity {
 //    }
 
 
+    private void callingStripeMethod(String price, String cardID, String orderID) {
+        AppCommon.getInstance(CompletePaymentActivity.this).setNonTouchableFlags(CompletePaymentActivity.this);
+        if (AppCommon.getInstance(CompletePaymentActivity.this).isConnectingToInternet(CompletePaymentActivity.this)) {
+            progressBar.setVisibility(View.VISIBLE);
+            FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
+            HashMap<String, String> hashMap = new HashMap<>();
+            hashMap.put("TokenKey", AppCommon.getInstance(this).getDeviceToken());
+            hashMap.put("Price", price);
+            hashMap.put("Stripe_Customer_Id", AppCommon.getInstance(this).getStripeCustID());
+            hashMap.put("Stripe_Card_Id", cardID);
+            hashMap.put("Order_Id", orderID);
+
+            call = foodMonkeyAppService.payWithStripAPI(hashMap);
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) {
+                    progressBar.setVisibility(View.GONE);
+                    AppCommon.getInstance(CompletePaymentActivity.this).clearNonTouchableFlags(CompletePaymentActivity.this);
+                    if (response.code() == 200) {
+                        GetBrainTreeResponse brainTreeResponse = (GetBrainTreeResponse) response.body();
+                        if (response.body() != null) {
+                            if (brainTreeResponse.getCode().equals("200")) {
+                                AppCommon.getInstance(CompletePaymentActivity.this).setBrainTreeToken(brainTreeResponse.getBraintreeToken());
+                                submitPaymentPaypal();
+                            } else {
+                                AppCommon.showDialog(CompletePaymentActivity.this, brainTreeResponse.getMessage());
+                            }
+                        }
+                    } else {
+                        AppCommon.showDialog(CompletePaymentActivity.this, getString(R.string.serverError));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+                    AppCommon.getInstance(CompletePaymentActivity.this).clearNonTouchableFlags(CompletePaymentActivity.this);
+                    progressBar.setVisibility(View.GONE);
+                    if (t instanceof JsonSyntaxException) {
+                        AppCommon.showDialog(CompletePaymentActivity.this, "No Rating found");
+                    } else {
+                        AppCommon.showDialog(CompletePaymentActivity.this, getResources().getString(R.string.network_error));
+
+                    }
+                }
+            });
+        } else {
+            AppCommon.getInstance(CompletePaymentActivity.this).clearNonTouchableFlags(CompletePaymentActivity.this);
+            AppCommon.showDialog(CompletePaymentActivity.this, getResources().getString(R.string.network_error));
+        }
+    }
+
+
     private void callingCardListing() {
         AppCommon.getInstance(CompletePaymentActivity.this).setNonTouchableFlags(CompletePaymentActivity.this);
         if (AppCommon.getInstance(CompletePaymentActivity.this).isConnectingToInternet(CompletePaymentActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             CardListingEntity cardListingEntity = new CardListingEntity(AppCommon.getInstance(this).getDeviceToken(),
-                    AppCommon.getInstance(this).getCustomerID());
+                    AppCommon.getInstance(this).getStripeCustID());
             FoodMonkeyAppService foodMonkeyAppService = ServiceGenerator.createService(FoodMonkeyAppService.class);
             call = foodMonkeyAppService.CardListing(cardListingEntity);
             call.enqueue(new Callback() {
@@ -386,7 +439,7 @@ public class CompletePaymentActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         AddToCardResponse addToCardResponse = (AddToCardResponse) response.body();
                         if (addToCardResponse != null) {
-                            if (addToCardResponse.getMessage().getData()!=null) {
+                            if (addToCardResponse.getMessage().getData() != null) {
 
                                 addCardAdapter = new AddCardAdapter(CompletePaymentActivity.this, addToCardResponse.getMessage().getData());
                                 placeOrderRecyclerView.setAdapter(addCardAdapter);
@@ -424,13 +477,15 @@ public class CompletePaymentActivity extends AppCompatActivity {
         }
     }
 
+    String stripeCardID;
     public void setCardValues(StripeDataObject cardListObject) {
+        stripeCardID=cardListObject.getId();
         parentSelectedCardLayout.setVisibility(View.VISIBLE);
         cardCheckBox.setImageResource(R.drawable.checkbox_click);
         payPalCheckBox.setImageResource(R.drawable.check_box);
         codCheckBox.setImageResource(R.drawable.check_box);
         cardNumberText.setText(cardListObject.getBrand() + "****" + cardListObject.getLast4() + " exp"
-                + cardListObject.getExpMonth() + "/" +cardListObject.getExpYear());
+                + cardListObject.getExpMonth() + "/" + cardListObject.getExpYear());
 //        cvvNumberText.setText("" + cardListObject.getCVV());
     }
 

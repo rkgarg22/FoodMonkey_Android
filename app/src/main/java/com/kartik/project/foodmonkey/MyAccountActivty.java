@@ -46,7 +46,7 @@ public class MyAccountActivty extends AppCompatActivity {
         left.setImageResource(R.drawable.back_icon);
         toolbarText.setText(getString(R.string.myAccount));
         userprofile.setText(AppCommon.getInstance(this).getFirstName() + " " + AppCommon.getInstance(this).getSurName());
-        profilePic.setController(AppCommon.getDraweeController(profilePic, AppCommon.getInstance(this).getProfilePic(), 100));
+        profilePic.setController(AppCommon.getDraweeController(profilePic, AppCommon.getInstance(this).getProfilePic()+"jpg", 100));
     }
 
     @OnClick(R.id.left)

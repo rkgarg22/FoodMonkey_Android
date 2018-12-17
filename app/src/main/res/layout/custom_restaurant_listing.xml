@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <CustomControls.TextViewLatoBold
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight"
+        android:layout_below="@+id/recyclerView"
+        android:background="@color/closedRestColor"
+        android:gravity="center"
+        android:text="@string/closedRestaurents"
+        android:textSize="@dimen/smallTitleText"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/textTitle">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/displayPic"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/largeMargin"
+            android:scaleType="fitXY"
+            android:src="@drawable/dummy_rest"
+            app:placeholderImage="@drawable/food_logo_one" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_toRightOf="@+id/displayPic">
+
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/sponsoredText"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/padding"
+                android:text="Pepe's Piri Piri"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/sponsoredText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/sponsored"
+                android:textColor="@color/pink"
+                android:textSize="@dimen/mediumText" />
+
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_below="@+id/title"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:numStars="6"
+                android:paddingLeft="@dimen/padding"
+                android:paddingRight="@dimen/padding"
+                android:rating="5.5"
+                android:theme="@style/RatingBar" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/reviewsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:layout_toRightOf="@+id/ratingBar"
+                android:text="(787)"
+                android:textColor="@android:color/black" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/descriptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:text="Chicken, Peri Peri, Halal"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <LinearLayout
+                android:id="@+id/deliveryLayout"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@+id/descriptions"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginTop="@dimen/smallMargin">
+
+                <ImageView
+                    android:id="@+id/deliveryIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/food_delivery_icon" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="@dimen/smallMargin"
+                    android:gravity="center_vertical"
+                    android:text="Delivery:"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/deliveryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/smallMargin"
+                    android:text="$1.00"
+                    android:textColor="@color/pink"
+                    android:textSize="@dimen/smallText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/deliveryLayout"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <CustomControls.TextViewLatoRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="@dimen/marginLeft"
+                        android:gravity="center_vertical"
+                        android:text="Min. spend:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/smallText" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:id="@+id/minSpendText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/smallMargin"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLength="8"
+                        android:maxLines="1"
+                        android:text="$10.00"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallText" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="end">
+
+                    <ImageView
+                        android:id="@+id/locationIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/location_marker" />
+
+                    <CustomControls.TextViewLatoRegular
+                        android:id="@+id/distanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="@dimen/smallMargin"
+                        android:gravity="center_vertical"
+                        android:text="0.9 miles"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/smallText" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/seeMore"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/underline"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/underline" />
+    </RelativeLayout>
+
+</RelativeLayout>

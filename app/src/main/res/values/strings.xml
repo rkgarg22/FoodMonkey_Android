@@ -207,5 +207,36 @@
     <string name="mobileOrEmail">Mobile or Email</string>
     <string name="skip">SKIP</string>
     <string name="locationOrPostalCode">Enter a location or enable your location</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="name">Name</string>
+    <string name="editAddress">Edit Address</string>
+    <string name="next">Next</string>
+    <string name="pleaseSelectAmethod">Please select a method to recover your Password</string>
+    <string name="enterYourMoileAndGetOTP">Enter your mobile number and we will send OTP to recover your account</string>
+    <string name="enterYourNumber">Enter your number</string>
+    <string name="enterYourEmail">Enter your email</string>
+    <string name="otpHeading">OTP has been sent to you on your mobile number please enter it below.</string>
+    <string name="resendOTP">Resend OTP</string>
+    <string name="submit">Submit</string>
+    <string name="enterOTP">Enter OTP</string>
+    <string name="pleaseEnterFullOTP">Please enter All digits</string>
+    <string name="enterYourNewPassword">Enter your new password</string>
+    <string name="newPassword">New Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="pleaseEnterNewPassword">Please enter new Password</string>
+    <string name="pleaseEnterConfirmPassword">Please enter Confirm Password</string>
+    <string name="newPasswordAndConfirmPassword">New Password and Confirm password must be equal.</string>
+    <string name="successfullyChangedPassword">Successfully Changed Password</string>
+    <string name="passwordChangedDesc">Thank you. Your password has now been successfully changed. Please log into again using your new password.</string>
+    <string name="backToLogin">Back to Login</string>
+    <string name="createPassword">Create password</string>
+    <string name="passwordChanged">Password Changed</string>
+    <string name="onlineSupport">Online support</string>
+    <string name="cookiesPolicy">Cookies Policy</string>
+    <string name="acknowledgement">Acknowledgements</string>
+    <string name="eula">EULA</string>
+    <string name="deleteAppData">Delete app data</string>
+    <string name="takeAway">Takeaway</string>
 
 </resources>

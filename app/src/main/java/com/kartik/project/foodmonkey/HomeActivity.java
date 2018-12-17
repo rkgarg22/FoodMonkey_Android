@@ -119,7 +119,7 @@ public class HomeActivity extends AppCompatActivity {
     GPSTracker gpsTracker;
 
 
-    private ArrayList<HomePopularObject> popularRestaurants =new ArrayList<>();
+    private ArrayList<HomePopularObject> popularRestaurants = new ArrayList<>();
 
     private ArrayList<HomeViewedObject> viewedRestaurants = new ArrayList<>();
 
@@ -169,7 +169,7 @@ public class HomeActivity extends AppCompatActivity {
             userName.setText(AppCommon.getInstance(this).getFirstName() + " " + AppCommon.getInstance(this).getSurName());
             userEmail.setText(AppCommon.getInstance(this).getEmailAddress());
 //            navProfilePic.setImageURI(API_BASE_URL + AppCommon.getInstance(this).getProfilePic());
-            navProfilePic.setController(AppCommon.getDraweeController(navProfilePic, AppCommon.getInstance(this).getProfilePic(), 100));
+            navProfilePic.setController(AppCommon.getDraweeController(navProfilePic, AppCommon.getInstance(this).getProfilePic()+"jpg", 100));
             profileLayout.setVisibility(View.VISIBLE);
         }
         setNavigationData();
@@ -182,21 +182,21 @@ public class HomeActivity extends AppCompatActivity {
         if (restutantList.getPopularRestaurants().size() == 0) {
             restaurantLayout.setVisibility(View.GONE);
         } else {
-            popularRestaurants=restutantList.getPopularRestaurants();
+            popularRestaurants = restutantList.getPopularRestaurants();
             restaurantRecyclerView.setAdapter(new RestaurantAdapter(this, getString(R.string.restaurant),
                     restutantList.getPopularRestaurants()));
         }
         if (restutantList.getOrderedRestaurants().size() == 0) {
             yourOrderLayout.setVisibility(View.GONE);
         } else {
-            orderedRestaurants=restutantList.getOrderedRestaurants();
+            orderedRestaurants = restutantList.getOrderedRestaurants();
             orderRecyclerView.setAdapter(new OrderAdapter(this, getString(R.string.yourOrders),
                     restutantList.getOrderedRestaurants()));
         }
         if (restutantList.getViewedRestaurants().size() == 0) {
             takeOutLayout.setVisibility(View.GONE);
         } else {
-            viewedRestaurants=restutantList.getViewedRestaurants();
+            viewedRestaurants = restutantList.getViewedRestaurants();
             menuRecyclerView.setAdapter(new RecentViewAdapter(this, getString(R.string.takeOut),
                     restutantList.getViewedRestaurants()));
         }
@@ -238,15 +238,22 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.restSeeMore)
     void setRestSeeMore() {
-        Log.d("Latitude-->", "" + AppCommon.getInstance(this).getUserLatitude());
         Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
-        intent.putExtra("searchBy", searchBy);
-        if (searchBy.equals("postalcode")) {
-            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
-        } else {
-            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
-        }
+        intent.putExtra("comingFrom", "orderRest");
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("resturant", popularRestaurants);
+        intent.putExtras(bundle);
         startActivity(intent);
+
+//        Log.d("Latitude-->", "" + AppCommon.getInstance(this).getUserLatitude());
+//        Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
+//        intent.putExtra("searchBy", searchBy);
+//        if (searchBy.equals("postalcode")) {
+//            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+//        } else {
+//            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+//        }
+//        startActivity(intent);
     }
 
     @OnClick(R.id.cancelBtn)
@@ -257,15 +264,17 @@ public class HomeActivity extends AppCompatActivity {
     @OnClick(R.id.searchBtn)
     void setSearchBtn() {
         if (postalCodeText.getText().toString().isEmpty()) {
-            AppCommon.showDialog(HomeActivity.this,getString(R.string.locationOrPostalCode));
+            AppCommon.showDialog(HomeActivity.this, getString(R.string.locationOrPostalCode));
         } else {
 //            Toast.makeText(this, "" + AppCommon.getInstance(this).getUserLatitude(), Toast.LENGTH_SHORT).show();
             Log.d("Latitude-->", "" + AppCommon.getInstance(this).getUserLatitude());
             Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
             intent.putExtra("searchBy", searchBy);
             if (searchBy.equals("postalcode")) {
+                intent.putExtra("comingFrom","postcode");
                 intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
             } else {
+                intent.putExtra("comingFrom","location");
                 intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
             }
             startActivity(intent);
@@ -275,13 +284,20 @@ public class HomeActivity extends AppCompatActivity {
     @OnClick(R.id.menuSeeMore)
     void setMenuSeeMore() {
         Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
-        intent.putExtra("searchBy", searchBy);
-        if (searchBy.equals("postalcode")) {
-            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
-        } else {
-            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
-        }
+        intent.putExtra("comingFrom", "menuTakeOut");
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("resturant", viewedRestaurants);
+        intent.putExtras(bundle);
         startActivity(intent);
+
+//        Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
+//        intent.putExtra("searchBy", searchBy);
+//        if (searchBy.equals("postalcode")) {
+//            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+//        } else {
+//            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+//        }
+//        startActivity(intent);
     }
 
     String searchBy = "";
@@ -301,13 +317,19 @@ public class HomeActivity extends AppCompatActivity {
     @OnClick(R.id.orderSeeMore)
     void setOrderSeeMore() {
         Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
-        intent.putExtra("searchBy", searchBy);
-        if (searchBy.equals("postalcode")) {
-            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
-        } else {
-            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
-        }
+        intent.putExtra("comingFrom", "orderSeeMore");
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("resturant", orderedRestaurants);
+        intent.putExtras(bundle);
         startActivity(intent);
+//        Intent intent = new Intent(HomeActivity.this, HomeListingActivity.class);
+//        intent.putExtra("searchBy", searchBy);
+//        if (searchBy.equals("postalcode")) {
+//            intent.putExtra("postalCode", postalCodeText.getText().toString().trim());
+//        } else {
+//            intent.putExtra("postalCode", AppCommon.getInstance(this).getUserPostalCode());
+//        }
+//        startActivity(intent);
     }
 
     void callingResturantList(final String tokenKey, String customerID) {
@@ -440,11 +462,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ReferFriendActivity.class));
                 break;
             case "My Orders":
-                startActivity(new Intent(this, YourOrderActivity.class));
-                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,YourOrderListingActivty.class));
+//                startActivity(new Intent(this, YourOrderActivity.class));
+//                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
                 break;
             case "Help":
-                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, HelpActivity.class));
+//                Toast.makeText(this, "" + adapterPosition, Toast.LENGTH_SHORT).show();
                 break;
             case "Terms":
                 startActivity(new Intent(this, TermsAndConditionsActivity.class));

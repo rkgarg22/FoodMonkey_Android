@@ -154,6 +154,7 @@ public class CheckOutActivity extends AppCompatActivity {
     @OnClick(R.id.addNewAddress)
     void setAddNewAddress() {
         Intent intent = new Intent(CheckOutActivity.this, AddAddressActivity.class);
+        intent.putExtra("comingFrom","checkOutPage");
         startActivityForResult(intent, ADD_NEW_ADDRESS_CODE);
 //        startActivity(new Intent(CheckOutActivity.this, AddAddressActivity.class));
     }

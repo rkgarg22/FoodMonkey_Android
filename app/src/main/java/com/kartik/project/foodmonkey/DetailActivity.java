@@ -123,6 +123,9 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.totalNoOfItemInCart)
     TextView totalNoOfItemInCart;
 
+    @BindView(R.id.totalAmount)
+    TextView totalAmount;
+
     boolean searchFlag;
     int resturantID;
 
@@ -443,6 +446,12 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
 //        Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
 //        setAddItemToCartPopUpVisiblity("cancel", 0, 0);
         totalNoOfItemInCart.setText(addItemsToCartModelArrayList.size() + "");
+        float totalAmt = 0;
+        for (int i = 0; i < addItemsToCartModelArrayList.size(); i++) {
+            totalAmt = totalAmt + (Float.parseFloat(addItemsToCartModelArrayList.get(i).getPrice()) *
+                    Integer.parseInt(addItemsToCartModelArrayList.get(i).getQuantity()));
+        }
+        totalAmount.setText(totalAmt+"");
         addItemToCartPopUp.setVisibility(View.GONE);
 
 //        if (loginButton.getText().toString().trim().toLowerCase().equals(getString(R.string.addToCartPlus).toLowerCase())) {

@@ -15,7 +15,7 @@
 
         <RelativeLayout
             android:id="@+id/searchBarLayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin"
@@ -33,7 +33,7 @@
             <CustomControls.EditTextLatoBold
                 android:id="@+id/toolbarText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/searchBtn"
                 android:layout_toRightOf="@+id/left"
@@ -42,6 +42,7 @@
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:padding="@dimen/smallMargin"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/smallTitleText" />
@@ -58,10 +59,9 @@
 
         </RelativeLayout>
 
-
         <RelativeLayout
             android:id="@+id/cartToolbarLayout"
-            android:layout_width="80dp"
+            android:layout_width="140dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -78,14 +78,36 @@
 
             <TextView
                 android:id="@+id/totalNoOfItemInCart"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/cartImg"
                 android:paddingLeft="@dimen/padding"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/smallTitleText" />
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_toRightOf="@+id/totalNoOfItemInCart"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/totalAmount"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/smallTitleText" />
+
+            </LinearLayout>
+
         </RelativeLayout>
 
     </RelativeLayout>

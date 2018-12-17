@@ -4,11 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by kartikeya on 22/10/2018.
- *
  */
 
-public class CustomerSignUpObject
-{
+public class CustomerSignUpObject {
     @SerializedName("Customer_id")
     private String customerId;
     @SerializedName("First_Name")
@@ -37,6 +35,8 @@ public class CustomerSignUpObject
     private String stripeCustomerId;
     @SerializedName("Refer_Code")
     private String referCode;
+    @SerializedName("ProfilePic_Url")
+    private String profileUrl;
 
     public String getCustomerId() {
         return customerId;
@@ -148,5 +148,13 @@ public class CustomerSignUpObject
 
     public void setReferCode(String referCode) {
         this.referCode = referCode;
+    }
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
     }
 }

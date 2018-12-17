@@ -3,6 +3,7 @@ package com.kartik.project.foodmonkey.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.kartik.project.foodmonkey.ApiObject.HomePopularObject;
 import com.kartik.project.foodmonkey.DetailActivity;
+import com.kartik.project.foodmonkey.HomeActivity;
 import com.kartik.project.foodmonkey.R;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import Infrastructure.AppCommon;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 import static com.kartik.project.foodmonkey.API.ServiceGenerator.API_BASE_URL;
 
@@ -43,16 +46,39 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     @NonNull
     @Override
     public RestaurantAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.custom_restaurant_layout, parent, false);
+        View view;
+        if (mContext instanceof HomeActivity) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.custom_restaurant_layout, parent, false);
+        } else {
+            view = LayoutInflater.from(mContext).inflate(R.layout.custom_restaurant_listing, parent, false);
+        }
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantAdapter.MyViewHolder holder, int position) {
-        holder.title.setText(popularRestaurants.get(position).getRestName());
-        holder.displayPic.setImageURI(String.valueOf(API_BASE_URL + popularRestaurants.get(position).getImageLink()));
-        holder.reviewsText.setText(popularRestaurants.get(position).getNumberOfReviews() + " reviews");
-        holder.descriptions.setText(popularRestaurants.get(position).getCousine1() + popularRestaurants.get(position).getCousine2()+"");
+        if (mContext instanceof HomeActivity) {
+            holder.title.setText(popularRestaurants.get(position).getRestName());
+            holder.displayPic.setImageURI(String.valueOf(API_BASE_URL + popularRestaurants.get(position).getImageLink()));
+            holder.reviewsText.setText(popularRestaurants.get(position).getNumberOfReviews() + " reviews");
+            holder.descriptions.setText(popularRestaurants.get(position).getCousine1() + popularRestaurants.get(position).getCousine2() + "");
+        }else {
+            holder.title.setText(popularRestaurants.get(position).getRestName());
+            holder.displayPic.setController(AppCommon.getDraweeController(holder.displayPic,
+                    String.valueOf(API_BASE_URL + popularRestaurants.get(position).getImageLink()),100));
+
+            holder.reviewsText.setText(popularRestaurants.get(position).getNumberOfReviews() + " reviews");
+            holder.descriptions.setText(popularRestaurants.get(position).getCousine1() + popularRestaurants.get(position).getCousine2() + "");
+            holder.deliveryText.setText( popularRestaurants.get(position).getDelivery());
+            holder.minSpendText.setText( popularRestaurants.get(position).getMinSpend());
+            holder.distanceText.setText( popularRestaurants.get(position).getDeliveryTime()+" miles");
+            if (popularRestaurants.get(position).getIsSponsoredRest()==1){
+                holder.sponsoredText.setVisibility(View.VISIBLE);
+            }else {
+                holder.sponsoredText.setVisibility(View.GONE);
+            }
+        }
+
     }
 
     @Override
@@ -82,6 +108,18 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
         @BindView(R.id.seeMore)
         TextView seeMore;
+/* -------------  Listing Variables ---------- */
+        @BindView(R.id.deliveryText)
+        TextView deliveryText;
+
+        @BindView(R.id.minSpendText)
+        TextView minSpendText;
+
+        @BindView(R.id.distanceText)
+        TextView distanceText;
+
+        @BindView(R.id.sponsoredText)
+        TextView sponsoredText;
 
 
         public MyViewHolder(View itemView) {

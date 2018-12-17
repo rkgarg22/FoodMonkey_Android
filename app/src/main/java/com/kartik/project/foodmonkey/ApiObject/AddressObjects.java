@@ -27,7 +27,7 @@ public class AddressObjects implements Serializable
     @SerializedName("City")
     private String city;
     @SerializedName("Mobile_Number")
-    private Integer mobileNumber;
+    private long mobileNumber;
 
     public Integer getAddressId() {
         return addressId;
@@ -93,11 +93,11 @@ public class AddressObjects implements Serializable
         this.city = city;
     }
 
-    public Integer getMobileNumber() {
+    public long getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(Integer mobileNumber) {
+    public void setMobileNumber(long mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 

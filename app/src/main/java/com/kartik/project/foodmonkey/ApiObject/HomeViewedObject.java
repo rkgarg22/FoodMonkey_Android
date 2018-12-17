@@ -2,11 +2,13 @@ package com.kartik.project.foodmonkey.ApiObject;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by kartikeya on 10/10/2018.
  */
 
-public class HomeViewedObject {
+public class HomeViewedObject implements Serializable {
     @SerializedName("Rest_Id")
     private Integer restId;
     @SerializedName("Rest_Name")
@@ -62,7 +64,7 @@ public class HomeViewedObject {
     @SerializedName("IsSponsoredRest")
     private Integer isSponsoredRest;
     @SerializedName("Image_Link")
-    private Object imageLink;
+    private String imageLink;
     @SerializedName("AggregateFeedback")
     private String aggregateFeedback;
     @SerializedName("NumberOfReviews")
@@ -81,6 +83,71 @@ public class HomeViewedObject {
     private String registerationDate;
     @SerializedName("is_menuadded")
     private Integer isMenuadded;
+
+    /*----------- New Added--------------- */
+
+    @SerializedName("Cousine1")
+    private String Cousine1;
+
+    @SerializedName("Monday_open")
+    private String mondayOpen;
+
+    @SerializedName("Monday_close")
+    private String mondayClose;
+
+    @SerializedName("Tuesday_open")
+    private String tuesdayOpen;
+
+    @SerializedName("Tuesday_close")
+    private String tuesdayClose;
+
+    @SerializedName("Wednesday_open")
+    private String wednesdayOpen;
+
+    @SerializedName("Wednesday_close")
+    private String wednesdayClose;
+
+    @SerializedName("Thursday_open")
+    private String thursdayOpen;
+
+    @SerializedName("Thursday_close")
+    private String thursdayClose;
+
+    @SerializedName("Friday_open")
+    private String fridayOpen;
+
+    @SerializedName("Friday_close")
+    private String fridayClose;
+
+    @SerializedName("Saturday_open")
+    private String saturdayOpen;
+
+    @SerializedName("Saturday_close")
+    private String saturdayClose;
+
+    @SerializedName("Sunday_open")
+    private String sundayOpen;
+
+    @SerializedName("Sunday_close")
+    private String sundayClose;
+
+    @SerializedName("Delivery_Time")
+    private String deliveryTime;
+
+    @SerializedName("Collection_Time")
+    private String collectionTime;
+
+    @SerializedName("Rest_Telephone")
+    private String restTelephone;
+
+    @SerializedName("Collection_From_Time")
+    private String collectionFromTime;
+
+    @SerializedName("Delivery_From_Time")
+    private String deliveryFromTime;
+
+    @SerializedName("Cousine2")
+    private String cousine2;
 
     public Integer getRestId() {
         return restId;
@@ -298,11 +365,11 @@ public class HomeViewedObject {
         this.isSponsoredRest = isSponsoredRest;
     }
 
-    public Object getImageLink() {
+    public String getImageLink() {
         return imageLink;
     }
 
-    public void setImageLink(Object imageLink) {
+    public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
 
@@ -376,5 +443,173 @@ public class HomeViewedObject {
 
     public void setIsMenuadded(Integer isMenuadded) {
         this.isMenuadded = isMenuadded;
+    }
+
+    public String getCousine1() {
+        return Cousine1;
+    }
+
+    public void setCousine1(String cousine1) {
+        Cousine1 = cousine1;
+    }
+
+    public String getMondayOpen() {
+        return mondayOpen;
+    }
+
+    public void setMondayOpen(String mondayOpen) {
+        this.mondayOpen = mondayOpen;
+    }
+
+    public String getMondayClose() {
+        return mondayClose;
+    }
+
+    public void setMondayClose(String mondayClose) {
+        this.mondayClose = mondayClose;
+    }
+
+    public String getTuesdayOpen() {
+        return tuesdayOpen;
+    }
+
+    public void setTuesdayOpen(String tuesdayOpen) {
+        this.tuesdayOpen = tuesdayOpen;
+    }
+
+    public String getTuesdayClose() {
+        return tuesdayClose;
+    }
+
+    public void setTuesdayClose(String tuesdayClose) {
+        this.tuesdayClose = tuesdayClose;
+    }
+
+    public String getWednesdayOpen() {
+        return wednesdayOpen;
+    }
+
+    public void setWednesdayOpen(String wednesdayOpen) {
+        this.wednesdayOpen = wednesdayOpen;
+    }
+
+    public String getWednesdayClose() {
+        return wednesdayClose;
+    }
+
+    public void setWednesdayClose(String wednesdayClose) {
+        this.wednesdayClose = wednesdayClose;
+    }
+
+    public String getThursdayOpen() {
+        return thursdayOpen;
+    }
+
+    public void setThursdayOpen(String thursdayOpen) {
+        this.thursdayOpen = thursdayOpen;
+    }
+
+    public String getThursdayClose() {
+        return thursdayClose;
+    }
+
+    public void setThursdayClose(String thursdayClose) {
+        this.thursdayClose = thursdayClose;
+    }
+
+    public String getFridayOpen() {
+        return fridayOpen;
+    }
+
+    public void setFridayOpen(String fridayOpen) {
+        this.fridayOpen = fridayOpen;
+    }
+
+    public String getFridayClose() {
+        return fridayClose;
+    }
+
+    public void setFridayClose(String fridayClose) {
+        this.fridayClose = fridayClose;
+    }
+
+    public String getSaturdayOpen() {
+        return saturdayOpen;
+    }
+
+    public void setSaturdayOpen(String saturdayOpen) {
+        this.saturdayOpen = saturdayOpen;
+    }
+
+    public String getSaturdayClose() {
+        return saturdayClose;
+    }
+
+    public void setSaturdayClose(String saturdayClose) {
+        this.saturdayClose = saturdayClose;
+    }
+
+    public String getSundayOpen() {
+        return sundayOpen;
+    }
+
+    public void setSundayOpen(String sundayOpen) {
+        this.sundayOpen = sundayOpen;
+    }
+
+    public String getSundayClose() {
+        return sundayClose;
+    }
+
+    public void setSundayClose(String sundayClose) {
+        this.sundayClose = sundayClose;
+    }
+
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
+    public String getCollectionTime() {
+        return collectionTime;
+    }
+
+    public void setCollectionTime(String collectionTime) {
+        this.collectionTime = collectionTime;
+    }
+
+    public String getRestTelephone() {
+        return restTelephone;
+    }
+
+    public void setRestTelephone(String restTelephone) {
+        this.restTelephone = restTelephone;
+    }
+
+    public String getCollectionFromTime() {
+        return collectionFromTime;
+    }
+
+    public void setCollectionFromTime(String collectionFromTime) {
+        this.collectionFromTime = collectionFromTime;
+    }
+
+    public String getDeliveryFromTime() {
+        return deliveryFromTime;
+    }
+
+    public void setDeliveryFromTime(String deliveryFromTime) {
+        this.deliveryFromTime = deliveryFromTime;
+    }
+
+    public String getCousine2() {
+        return cousine2;
+    }
+
+    public void setCousine2(String cousine2) {
+        this.cousine2 = cousine2;
     }
 }

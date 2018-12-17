@@ -59,11 +59,32 @@
                     android:layout_marginTop="@dimen/margin"
                     android:layout_weight="0.6"
                     android:buttonTint="@color/colorPrimary"
-                    android:text="@string/collections"
+                    android:text="@string/takeAway"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/smallTitleText" />
 
             </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <CustomControls.TextViewRawLineBold
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:text="1 hour 10 mins"/>
+
+                <CustomControls.TextViewRawLineBold
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:text="30 to 40 mins"/>
+
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

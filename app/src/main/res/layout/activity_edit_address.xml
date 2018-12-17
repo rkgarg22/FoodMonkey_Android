@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_image"
-    tools:context="com.kartik.project.foodmonkey.EditAccountActivity">
+    tools:context="com.kartik.project.foodmonkey.EditAddressActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -22,42 +20,6 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center">
-
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/profilePic"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true"
-                    app:placeholderImage="@drawable/profile_placeholder"
-                    app:roundAsCircle="true" />
-
-
-            </RelativeLayout>
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="-15dp"
-                android:src="@drawable/change_photo" />
-
-            <CustomControls.TextViewLatoRegular
-                android:id="@+id/userprofile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin"
-                android:gravity="center"
-                android:text="@string/changePhoto"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/mediumText" />
-
-            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginEnd="@dimen/largeMargin"
@@ -67,16 +29,16 @@
                 android:padding="@dimen/smallMargin">
 
                 <EditText
-                    android:id="@+id/firstName"
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toStartOf="@+id/editIcon"
+                    android:layout_toStartOf="@+id/editIcon1"
                     android:background="@android:color/transparent"
                     android:paddingStart="@dimen/largeMargin"
-                    android:hint="Name" />
+                    android:hint="@string/name" />
 
                 <ImageView
-                    android:id="@+id/editIcon"
+                    android:id="@+id/editIcon1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
@@ -94,17 +56,14 @@
                 android:background="@drawable/background_border"
                 android:padding="@dimen/smallMargin">
 
-                <TextView
-                    android:id="@+id/genderText"
+                <EditText
+                    android:id="@+id/houseNumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toStartOf="@+id/editIcon2"
                     android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
                     android:paddingStart="@dimen/largeMargin"
-                    android:hint="Gender"
-                    android:textSize="@dimen/titleText"
-                    android:textStyle="bold" />
+                    android:hint="House Number" />
 
                 <ImageView
                     android:id="@+id/editIcon2"
@@ -126,17 +85,13 @@
                 android:padding="@dimen/smallMargin">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/streetLine"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toStartOf="@+id/editIcon3"
                     android:background="@android:color/transparent"
-                    android:maxLines="1"
-                    android:hint="xyz@abc.com"
                     android:paddingStart="@dimen/largeMargin"
-                    android:clickable="false"
-                    android:focusable="false"
-                    />
+                    android:hint="Street Line 1" />
 
                 <ImageView
                     android:id="@+id/editIcon3"
@@ -158,15 +113,13 @@
                 android:padding="@dimen/smallMargin">
 
                 <EditText
-                    android:id="@+id/mobileNumber"
+                    android:id="@+id/streetLine2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toStartOf="@+id/editIcon4"
                     android:background="@android:color/transparent"
-                    android:maxLines="1"
-                    android:inputType="number"
                     android:paddingStart="@dimen/largeMargin"
-                    android:hint="+44 123456789" />
+                    android:hint="Street Line 2" />
 
                 <ImageView
                     android:id="@+id/editIcon4"
@@ -179,7 +132,6 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/dateOfBirthLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginEnd="@dimen/largeMargin"
@@ -189,15 +141,13 @@
                 android:padding="@dimen/smallMargin">
 
                 <EditText
-                    android:id="@+id/dateOfBirth"
+                    android:id="@+id/pincode"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toStartOf="@+id/editIcon5"
                     android:background="@android:color/transparent"
-                    android:maxLines="1"
-                    android:editable="false"
                     android:paddingStart="@dimen/largeMargin"
-                    android:hint="Sept. 17 2018" />
+                    android:hint="PinCode" />
 
                 <ImageView
                     android:id="@+id/editIcon5"
@@ -209,101 +159,52 @@
                     android:src="@drawable/edit_icon" />
             </RelativeLayout>
 
-
-            <CustomControls.ButtonLatoRegular
-                android:id="@+id/manageAddress"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/largeMargin"
-                android:layout_marginTop="@dimen/marginTop"
-                android:background="@color/gray"
-                android:gravity="center"
-                android:text="@string/manageAddress"
-                android:textColor="@android:color/white" />
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/background_border"
+                android:padding="@dimen/smallMargin">
+
+                <EditText
+                    android:id="@+id/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/editIcon"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="@dimen/largeMargin"
+                    android:hint="City" />
+
+                <ImageView
+                    android:id="@+id/editIcon6"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/edit_icon" />
+            </RelativeLayout>
 
             <CustomControls.ButtonLatoRegular
-                android:id="@+id/saveButton"
+                android:id="@+id/doneButton"
                 style="@style/Base.V7.Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/largeMargin"
                 android:layout_marginEnd="@dimen/largeMargin"
                 android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
                 android:background="@color/pink"
                 android:gravity="center"
-                android:text="@string/save"
+                android:text="@string/done"
                 android:textColor="@android:color/white" />
+
 
         </LinearLayout>
 
     </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/popUpLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#AF000000"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@android:color/white"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Please select gender"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/gray" />
-
-            <TextView
-                android:id="@+id/male"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Male"
-                android:textSize="15sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/gray" />
-
-            <TextView
-                android:id="@+id/fenale"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Female"
-                android:textSize="15sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/gray" />
-
-            <TextView
-                android:id="@+id/cancel"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Cancel"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"

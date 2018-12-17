@@ -41,7 +41,8 @@
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:padding="@dimen/smallMargin"
-                android:text="BD87SZ"
+                android:hint="Search"
+                android:textColorHint="@android:color/white"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/titleText" />
 

@@ -85,7 +85,7 @@ public class PersonalAccountActivity extends AppCompatActivity {
         emailText.setText(customerDetails.get(0).getEmail());
         mobileNumber.setText(customerDetails.get(0).getMobile());
         dateOfBirth.setText(customerDetails.get(0).getdOB());
-        if (customerDetails.get(0).getAddresses().get(0) != null)
+        if (customerDetails.get(0).getAddresses().size() != 0)
             if (customerDetails.get(0).getAddresses().get(0).getAddressName().toLowerCase().equals("home")){
                 homeAddress.setText(customerDetails.get(0).getAddresses().get(0).getAddressName() + "\n"
                         + customerDetails.get(0).getAddresses().get(0).getHouseNo() + ", " + customerDetails.get(0).getAddresses().get(0).getStreetLine1()
@@ -99,7 +99,7 @@ public class PersonalAccountActivity extends AppCompatActivity {
             }
 
 //        bussinessText.setText(AppCommon.getInstance(this).getBussinessAddress());
-        profilePic.setController(AppCommon.getDraweeController(profilePic, AppCommon.getInstance(this).getProfilePic(), 100));
+        profilePic.setController(AppCommon.getDraweeController(profilePic, AppCommon.getInstance(this).getProfilePic()+"jpg", 100));
 
     }
 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kartik.project.foodmonkey.EnterOTPActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <CustomControls.TextViewRawLineRegular
+        android:id="@+id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="@dimen/largeMargin"
+        android:text="@string/otpHeading"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:id="@+id/editTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/heading"
+        android:layout_margin="@dimen/largeMargin"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CustomControls.EditTextLatoBold
+            android:id="@+id/editText1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="@dimen/smallMargin"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint=""
+            android:textSize="30sp" />
+
+        <CustomControls.EditTextLatoBold
+            android:id="@+id/editText2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="@dimen/smallMargin"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint=""
+            android:textSize="30sp" />
+
+        <CustomControls.EditTextLatoBold
+            android:id="@+id/editText3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="@dimen/smallMargin"
+            android:gravity="center"
+            android:hint=""
+            android:inputType="number"
+            android:textSize="30sp" />
+
+        <CustomControls.EditTextLatoBold
+            android:id="@+id/editText4"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="@dimen/smallMargin"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint=""
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+
+    <CustomControls.TextViewRawLineRegular
+        android:id="@+id/subDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextLayout"
+        android:layout_margin="@dimen/largeMargin"
+        android:text="@string/otpHeading"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subDescription"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CustomControls.ButtonLatoRegular
+            android:id="@+id/submitButton"
+            style="@style/Base.V7.Widget.AppCompat.EditText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@color/pink"
+            android:gravity="center"
+            android:text="@string/submit"
+            android:textColor="@android:color/white" />
+
+        <CustomControls.ButtonLatoRegular
+            android:id="@+id/resendOTP"
+            style="@style/Base.V7.Widget.AppCompat.EditText"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:text="@string/resendOTP"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone" />
+
+</RelativeLayout>
