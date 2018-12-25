@@ -225,12 +225,12 @@ public class HomeActivity extends AppCompatActivity {
         if (AppCommon.getInstance(this).isUserLogIn()) {
             navigationModelArrayList.add(new NavigationModel(R.drawable.myaccount_icon, getString(R.string.myAccount)));
             navigationModelArrayList.add(new NavigationModel(R.drawable.signout_icon, getString(R.string.signOut)));
+            navigationModelArrayList.add(new NavigationModel(R.drawable.referfrnd_icon, getString(R.string.referFriend)));
+            navigationModelArrayList.add(new NavigationModel(R.drawable.myorders_icon, getString(R.string.myOrders)));
         } else {
             navigationModelArrayList.add(new NavigationModel(R.drawable.signout_icon, getString(R.string.logIn)));
             navigationModelArrayList.add(new NavigationModel(R.drawable.signout_icon, getString(R.string.Signup)));
         }
-        navigationModelArrayList.add(new NavigationModel(R.drawable.referfrnd_icon, getString(R.string.referFriend)));
-        navigationModelArrayList.add(new NavigationModel(R.drawable.myorders_icon, getString(R.string.myOrders)));
         navigationModelArrayList.add(new NavigationModel(R.drawable.help_icon, getString(R.string.help)));
         navigationModelArrayList.add(new NavigationModel(R.drawable.terms_icon, getString(R.string.terms)));
         navigationModelArrayList.add(new NavigationModel(R.drawable.setting_icon, getString(R.string.settings)));

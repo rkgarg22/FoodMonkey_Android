@@ -43,7 +43,10 @@ public class PopUpAdapter extends RecyclerView.Adapter<PopUpAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull PopUpAdapter.MyViewHolder holder, int position) {
-        holder.radioItem.setText(arrayList.get(position).getCuisineName()+" ("+arrayList.get(position).getResturantCount()+")");
+        if (position == 0) {
+            holder.radioItem.setText(arrayList.get(position).getCuisineName());
+        } else
+            holder.radioItem.setText(arrayList.get(position).getCuisineName() + " (" + arrayList.get(position).getResturantCount() + ")");
         if (arrayList.get(position).isSelected()) {
             holder.radioItem.setChecked(true);
         } else {

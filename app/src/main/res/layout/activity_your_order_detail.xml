@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kartik.project.foodmonkey.YourOrderDetailActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margin">
+
+            <CustomControls.TextViewLatoBold
+                android:id="@+id/restName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pepe's Piri Piri"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText"
+                android:layout_marginTop="@dimen/largeMargin"/>
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/restAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="9 Great Horton Road, Bradford, BD71AZ"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallText" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/largeMargin">
+
+                <CustomControls.TextViewLatoBold
+                    android:id="@+id/orderID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="Order ID : 58475"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoBold
+                    android:id="@+id/customerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/orderID"
+                    android:text="Kamrul Hasan"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/totalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="Total: $12.45"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/dateAndTimeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/totalAmount"
+                    android:text="Date/Time: 21/10/2018 04:15:21 pm"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone: 123456789"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallText"
+                android:layout_marginTop="@dimen/largeMargin"/>
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/addressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choriner Straße 49 10435 Berlin "
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallText" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/underline"
+                android:layout_marginTop="@dimen/largeMargin"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="Items"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="center"
+                    android:text="Quantity"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:gravity="end"
+                    android:text="Price"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/underline" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/underline" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:orientation="horizontal">
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/subTotalAmount"
+                    android:text="Sub Total"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/subTotalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/deliveryStatus"
+                    android:text="Delivery"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/deliveryStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@color/underline" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/totalPricing"
+                    android:text="Total"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/totalPricing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/underline" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/largeMargin"
+                android:orientation="horizontal">
+
+                <CustomControls.TextViewLatoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/totalPricing"
+                    android:text="Order Status: "
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/orderStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivered"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

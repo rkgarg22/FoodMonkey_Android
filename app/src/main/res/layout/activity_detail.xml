@@ -154,7 +154,6 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:paddingLeft="@dimen/padding"
-                android:text="Pepe's Piri Piri"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/smallTitleText" />
 
@@ -179,7 +178,6 @@
                 android:numStars="6"
                 android:paddingLeft="@dimen/padding"
                 android:paddingRight="@dimen/padding"
-                android:rating="5.5"
                 android:theme="@style/RatingBar" />
 
             <CustomControls.TextViewLatoRegular
@@ -190,7 +188,6 @@
                 android:layout_marginLeft="@dimen/margin"
                 android:layout_marginTop="@dimen/smallMargin"
                 android:layout_toRightOf="@+id/ratingBar"
-                android:text="(787)"
                 android:textColor="@android:color/black" />
 
             <CustomControls.TextViewLatoRegular
@@ -200,7 +197,6 @@
                 android:layout_below="@+id/ratingBar"
                 android:layout_marginLeft="@dimen/margin"
                 android:layout_marginTop="@dimen/smallMargin"
-                android:text="Chicken, Peri Peri, Halal"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/mediumText" />
 
@@ -233,7 +229,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/smallMargin"
-                    android:text="$1.00"
                     android:textColor="@color/pink"
                     android:textSize="@dimen/smallText" />
 
@@ -271,7 +266,6 @@
                         android:gravity="center_vertical"
                         android:maxLength="8"
                         android:maxLines="1"
-                        android:text="$10.00"
                         android:textColor="@color/pink"
                         android:textSize="@dimen/smallText" />
 
@@ -296,7 +290,6 @@
                         android:layout_height="20dp"
                         android:layout_marginLeft="@dimen/smallMargin"
                         android:gravity="center_vertical"
-                        android:text="0.9 miles"
                         android:textColor="@color/pink"
                         android:textSize="@dimen/smallText" />
 

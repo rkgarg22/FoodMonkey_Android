@@ -442,6 +442,7 @@ public class HomeListingActivity extends AppCompatActivity {
         if (cuisinesListObjectArrayList.size() == 0) {
             AppCommon.showDialog(HomeListingActivity.this, "Some thing went wrong, please try again");
         } else {
+            cuisinesListObjectArrayList.add(0,new CuisinesListObject("All Cuisines"));
             setCuisineAdapter(popUprecyclerView, cuisinesListObjectArrayList);
         }
 
@@ -454,7 +455,7 @@ public class HomeListingActivity extends AppCompatActivity {
     }
 
     void setCuisineAdapter(RecyclerView popUprecyclerView, ArrayList<CuisinesListObject> arrayList) {
-
+        arrayList.get(0).setSelected(true);
         PopUpAdapter popUpAdapter = new PopUpAdapter(this, arrayList);
         popUprecyclerView.setAdapter(popUpAdapter);
     }

@@ -35,7 +35,8 @@
                     android:layout_height="match_parent"
                     android:layout_toLeftOf="@+id/cancelBtn"
                     android:background="@android:color/transparent"
-                    android:hint="Search"
+                    android:hint="@string/enterPostalCode"
+                    android:textSize="@dimen/mediumText"
                     android:paddingLeft="@dimen/largeMargin" />
 
                 <ImageView

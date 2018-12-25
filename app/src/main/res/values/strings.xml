@@ -238,5 +238,7 @@
     <string name="eula">EULA</string>
     <string name="deleteAppData">Delete app data</string>
     <string name="takeAway">Takeaway</string>
+    <string name="enterPostalCode">Enter Postal Code</string>
+    <string name="viewDetail">View Detail</string>
 
 </resources>

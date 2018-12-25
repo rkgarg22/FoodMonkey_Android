@@ -23,6 +23,7 @@ import com.kartik.project.foodmonkey.ApiResponse.CuisineListResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerAddressResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerDetailResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerHomeResponse;
+import com.kartik.project.foodmonkey.ApiResponse.CustomerOrderListResponse;
 import com.kartik.project.foodmonkey.ApiResponse.CustomerSignUpResponse;
 import com.kartik.project.foodmonkey.ApiResponse.GetBrainTreeResponse;
 import com.kartik.project.foodmonkey.ApiResponse.ListCustAddResponse;
@@ -138,5 +139,8 @@ public interface FoodMonkeyAppService {
 
     @POST("api/customer/send_email_otp.php")
     Call<SendOTPEmailResponse> SendEmailOTP_API(@Body HashMap<String,String> hashMap);
+
+    @POST("api/resturant/Customer_Order_list.php")
+    Call<CustomerOrderListResponse> CustomerOrderList(@Body HashMap<String,String> hashMap);
 
 }

@@ -71,6 +71,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             holder.displayPic.setController(AppCommon.getDraweeController(holder.displayPic,
                     String.valueOf("http://food-monkey.com" + homeOrderedObjects.get(position).getImageLink()),100));
 
+            holder.ratingBar.setRating(Float.parseFloat(homeOrderedObjects.get(position).getAggregateFeedback()));
             holder.reviewsText.setText(homeOrderedObjects.get(position).getNumberOfReviews() + " reviews");
             holder.descriptions.setText(homeOrderedObjects.get(position).getCousine1() + homeOrderedObjects.get(position).getCousine2() + "");
             holder.deliveryText.setText( homeOrderedObjects.get(position).getDelivery());

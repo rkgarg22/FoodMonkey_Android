@@ -188,7 +188,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     boolean validations() {
         boolean flag = true;
         String email = this.email.getText().toString();
-        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (TextUtils.isEmpty(email) ){//|| !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, getString(R.string.pleaseEnterEmail), Toast.LENGTH_LONG).show();
             flag = false;
         } else if (password.getText().toString().isEmpty()) {

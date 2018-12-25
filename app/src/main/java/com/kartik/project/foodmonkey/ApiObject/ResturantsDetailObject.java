@@ -134,8 +134,11 @@ public class ResturantsDetailObject implements Serializable {
     @SerializedName("Cousine2")
     private String Cousine2;
 
+    @SerializedName("cordinate_latitude")
+    private Double cordinateLatitude;
 
-
+    @SerializedName("cordinate_longitude")
+    private Double cordinateLongitude;
 
     public Integer getRestId() {
         return restId;

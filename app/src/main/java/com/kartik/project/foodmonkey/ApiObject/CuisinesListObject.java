@@ -18,6 +18,10 @@ public class CuisinesListObject {
 
     boolean isSelected;
 
+    public CuisinesListObject(String cuisineName) {
+        this.cuisineName = cuisineName;
+    }
+
     public boolean isSelected() {
         return isSelected;
     }

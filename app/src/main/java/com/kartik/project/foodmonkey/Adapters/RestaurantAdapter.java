@@ -61,14 +61,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             holder.title.setText(popularRestaurants.get(position).getRestName());
             holder.displayPic.setImageURI(String.valueOf(API_BASE_URL + popularRestaurants.get(position).getImageLink()));
             holder.reviewsText.setText(popularRestaurants.get(position).getNumberOfReviews() + " reviews");
+            holder.ratingBar.setRating(Float.parseFloat(popularRestaurants.get(position).getAggregateFeedback()));
             holder.descriptions.setText(popularRestaurants.get(position).getCousine1() + popularRestaurants.get(position).getCousine2() + "");
         }else {
             holder.title.setText(popularRestaurants.get(position).getRestName());
             holder.displayPic.setController(AppCommon.getDraweeController(holder.displayPic,
                     String.valueOf(API_BASE_URL + popularRestaurants.get(position).getImageLink()),100));
-
+            holder.ratingBar.setRating(Float.parseFloat(popularRestaurants.get(position).getAggregateFeedback()));
             holder.reviewsText.setText(popularRestaurants.get(position).getNumberOfReviews() + " reviews");
-            holder.descriptions.setText(popularRestaurants.get(position).getCousine1() + popularRestaurants.get(position).getCousine2() + "");
+            holder.descriptions.setText(popularRestaurants.get(position).getCousineList());
             holder.deliveryText.setText( popularRestaurants.get(position).getDelivery());
             holder.minSpendText.setText( popularRestaurants.get(position).getMinSpend());
             holder.distanceText.setText( popularRestaurants.get(position).getDeliveryTime()+" miles");

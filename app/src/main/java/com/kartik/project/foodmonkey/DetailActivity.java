@@ -144,7 +144,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         minSpendText.setText("£" + restaurantDetails.get(0).getMinSpend());
         ratingBar.setRating(Float.parseFloat(restaurantDetails.get(0).getAggregateFeedback()));
         displayPic.setImageURI(API_BASE_URL + restaurantDetails.get(0).getImageLink());
-//        distanceText.setText(restaurantDetails.get(0).getD());
+        distanceText.setText(restaurantDetails.get(0).getDeliveryTime());
     }
 
     @Override

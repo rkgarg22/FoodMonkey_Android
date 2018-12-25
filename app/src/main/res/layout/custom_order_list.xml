@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@+id/textTitle">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/displayPic"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/largeMargin"
+            android:scaleType="fitXY"
+            android:src="@drawable/dummy_rest"
+            app:placeholderImage="@drawable/food_logo_one" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_toRightOf="@+id/displayPic">
+
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/sponsoredText"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/padding"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/orderID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallText" />
+
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_below="@+id/title"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:numStars="6"
+                android:paddingLeft="@dimen/padding"
+                android:paddingRight="@dimen/padding"
+                android:theme="@style/RatingBar" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/reviewsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginLeft="@dimen/smallMargin"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:layout_toRightOf="@+id/ratingBar"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/orderID"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:layout_toLeftOf="@+id/reviewsText"
+                android:textColor="@color/pink"
+                android:textSize="@dimen/smallText" />
+
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/descriptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar"
+                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginTop="@dimen/smallMargin"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/smallText" />
+
+            <LinearLayout
+                android:id="@+id/deliveryLayout"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@+id/descriptions"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_marginTop="@dimen/smallMargin">
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/amountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/smallMargin"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="@dimen/smallMargin"
+                    android:gravity="center_vertical"
+                    android:text="Delivery"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
+
+                <CustomControls.TextViewLatoRegular
+                    android:id="@+id/viewDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@string/viewDetail"
+                    android:textColor="@color/pink"
+                    android:textSize="@dimen/smallText" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/underline" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -14,6 +14,8 @@ public class MenuDetailCategoryObject implements Serializable{
     private Integer menuCategoryId;
     @SerializedName("Menu_Category_Name")
     private String menuCategoryName;
+    @SerializedName("Menu_Cat_Info")
+    private String menuCatInfo;
     @SerializedName("Menus")
     private ArrayList<MenuObject> menus = new ArrayList<>();
 

@@ -67,6 +67,7 @@ public class RecentViewAdapter extends RecyclerView.Adapter<RecentViewAdapter.My
             holder.displayPic.setController(AppCommon.getDraweeController(holder.displayPic,
                     String.valueOf("http://food-monkey.com" + viewedObjects.get(position).getImageLink()),100));
 
+            holder.ratingBar.setRating(Float.parseFloat(viewedObjects.get(position).getAggregateFeedback()));
             holder.reviewsText.setText(viewedObjects.get(position).getNumberOfReviews() + " reviews");
             holder.descriptions.setText(viewedObjects.get(position).getCousine1() + viewedObjects.get(position).getCousine2() + "");
             holder.deliveryText.setText( viewedObjects.get(position).getDelivery());
