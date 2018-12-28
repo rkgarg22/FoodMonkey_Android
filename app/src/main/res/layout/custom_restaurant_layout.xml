@@ -102,4 +102,12 @@
         android:layout_height="wrap_content"
         android:visibility="gone" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/distanceLayout"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
 </android.support.v7.widget.CardView>

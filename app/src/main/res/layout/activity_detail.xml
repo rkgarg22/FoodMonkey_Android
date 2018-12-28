@@ -42,10 +42,10 @@
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:singleLine="true"
                 android:padding="@dimen/smallMargin"
+                android:singleLine="true"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/smallTitleText" />
+                android:textSize="@dimen/mediumText" />
 
             <ImageView
                 android:id="@+id/searchBtn"
@@ -88,21 +88,24 @@
 
             <LinearLayout
                 android:layout_width="70dp"
-                android:layout_toRightOf="@+id/totalNoOfItemInCart"
                 android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/totalNoOfItemInCart"
                 android:orientation="horizontal">
+
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="@android:color/white"/>
+                    android:background="@android:color/white" />
 
                 <TextView
                     android:id="@+id/totalAmount"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/padding"
-                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/padding"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/smallTitleText" />
 
@@ -202,7 +205,7 @@
 
             <LinearLayout
                 android:id="@+id/deliveryLayout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/descriptionsText"
                 android:layout_marginLeft="@dimen/marginLeft"
@@ -234,7 +237,21 @@
 
             </LinearLayout>
 
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/discountText"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/discount_back"
+                android:gravity="center"
+                android:text="10% off"
+                android:textSize="@dimen/smallText"
+                android:layout_above="@+id/milesLayout"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
             <LinearLayout
+                android:id="@+id/milesLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/deliveryLayout"

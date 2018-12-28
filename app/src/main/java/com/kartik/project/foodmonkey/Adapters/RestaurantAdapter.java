@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,21 +63,31 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             holder.displayPic.setImageURI(String.valueOf(API_BASE_URL + popularRestaurants.get(position).getImageLink()));
             holder.reviewsText.setText(popularRestaurants.get(position).getNumberOfReviews() + " reviews");
             holder.ratingBar.setRating(Float.parseFloat(popularRestaurants.get(position).getAggregateFeedback()));
-            holder.descriptions.setText(popularRestaurants.get(position).getCousine1() + popularRestaurants.get(position).getCousine2() + "");
-        }else {
+            holder.descriptions.setText(popularRestaurants.get(position).getCousine1()+","+ popularRestaurants.get(position).getCousine2() + "");
+        } else {
             holder.title.setText(popularRestaurants.get(position).getRestName());
             holder.displayPic.setController(AppCommon.getDraweeController(holder.displayPic,
-                    String.valueOf(API_BASE_URL + popularRestaurants.get(position).getImageLink()),100));
+                    String.valueOf(API_BASE_URL + popularRestaurants.get(position).getImageLink()), 100));
             holder.ratingBar.setRating(Float.parseFloat(popularRestaurants.get(position).getAggregateFeedback()));
-            holder.reviewsText.setText(popularRestaurants.get(position).getNumberOfReviews() + " reviews");
+            holder.reviewsText.setText("("+popularRestaurants.get(position).getNumberOfReviews()+")");
             holder.descriptions.setText(popularRestaurants.get(position).getCousineList());
-            holder.deliveryText.setText( popularRestaurants.get(position).getDelivery());
-            holder.minSpendText.setText( popularRestaurants.get(position).getMinSpend());
-            holder.distanceText.setText( popularRestaurants.get(position).getDeliveryTime()+" miles");
-            if (popularRestaurants.get(position).getIsSponsoredRest()==1){
+            if (!popularRestaurants.get(position).getDelivery().equals("0.00")) {
+                holder.deliveryText.setText("£ " + popularRestaurants.get(position).getDelivery());
+            } else {
+                holder.deliveryText.setVisibility(View.GONE);
+                holder.delivery.setText(mContext.getString(R.string.freeDelivery));
+            }
+            holder.minSpendText.setText("£ " + popularRestaurants.get(position).getMinSpend());
+            holder.distanceLayout.setVisibility(View.GONE);
+//            holder.distanceText.setText( popularRestaurants.get(position).getDeliveryTime()+" miles");
+            if (popularRestaurants.get(position).getIsSponsoredRest() == 1) {
                 holder.sponsoredText.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 holder.sponsoredText.setVisibility(View.GONE);
+            }
+            if (popularRestaurants.get(position).getDiscountOffer() != 0) {
+                holder.discountText.setVisibility(View.VISIBLE);
+                holder.discountText.setText(popularRestaurants.get(position).getDiscountOffer() + "% off");
             }
         }
 
@@ -98,6 +109,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         @BindView(R.id.title)
         TextView title;
 
+        @Nullable
+        @BindView(R.id.delivery)
+        TextView delivery;
+
         @BindView(R.id.ratingBar)
         RatingBar ratingBar;
 
@@ -109,7 +124,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
         @BindView(R.id.seeMore)
         TextView seeMore;
-/* -------------  Listing Variables ---------- */
+
+        @BindView(R.id.distanceLayout)
+        LinearLayout distanceLayout;
+        /* -------------  Listing Variables ---------- */
+
         @BindView(R.id.deliveryText)
         TextView deliveryText;
 
@@ -121,6 +140,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
         @BindView(R.id.sponsoredText)
         TextView sponsoredText;
+
+        @Nullable
+        @BindView(R.id.discountText)
+        TextView discountText;
 
 
         public MyViewHolder(View itemView) {

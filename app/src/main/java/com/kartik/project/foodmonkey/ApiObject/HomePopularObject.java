@@ -72,7 +72,7 @@ public class HomePopularObject implements Serializable {
     @SerializedName("IsCurrentlyOnline")
     private Integer isCurrentlyOnline;
     @SerializedName("DiscountOffer")
-    private Object discountOffer;
+    private int discountOffer;
     @SerializedName("IsHalal")
     private Integer isHalal;
     @SerializedName("IsPreorder")
@@ -385,11 +385,11 @@ public class HomePopularObject implements Serializable {
         this.isCurrentlyOnline = isCurrentlyOnline;
     }
 
-    public Object getDiscountOffer() {
+    public int getDiscountOffer() {
         return discountOffer;
     }
 
-    public void setDiscountOffer(Object discountOffer) {
+    public void setDiscountOffer(int discountOffer) {
         this.discountOffer = discountOffer;
     }
 

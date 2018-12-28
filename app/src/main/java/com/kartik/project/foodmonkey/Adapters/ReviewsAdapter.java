@@ -12,7 +12,10 @@ import android.widget.TextView;
 import com.kartik.project.foodmonkey.ApiObject.ResturantFeedbackList;
 import com.kartik.project.foodmonkey.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,7 +44,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull ReviewsAdapter.MyViewHolder holder, int position) {
         holder.name.setText(resturantFeedbackList.get(position).getCustomerName());
-        holder.dateText.setText(resturantFeedbackList.get(position).getRatingDate());
+        holder.dateText.setText(changeDateFormat(resturantFeedbackList.get(position).getRatingDate()));
         holder.descriptionText.setText(resturantFeedbackList.get(position).getComments());
         holder.ratingBar.setRating(Float.parseFloat(resturantFeedbackList.get(position).getNumberOfStars()));
     }
@@ -66,5 +69,22 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.MyViewHo
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+    public String changeDateFormat(String time) {
+        String inputPattern = "yyyy-MM-dd HH:mm:ss";
+        String outputPattern = "dd/MM/yyyy";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
     }
 }

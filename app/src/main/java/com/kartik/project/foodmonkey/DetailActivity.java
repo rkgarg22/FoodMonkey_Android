@@ -126,6 +126,9 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
     @BindView(R.id.totalAmount)
     TextView totalAmount;
 
+    @BindView(R.id.discountText)
+    TextView discountText;
+
     boolean searchFlag;
     int resturantID;
 
@@ -145,6 +148,10 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
         ratingBar.setRating(Float.parseFloat(restaurantDetails.get(0).getAggregateFeedback()));
         displayPic.setImageURI(API_BASE_URL + restaurantDetails.get(0).getImageLink());
         distanceText.setText(restaurantDetails.get(0).getDeliveryTime());
+        if (restaurantDetails.get(0).getDiscountOffer() != 0) {
+            discountText.setVisibility(View.VISIBLE);
+            discountText.setText(restaurantDetails.get(0).getDiscountOffer() + "% off");
+        }
     }
 
     @Override
@@ -222,6 +229,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
                 case 2:
                     InfoActivity infoActivity = new InfoActivity();
                     bundle.putSerializable("resturntsDetail", resturantsObject.getRestaurantDetails());
+                    bundle.putStringArrayList("deliveryPostCode", resturantsObject.getDeliveryPostCode());
                     infoActivity.setArguments(bundle);
                     return infoActivity;
                 default:
@@ -451,7 +459,7 @@ public class DetailActivity extends AppCompatActivity implements TabLayout.OnTab
             totalAmt = totalAmt + (Float.parseFloat(addItemsToCartModelArrayList.get(i).getPrice()) *
                     Integer.parseInt(addItemsToCartModelArrayList.get(i).getQuantity()));
         }
-        totalAmount.setText(totalAmt+"");
+        totalAmount.setText("£"+totalAmt);
         addItemToCartPopUp.setVisibility(View.GONE);
 
 //        if (loginButton.getText().toString().trim().toLowerCase().equals(getString(R.string.addToCartPlus).toLowerCase())) {

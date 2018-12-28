@@ -41,10 +41,11 @@
                 android:enabled="false"
                 android:gravity="center_vertical"
                 android:padding="@dimen/smallMargin"
-                android:hint="Search"
+                android:singleLine="true"
+                android:hint="Enter postcode"
                 android:textColorHint="@android:color/white"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/titleText" />
+                android:textSize="@dimen/mediumText" />
 
             <ImageView
                 android:id="@+id/searchImg"

@@ -199,6 +199,7 @@
                 android:layout_marginLeft="@dimen/largeMarginLeft"
                 android:layout_marginRight="@dimen/largeMarginLeft"
                 android:layout_marginTop="@dimen/largeMarginTop"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <View

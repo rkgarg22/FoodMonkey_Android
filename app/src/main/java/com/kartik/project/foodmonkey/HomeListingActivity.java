@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -103,6 +105,9 @@ public class HomeListingActivity extends AppCompatActivity {
     @BindView(R.id.bestMatchesText)
     TextView bestMatchesText;
 
+    @BindView(R.id.scrollView)
+    ScrollView scrollView;
+
     HomeListingAdapter homeListingAdapter;
 
     GPSTracker gpsTracker;
@@ -113,8 +118,9 @@ public class HomeListingActivity extends AppCompatActivity {
 
     String tokenKey, searchBy, postcode, deliveryOptions, listBy, cuisines;
 
-    String pageNumber = "";
+    String pageNumber = "0";
 
+    boolean scrollFlag;
     OpenResturantAdapter openResturantAdapter;
     PreOrderRestAdapter preOrderRestAdapter;
     ClosedRestAdapter closedRestAdapter;
@@ -187,6 +193,24 @@ public class HomeListingActivity extends AppCompatActivity {
 //                searchEditText.setText(postcode);
 //            }
         }
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if (scrollView.getChildAt(0).getBottom()
+                        <= (scrollView.getHeight() + scrollView.getScrollY())) {
+                    //scroll view is at bottom
+                    if (scrollFlag) {
+                        scrollFlag = false;
+                        pageNumber = String.valueOf(Integer.parseInt(pageNumber) + 1);
+                        Toast.makeText(HomeListingActivity.this, "Working..."
+                                + (scrollView.getHeight() + scrollView.getScrollY()), Toast.LENGTH_SHORT).show();
+                        callingResturantList(tokenKey, searchBy, postcode, deliveryOptions, listBy, cuisines, pageNumber);
+
+                    }
+                }
+            }
+        });
+
 
 //        postcode = "BD8 7SZ";               // remove it from here to make dynamic postcode
 //        callingResturantList(tokenKey, searchBy, postcode, deliveryOptions, listBy, cuisines, pageNumber);
@@ -249,28 +273,28 @@ public class HomeListingActivity extends AppCompatActivity {
         openRestRecyclerView.setVisibility(View.GONE);
         preOrderLayout.setVisibility(View.GONE);
         closeRestLayout.setVisibility(View.GONE);
-
-//        homeListingAdapter = new HomeListingAdapter(this, restutantListObject);
-        if (restutantListObject.getOpenResturant().size() != 0) {
-            openRestRecyclerView.setVisibility(View.VISIBLE);
-        }
-        if (restutantListObject.getPreorderResturant().size() != 0) {
-            preOrderLayout.setVisibility(View.VISIBLE);
-            preOrderTitle.setText(restutantListObject.getPreorderResturant().size() + " " + getString(R.string.restaurantTakingPreOrder));
-        }
-        if (restutantListObject.getCloseResturant().size() != 0) {
-            closeRestLayout.setVisibility(View.VISIBLE);
-            closeRestTitle.setText(getString(R.string.closedRestaurents));
-        }
         if (restutantListObject.getOpenResturant().size() == 0 && restutantListObject.getPreorderResturant().size() == 0 && restutantListObject.getCloseResturant().size() == 0) {
+            scrollFlag = false;
             AppCommon.showDialog(this, "No resturant Found");
+        } else {
+            scrollView.scrollTo(0,0);
+            scrollFlag = true;
+            //        homeListingAdapter = new HomeListingAdapter(this, restutantListObject);
+            if (restutantListObject.getOpenResturant().size() != 0) {
+                openRestRecyclerView.setVisibility(View.VISIBLE);
+            }
+            if (restutantListObject.getPreorderResturant().size() != 0) {
+                preOrderLayout.setVisibility(View.VISIBLE);
+                preOrderTitle.setText(restutantListObject.getPreorderResturant().size() + " " + getString(R.string.restaurantTakingPreOrder));
+            }
+            if (restutantListObject.getCloseResturant().size() != 0) {
+                closeRestLayout.setVisibility(View.VISIBLE);
+                closeRestTitle.setText(getString(R.string.closedRestaurents));
+            }
+            openRestRecyclerView.setAdapter(openResturantAdapter);
+            preOrderRecyclerView.setAdapter(preOrderRestAdapter);
+            closeRestRecyclerView.setAdapter(closedRestAdapter);
         }
-
-        openRestRecyclerView.setAdapter(openResturantAdapter);
-        preOrderRecyclerView.setAdapter(preOrderRestAdapter);
-        closeRestRecyclerView.setAdapter(closedRestAdapter);
-
-//        recyclerView.setAdapter(homeListingAdapter);
     }
 
     void setOnClickListerner() {
@@ -442,7 +466,7 @@ public class HomeListingActivity extends AppCompatActivity {
         if (cuisinesListObjectArrayList.size() == 0) {
             AppCommon.showDialog(HomeListingActivity.this, "Some thing went wrong, please try again");
         } else {
-            cuisinesListObjectArrayList.add(0,new CuisinesListObject("All Cuisines"));
+            cuisinesListObjectArrayList.add(0, new CuisinesListObject("All Cuisines"));
             setCuisineAdapter(popUprecyclerView, cuisinesListObjectArrayList);
         }
 
@@ -576,13 +600,6 @@ public class HomeListingActivity extends AppCompatActivity {
                             if (customerHomeResponse.getCode().equals("200")) {
                                 restutantListObject = customerHomeResponse.getRestutantList();
                                 setAdapter(restutantListObject);
-//                            User user = registrationResponse.getUserEntity();
-//                            try {
-//                                AppCommon.getInstance(HomeActivity.this).setUserLatitude(Double.parseDouble(latitude));
-//                                AppCommon.getInstance(HomeActivity.this).setUserLongitude(Double.parseDouble(longitude));
-//                            } catch (Exception e) {
-//
-//                            }
                             } else {
                                 AppCommon.showDialog(HomeListingActivity.this, customerHomeResponse.getMessage());
                             }

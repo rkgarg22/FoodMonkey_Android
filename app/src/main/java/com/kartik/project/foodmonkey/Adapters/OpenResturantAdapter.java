@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,11 +56,12 @@ public class OpenResturantAdapter extends RecyclerView.Adapter<OpenResturantAdap
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.resturantName.setText(openResturant.get(position).getRestName());
         holder.cuisineListText.setText(openResturant.get(position).getCousineList());
-        holder.numberOfReview.setText("" + openResturant.get(position).getNumberOfReviews());
+        holder.numberOfReview.setText("(" + openResturant.get(position).getNumberOfReviews()+")");
         holder.deliveryText.setText("£ " + openResturant.get(position).getDelivery());
         holder.minSpendText.setText("£ " + openResturant.get(position).getMinSpend());
-//        holder.distanceText.setText(openResturant.get(position).getDistance().substring(0, 3) + " miles");
-        holder.distanceText.setText(openResturant.get(position).getDistance() + " miles");
+        holder.distanceLayout.setVisibility(View.GONE);
+//        holder.distanceText.setText(openResturant.get(position).getDistance() + " miles");
+        holder.distanceText.setVisibility(View.GONE);
         holder.ratingBar.setRating(Float.parseFloat(openResturant.get(position).getAggregateFeedback()));
         holder.displayPic.setController(AppCommon.getDraweeController(holder.displayPic, API_BASE_URL + openResturant.get(position).getImageLink(), 100));
 
@@ -77,6 +79,10 @@ public class OpenResturantAdapter extends RecyclerView.Adapter<OpenResturantAdap
             holder.sponsoredText.setVisibility(View.VISIBLE);
         } else {
             holder.sponsoredText.setVisibility(View.GONE);
+        }
+        if (openResturant.get(position).getDiscountOffer() != 0) {
+            holder.discountText.setText(openResturant.get(position).getDiscountOffer() + "% off");
+            holder.discountText.setVisibility(View.VISIBLE);
         }
 
     }
@@ -114,6 +120,9 @@ public class OpenResturantAdapter extends RecyclerView.Adapter<OpenResturantAdap
         @BindView(R.id.deliveryText)
         TextView deliveryText;
 
+        @BindView(R.id.discountText)
+        TextView discountText;
+
         @BindView(R.id.ratingBar)
         RatingBar ratingBar;
 
@@ -125,6 +134,9 @@ public class OpenResturantAdapter extends RecyclerView.Adapter<OpenResturantAdap
 
         @BindView(R.id.parentLayout)
         RelativeLayout parentLayout;
+
+        @BindView(R.id.distanceLayout)
+        LinearLayout distanceLayout;
 
         public MyViewHolder(View itemView) {
             super(itemView);

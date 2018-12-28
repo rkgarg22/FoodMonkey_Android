@@ -22,11 +22,20 @@ import butterknife.ButterKnife;
 
 public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.MyViewHolder> {
     Context mContext;
+    String comingFrom;
     ArrayList<InfoModel> arrayList = new ArrayList<>();
+    ArrayList<String> deliverylist = new ArrayList<>();
 
-    public InfoAdapter(Context mContext, ArrayList<InfoModel>  arrayList) {
+    public InfoAdapter(Context mContext, ArrayList<InfoModel> arrayList) {
         this.mContext = mContext;
         this.arrayList = arrayList;
+        comingFrom = "";
+    }
+
+    public InfoAdapter(ArrayList<String> deliverylist, Context mContext, String comingFrom) {
+        this.mContext = mContext;
+        this.comingFrom = comingFrom;
+        this.deliverylist = deliverylist;
     }
 
     @NonNull
@@ -38,13 +47,21 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.titleText.setText(arrayList.get(position).getTitle());
-        holder.descriptionText.setText(arrayList.get(position).getDescription());
+        if (comingFrom.equals("deliveryCode")) {
+            holder.titleText.setText(deliverylist.get(position));
+            holder.descriptionText.setVisibility(View.GONE);
+        } else {
+            holder.titleText.setText(arrayList.get(position).getTitle());
+            holder.descriptionText.setText(arrayList.get(position).getDescription());
+        }
     }
 
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        if (comingFrom.equals("deliveryCode")) {
+            return deliverylist.size();
+        } else
+            return arrayList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

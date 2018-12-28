@@ -20,18 +20,26 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/margin"
                 android:paddingTop="@dimen/margin"
+                android:layout_marginLeft="@dimen/margin"
                 android:text="@string/whereToFindUs"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/smallTitleText" />
 
             <fragment
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
                 android:id="@+id/map"
-                android:layout_marginRight="@dimen/margin"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="300dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin"
-                android:name="com.google.android.gms.maps.SupportMapFragment" />
+                android:layout_marginRight="@dimen/margin" />
 
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/addressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:gravity="center" />
 
         </LinearLayout>
 
@@ -70,11 +78,37 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout1"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:orientation="vertical">
+
+            <CustomControls.TextViewLatoBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/seeTheRestRating"
+                android:textSize="@dimen/smallText" />
+
+            <TextView
+                android:id="@+id/ratingUrl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/ratingUrl"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+
         <View
             android:id="@+id/underline1"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_below="@+id/layout1"
+            android:layout_below="@+id/layout2"
             android:background="@color/underline" />
 
         <CustomControls.TextViewLatoBold
@@ -98,19 +132,12 @@
             android:layout_marginLeft="@dimen/margin"
             android:layout_marginRight="@dimen/margin" />
 
-        <View
-            android:id="@+id/underline2"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_below="@+id/openingHourRecyclerView"
-            android:layout_marginTop="@dimen/margin"
-            android:background="@color/underline" />
 
         <CustomControls.TextViewLatoBold
             android:id="@+id/deliveryText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/underline2"
+            android:layout_below="@+id/openingHourRecyclerView"
             android:layout_marginLeft="@dimen/margin"
             android:layout_marginRight="@dimen/margin"
             android:paddingBottom="@dimen/margin"

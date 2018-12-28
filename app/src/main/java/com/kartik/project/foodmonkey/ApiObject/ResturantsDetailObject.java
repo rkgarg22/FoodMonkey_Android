@@ -72,7 +72,7 @@ public class ResturantsDetailObject implements Serializable {
     @SerializedName("IsCurrentlyOnline")
     private Integer isCurrentlyOnline;
     @SerializedName("DiscountOffer")
-    private Object discountOffer;
+    private int discountOffer;
     @SerializedName("IsHalal")
     private Integer isHalal;
     @SerializedName("IsPreorder")
@@ -86,7 +86,7 @@ public class ResturantsDetailObject implements Serializable {
     @SerializedName("is_menuadded")
     private Integer isMenuadded;
 
-    @SerializedName("Monday_open")
+    @SerializedName("Monday_Open")
     private String mondayOpen;
     @SerializedName("Monday_close")
     private String mondayClose;
@@ -388,11 +388,11 @@ public class ResturantsDetailObject implements Serializable {
         this.isCurrentlyOnline = isCurrentlyOnline;
     }
 
-    public Object getDiscountOffer() {
+    public int getDiscountOffer() {
         return discountOffer;
     }
 
-    public void setDiscountOffer(Object discountOffer) {
+    public void setDiscountOffer(int discountOffer) {
         this.discountOffer = discountOffer;
     }
 
@@ -594,5 +594,21 @@ public class ResturantsDetailObject implements Serializable {
 
     public void setCousine1(String cousine1) {
         this.cousine1 = cousine1;
+    }
+
+    public Double getCordinateLatitude() {
+        return cordinateLatitude;
+    }
+
+    public void setCordinateLatitude(Double cordinateLatitude) {
+        this.cordinateLatitude = cordinateLatitude;
+    }
+
+    public Double getCordinateLongitude() {
+        return cordinateLongitude;
+    }
+
+    public void setCordinateLongitude(Double cordinateLongitude) {
+        this.cordinateLongitude = cordinateLongitude;
     }
 }

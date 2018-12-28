@@ -240,5 +240,9 @@
     <string name="takeAway">Takeaway</string>
     <string name="enterPostalCode">Enter Postal Code</string>
     <string name="viewDetail">View Detail</string>
+    <string name="seeTheRestRating">See this restaurant\'s food hygiene rating at</string>
+    <string name="ratingUrl">http://ratings.food.gov.uk/</string>
+    <string name="freeDelivery">Free Delivery</string>
+    <string name="collection">Collection</string>
 
 </resources>

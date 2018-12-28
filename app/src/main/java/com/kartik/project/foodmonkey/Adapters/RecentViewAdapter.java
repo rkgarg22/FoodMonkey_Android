@@ -3,10 +3,12 @@ package com.kartik.project.foodmonkey.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -68,15 +70,28 @@ public class RecentViewAdapter extends RecyclerView.Adapter<RecentViewAdapter.My
                     String.valueOf("http://food-monkey.com" + viewedObjects.get(position).getImageLink()),100));
 
             holder.ratingBar.setRating(Float.parseFloat(viewedObjects.get(position).getAggregateFeedback()));
-            holder.reviewsText.setText(viewedObjects.get(position).getNumberOfReviews() + " reviews");
-            holder.descriptions.setText(viewedObjects.get(position).getCousine1() + viewedObjects.get(position).getCousine2() + "");
+            holder.reviewsText.setText("("+viewedObjects.get(position).getNumberOfReviews() + ")");
+            holder.descriptions.setVisibility(View.GONE);
+//            holder.descriptions.setText(viewedObjects.get(position).getCousine1() + viewedObjects.get(position).getCousine2() + "");
             holder.deliveryText.setText( viewedObjects.get(position).getDelivery());
-            holder.minSpendText.setText( viewedObjects.get(position).getMinSpend());
-            holder.distanceText.setText( viewedObjects.get(position).getDeliveryTime()+" miles");
+            holder.minSpendText.setText("£ " + viewedObjects.get(position).getMinSpend());
+//            holder.distanceText.setText( viewedObjects.get(position).getDeliveryTime()+" miles");
+            holder.distanceLayout.setVisibility(View.GONE);
             if (viewedObjects.get(position).getIsSponsoredRest()==1){
                 holder.sponsoredText.setVisibility(View.VISIBLE);
             }else {
                 holder.sponsoredText.setVisibility(View.GONE);
+            }
+
+            if (!viewedObjects.get(position).getDelivery().equals("0.00")) {
+                holder.deliveryText.setText("£ " + viewedObjects.get(position).getDelivery());
+            } else {
+                holder.deliveryText.setVisibility(View.GONE);
+                holder.delivery.setText(mContext.getString(R.string.freeDelivery));
+            }
+            if (viewedObjects.get(position).getDiscountOffer() != 0) {
+                holder.discountText.setVisibility(View.VISIBLE);
+                holder.discountText.setText(viewedObjects.get(position).getDiscountOffer() + "% off");
             }
         }
     }
@@ -117,6 +132,16 @@ public class RecentViewAdapter extends RecyclerView.Adapter<RecentViewAdapter.My
         @BindView(R.id.sponsoredText)
         TextView sponsoredText;
 
+        @Nullable
+        @BindView(R.id.discountText)
+        TextView discountText;
+
+        @Nullable
+        @BindView(R.id.delivery)
+        TextView delivery;
+
+        @BindView(R.id.distanceLayout)
+        LinearLayout distanceLayout;
 
         public MyViewHolder(View itemView) {
             super(itemView);

@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="40dp">
 
-    <CustomControls.TextViewLatoRegular
-        android:id="@+id/titleText"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:text="Monday"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/mediumText" />
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
 
-    <CustomControls.TextViewLatoRegular
-        android:id="@+id/descriptionText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:text="Monday"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/mediumText" />
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Monday"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/mediumText" />
 
-</LinearLayout>
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/descriptionText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Monday"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/mediumText" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/underline2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/underline" />
+
+
+</RelativeLayout>

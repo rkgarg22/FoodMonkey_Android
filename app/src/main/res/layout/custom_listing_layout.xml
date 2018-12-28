@@ -101,7 +101,7 @@
 
             <LinearLayout
                 android:id="@+id/deliveryLayout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/descriptionsText"
                 android:layout_marginLeft="@dimen/marginLeft"
@@ -134,6 +134,20 @@
 
             </LinearLayout>
 
+            <CustomControls.TextViewLatoRegular
+                android:id="@+id/discountText"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:text="10% off"
+                android:textSize="@dimen/smallText"
+                android:gravity="center"
+                android:visibility="gone"
+                android:background="@drawable/discount_back"
+                />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -163,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/smallMargin"
                         android:gravity="center_vertical"
-                        android:maxLength="8"
+                        android:maxLength="12"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:text="$10.00"
@@ -173,6 +187,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/distanceLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"

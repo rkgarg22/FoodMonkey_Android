@@ -67,7 +67,7 @@ public class ReviewsFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            callingListOfFeedback(AppCommon.getInstance(getActivity()).getDeviceToken(),26);// resturantID);
+            callingListOfFeedback(AppCommon.getInstance(getActivity()).getDeviceToken(),resturantID);// resturantID);
         }
     }
 
