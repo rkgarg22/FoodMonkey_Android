@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
-    tools:context="com.kartik.project.foodmonkey.FeedbackActivity">
+    tools:context="com.app.foodMonkey.FeedbackActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -23,9 +23,9 @@
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="80dp"
                 android:layout_margin="@dimen/margin"
-                android:padding="@dimen/largeMargin"
+                android:padding="@dimen/margin"
                 android:src="@drawable/food_logo_one" />
 
             <CustomControls.TextViewLatoRegular
@@ -36,7 +36,7 @@
                 android:gravity="center"
                 android:text="@string/leaveFeedForChance"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/titleText" />
+                android:textSize="@dimen/mediumText" />
 
             <CustomControls.TextViewLatoRegular
                 android:id="@+id/amount"
@@ -46,7 +46,7 @@
                 android:gravity="center"
                 android:text="£250"
                 android:textColor="@color/colorPrimary"
-                android:textSize="25sp" />
+                android:textSize="@dimen/smallTitleText" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/amount"
                 android:layout_centerHorizontal="true"
+                style="@style/RatingBar"
                 android:progressTint="@color/colorPrimary" />
 
             <CustomControls.TextViewLatoRegular
@@ -64,12 +65,12 @@
                 android:gravity="center"
                 android:text="@string/tapAStarToRate"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/titleText" />
+                android:textSize="@dimen/mediumText" />
 
             <CustomControls.EditTextLatoRegular
                 android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/tapToRate"
                 android:layout_marginLeft="@dimen/largeMargin"
                 android:layout_marginRight="@dimen/largeMargin"
@@ -83,7 +84,7 @@
             <CustomControls.EditTextLatoRegular
                 android:id="@+id/review"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="130dp"
                 android:layout_below="@+id/title"
                 android:layout_marginLeft="@dimen/largeMargin"
                 android:layout_marginRight="@dimen/largeMargin"
@@ -98,7 +99,6 @@
 
             <CustomControls.ButtonLatoRegular
                 android:id="@+id/postFeedBack"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/review"

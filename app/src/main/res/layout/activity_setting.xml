@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
     android:orientation="vertical"
-    tools:context="com.kartik.project.foodmonkey.SettingActivity">
+    tools:context="com.app.foodMonkey.SettingActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -145,10 +145,11 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/margin"
-                    android:background="@drawable/switch_selection"
+                    android:background="@drawable/switch_unselected"
                     android:text=""
                     android:textOff=""
                     android:textOn="" />
+                <!--android:background="@drawable/switch_selection"-->
 
             </RelativeLayout>
 

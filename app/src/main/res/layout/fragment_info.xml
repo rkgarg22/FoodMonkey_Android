@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kartik.project.foodmonkey.Fragments.InfoActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.app.foodMonkey.Fragments.InfoActivity">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -59,14 +60,18 @@
                 android:paddingTop="@dimen/margin"
                 android:text="@string/description"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/smallTitleText" />
+                android:textSize="@dimen/mediumText" />
 
-            <CustomControls.TextViewLatoBold
+            <com.borjabravo.readmoretextview.ReadMoreTextView
                 android:id="@+id/descriptionsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dummyText"
-                android:textSize="@dimen/smallText" />
+                android:textSize="@dimen/smallText"
+                app:trimExpandedText="false"
+                app:trimLines="3"
+                app:colorClickableText="@color/colorPrimaryDark"
+                app:trimCollapsedText="@string/readMore"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -74,6 +79,7 @@
                 android:paddingBottom="@dimen/padding"
                 android:paddingTop="@dimen/padding"
                 android:text="@string/readMore"
+                android:visibility="gone"
                 android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
@@ -122,7 +128,7 @@
             android:paddingTop="@dimen/margin"
             android:text="@string/openningHour"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/smallTitleText" />
+            android:textSize="@dimen/mediumText" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/openingHourRecyclerView"
@@ -144,7 +150,7 @@
             android:paddingTop="@dimen/margin"
             android:text="@string/deliveryAreas"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/smallTitleText" />
+            android:textSize="@dimen/mediumText" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/deliveryRecyclerView"

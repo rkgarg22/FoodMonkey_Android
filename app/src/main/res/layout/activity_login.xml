@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
-    tools:context="com.kartik.project.foodmonkey.LoginActivity">
+    tools:context="com.app.foodMonkey.LoginActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -199,8 +199,8 @@
                 android:layout_marginLeft="@dimen/largeMarginLeft"
                 android:layout_marginRight="@dimen/largeMarginLeft"
                 android:layout_marginTop="@dimen/largeMarginTop"
-                android:visibility="gone"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <View
                     android:layout_width="match_parent"
@@ -266,11 +266,9 @@
 
             </LinearLayout>
 
-
         </RelativeLayout>
 
     </ScrollView>
-
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -279,6 +277,5 @@
         android:layout_centerInParent="true"
         android:progressTint="@color/pink"
         android:visibility="gone" />
-
 
 </RelativeLayout>

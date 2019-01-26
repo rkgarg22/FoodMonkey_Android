@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/smallMargin"
+    android:layout_marginRight="@dimen/smallMargin"
+    android:layout_marginTop="@dimen/margin">
+
+    <LinearLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:gravity="center_vertical"
+            android:text="Peri peri"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/mediumText" />
+
+        <CustomControls.TextViewLatoRegular
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:gravity="center_vertical"
+            android:text="Peri peri"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/smallMargin"
+            android:textColor="#828282"
+            android:textSize="@dimen/smallText" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menuRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/smallMargin"
+        android:layout_marginRight="@dimen/smallMargin"
+        android:layout_below="@+id/parentLayout"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

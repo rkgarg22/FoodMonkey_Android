@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
-    tools:context="com.kartik.project.foodmonkey.EditAccountActivity">
+    tools:context="com.app.foodMonkey.EditAccountActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -70,13 +70,69 @@
                     android:id="@+id/firstName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/editIcon1"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="@dimen/largeMargin"
+                    android:hint="First Name" />
+
+                <ImageView
+                    android:id="@+id/editIcon1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/edit_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/background_border"
+                android:padding="@dimen/smallMargin">
+
+                <EditText
+                    android:id="@+id/middleName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_toStartOf="@+id/editIcon"
                     android:background="@android:color/transparent"
                     android:paddingStart="@dimen/largeMargin"
-                    android:hint="Name" />
+                    android:hint="Middle Name" />
 
                 <ImageView
                     android:id="@+id/editIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/smallMargin"
+                    android:src="@drawable/edit_icon" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/largeMargin"
+                android:layout_marginStart="@dimen/largeMargin"
+                android:layout_marginTop="@dimen/margin"
+                android:background="@drawable/background_border"
+                android:padding="@dimen/smallMargin">
+
+                <EditText
+                    android:id="@+id/lastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/editIcon11"
+                    android:background="@android:color/transparent"
+                    android:paddingStart="@dimen/largeMargin"
+                    android:hint="Last Name" />
+
+                <ImageView
+                    android:id="@+id/editIcon11"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
@@ -145,6 +201,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:padding="@dimen/smallMargin"
+                    android:visibility="gone"
                     android:src="@drawable/edit_icon" />
             </RelativeLayout>
 
@@ -164,6 +221,8 @@
                     android:layout_toStartOf="@+id/editIcon4"
                     android:background="@android:color/transparent"
                     android:maxLines="1"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:inputType="number"
                     android:paddingStart="@dimen/largeMargin"
                     android:hint="+44 123456789" />
@@ -175,6 +234,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:padding="@dimen/smallMargin"
+                    android:visibility="gone"
                     android:src="@drawable/edit_icon" />
             </RelativeLayout>
 
@@ -212,7 +272,6 @@
 
             <CustomControls.ButtonLatoRegular
                 android:id="@+id/manageAddress"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/largeMargin"
@@ -224,7 +283,6 @@
 
             <CustomControls.ButtonLatoRegular
                 android:id="@+id/saveButton"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/largeMargin"
@@ -234,6 +292,7 @@
                 android:gravity="center"
                 android:text="@string/save"
                 android:textColor="@android:color/white" />
+            <!--style="@style/Base.V7.Widget.AppCompat.EditText"-->
 
         </LinearLayout>
 

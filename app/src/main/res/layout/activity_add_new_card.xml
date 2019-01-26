@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
-    tools:context="com.kartik.project.foodmonkey.AddNewCardActivity">
+    tools:context="com.app.foodMonkey.AddNewCardActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -248,10 +248,12 @@
 
     </LinearLayout>
 
-    <CustomControls.ButtonLatoRegular
+    <CustomControls.TextViewLatoBold
         android:id="@+id/addToCartBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="@dimen/mediumText"
         android:layout_below="@+id/expiryCvvLayout"
         android:text="@string/addCard"
         android:textColor="@android:color/white"

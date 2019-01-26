@@ -30,7 +30,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/largeMargin"
             android:scaleType="fitXY"
-            app:placeholderImage="@drawable/food_logo_one"
+            app:placeholderImage="@mipmap/ic_launcher"
             android:src="@drawable/dummy_rest" />
 
         <RelativeLayout
@@ -73,7 +73,6 @@
                 android:numStars="6"
                 android:paddingLeft="@dimen/padding"
                 android:paddingRight="@dimen/padding"
-                android:rating="5.5"
                 android:theme="@style/RatingBar" />
 
             <CustomControls.TextViewLatoRegular
@@ -95,7 +94,6 @@
                 android:layout_below="@+id/ratingBar"
                 android:layout_marginLeft="@dimen/margin"
                 android:layout_marginTop="@dimen/smallMargin"
-                android:text="Chicken, Peri Peri, Halal"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/smallText" />
 
@@ -115,6 +113,7 @@
                     android:src="@drawable/food_delivery_icon" />
 
                 <CustomControls.TextViewLatoRegular
+                    android:id="@+id/delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginLeft="@dimen/smallMargin"
@@ -128,6 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/smallMargin"
+                    android:layout_gravity="center_vertical"
                     android:text="$1.00"
                     android:textColor="@color/pink"
                     android:textSize="@dimen/smallText" />
@@ -163,6 +163,7 @@
                     android:layout_weight="0.5">
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/minSpend"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_marginLeft="@dimen/marginLeft"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
-    tools:context="com.kartik.project.foodmonkey.ReferFriendActivity">
+    tools:context="com.app.foodMonkey.ReferFriendActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -68,20 +68,20 @@
             android:layout_height="50dp"
             android:background="@drawable/curve_border_background"
             android:hint="@string/enterMobileNumber"
-            android:inputType="text"
+            android:inputType="number"
             android:paddingStart="@dimen/padding"
             android:textColor="@android:color/black" />
 
 
-        <CustomControls.ButtonLatoRegular
+        <CustomControls.TextViewRawLineBold
             android:id="@+id/sendButton"
-            style="@style/Base.V7.Widget.AppCompat.EditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginTop="@dimen/marginTop"
             android:background="@color/pink"
             android:gravity="center"
             android:text="@string/send"
+            android:textSize="@dimen/mediumText"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
@@ -95,6 +95,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/shareFacebookLayout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -120,6 +121,7 @@
             android:background="@color/lightGrey" />
 
         <LinearLayout
+            android:id="@+id/shareTwitterLayout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -147,6 +149,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:id="@+id/shareEmailLayout"
             android:orientation="horizontal">
 
             <ImageView
@@ -172,6 +175,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:id="@+id/shareMoreLayout"
             android:orientation="horizontal">
 
             <ImageView
@@ -197,5 +201,12 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone"/>
 
 </RelativeLayout>

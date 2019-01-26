@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
-    tools:context="com.kartik.project.foodmonkey.CheckOutActivity">
+    tools:context="com.app.foodMonkey.CheckOutActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -14,7 +14,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/totalLayout"
         android:layout_below="@+id/toolbar">
 
         <LinearLayout
@@ -24,14 +23,14 @@
             android:layout_marginRight="@dimen/margin"
             android:orientation="vertical">
 
-            <CustomControls.TextViewLatoRegular
+            <CustomControls.TextViewRawLineRegular
                 android:id="@+id/textOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop"
                 android:text="@string/yourOrder"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/smallTitleText" />
+                android:textSize="@dimen/mediumText" />
 
 
             <RadioGroup
@@ -50,7 +49,7 @@
                     android:buttonTint="@color/colorPrimary"
                     android:text="@string/delivery"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/smallTitleText" />
+                    android:textSize="@dimen/mediumText" />
 
                 <RadioButton
                     android:id="@+id/bestMatchedRadio"
@@ -61,29 +60,32 @@
                     android:buttonTint="@color/colorPrimary"
                     android:text="@string/collection"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/smallTitleText" />
+                    android:textSize="@dimen/mediumText"
+                    android:visibility="visible" />
 
             </RadioGroup>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <CustomControls.TextViewRawLineBold
+                    android:id="@+id/deliveryTimeText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
-                    android:text="1 hour 10 mins"/>
+                    android:textSize="@dimen/smallText" />
 
                 <CustomControls.TextViewRawLineBold
+                    android:id="@+id/collectionTimeText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="30 to 40 mins"/>
-
+                    android:textSize="@dimen/smallText"
+                    android:visibility="visible" />
 
             </LinearLayout>
 
@@ -95,9 +97,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="40dp">
 
-                <CustomControls.TextViewLatoRegular
+                <CustomControls.TextViewRawLineRegular
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toLeftOf="@+id/editOrder"
@@ -114,7 +116,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/editOrder"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/mediumText" />
+                    android:textSize="@dimen/smallText" />
 
 
             </RelativeLayout>
@@ -131,7 +133,7 @@
                 android:text="Pepe's Piri Piri"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/mediumText"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <View
                 android:layout_width="match_parent"
@@ -153,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin">
 
-                <CustomControls.TextViewLatoBold
+                <CustomControls.TextViewRawLineBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/subTotalText"
@@ -162,7 +164,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/mediumText" />
 
-                <CustomControls.TextViewLatoBold
+                <CustomControls.TextViewRawLineBold
                     android:id="@+id/subTotalText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,16 +179,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <CustomControls.TextViewLatoRegular
+                <CustomControls.TextViewRawLineRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/deliveryFeeAmount"
                     android:gravity="center_vertical"
                     android:text="@string/deliveryFee"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/smallText" />
+                    android:textSize="@dimen/mediumText" />
 
-                <CustomControls.TextViewLatoRegular
+                <CustomControls.TextViewRawLineRegular
                     android:id="@+id/deliveryCharges"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,7 +195,87 @@
                     android:gravity="center_vertical"
                     android:text="$1.00"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/smallText" />
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/discountLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin">
+
+                <CustomControls.TextViewRawLineRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/discountText"
+                    android:gravity="center_vertical"
+                    android:text="@string/discount"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewRawLineRegular
+                    android:id="@+id/discountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/serviceChargeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/smallMargin">
+
+                <CustomControls.TextViewRawLineRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/serviceChargeText"
+                    android:gravity="center_vertical"
+                    android:text="@string/serviceCharge"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewRawLineRegular
+                    android:id="@+id/serviceChargeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:text="£ 0.25"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/couponTextLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/smallMargin">
+
+                <CustomControls.TextViewRawLineRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/discountChargeText"
+                    android:gravity="center_vertical"
+                    android:text="@string/couponDiscount"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
+
+                <CustomControls.TextViewRawLineRegular
+                    android:id="@+id/discountChargeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/mediumText" />
 
             </RelativeLayout>
 
@@ -209,20 +290,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
 
-                <CustomControls.TextViewLatoBold
+                <CustomControls.TextViewRawLineRegular
+                    android:id="@+id/havePromoText"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_toLeftOf="@+id/totalAmount"
+                    android:gravity="center_vertical"
+                    android:text="@string/haveAPromoCode"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/superSmallText" />
+
+                <CustomControls.TextViewRawLineBold
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@+id/havePromoText"
                     android:layout_toLeftOf="@+id/totalAmount"
                     android:gravity="center_vertical"
                     android:text="@string/total"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/mediumText" />
 
-                <CustomControls.TextViewLatoBold
+                <CustomControls.TextViewRawLineBold
                     android:id="@+id/totalBill"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
+                    android:layout_below="@+id/havePromoText"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/smallTitleText" />
@@ -248,7 +341,8 @@
                     android:layout_marginTop="@dimen/marginTop"
                     android:gravity="center"
                     android:text="@string/paymentAfterLogin"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/smallText" />
 
                 <CustomControls.ButtonLatoRegular
                     android:id="@+id/loginButton"
@@ -272,12 +366,12 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone">
 
-                <CustomControls.TextViewLatoRegular
+                <CustomControls.TextViewLatoBold
                     android:id="@+id/chooseDeliveryText"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center_vertical"
-                    android:text="@string/chooseDeliveryType"
+                    android:text="@string/chooseDeliveryAddress"
                     android:textSize="@dimen/mediumText" />
 
                 <android.support.v7.widget.RecyclerView
@@ -298,7 +392,6 @@
 
                 <CustomControls.ButtonLatoRegular
                     android:id="@+id/proceedToPayBtn"
-                    style="@style/Base.V7.Widget.AppCompat.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/addNewAddress"
@@ -310,10 +403,73 @@
 
             </RelativeLayout>
 
-
         </LinearLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/promotionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#dd000000"
+        android:visibility="gone">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:background="@android:color/white"
+            app:cardCornerRadius="@dimen/margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <CustomControls.TextViewRawLineBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/smallText"
+                    android:text="@string/promotions"
+                    android:textSize="@dimen/mediumText" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/margin"
+                    android:background="@drawable/background_border_primary">
+
+                    <CustomControls.EditTextLatoRegular
+                        android:id="@+id/promoEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toStartOf="@+id/applyPromoCode"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/enterPromoCode"
+                        android:paddingLeft="@dimen/padding"
+                        android:singleLine="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:textSize="@dimen/smallText" />
+
+                    <TextView
+                        android:id="@+id/applyPromoCode"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorPrimaryDark"
+                        android:gravity="center"
+                        android:text="APPLY"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/smallText" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -321,6 +477,6 @@
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:progressTint="@color/pink"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

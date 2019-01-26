@@ -15,11 +15,10 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin"
             android:layout_marginRight="@dimen/margin"
-            android:layout_toLeftOf="@+id/dropDown"
             android:gravity="center_vertical"
             android:text="Peri peri"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/smallTitleText" />
+            android:textSize="@dimen/mediumText" />
 
         <ImageView
             android:id="@+id/dropDown"
@@ -44,10 +43,17 @@
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/menusRecyclerView"
+        android:id="@+id/categorySubMenuRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/parentLayout"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menusRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categorySubMenuRecyclerView"
         android:visibility="gone" />
 
 </RelativeLayout>

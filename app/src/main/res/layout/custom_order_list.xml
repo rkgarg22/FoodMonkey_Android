@@ -18,7 +18,7 @@
             android:layout_marginLeft="@dimen/largeMargin"
             android:scaleType="fitXY"
             android:src="@drawable/dummy_rest"
-            app:placeholderImage="@drawable/food_logo_one" />
+            app:placeholderImage="@mipmap/ic_launcher" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -109,11 +109,11 @@
                     android:textSize="@dimen/smallText" />
 
                 <CustomControls.TextViewLatoRegular
+                    android:id="@+id/orderType"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginLeft="@dimen/smallMargin"
                     android:gravity="center_vertical"
-                    android:text="Delivery"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/smallText" />
 

@@ -37,8 +37,8 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.google.gson.Gson;
-import com.kartik.project.foodmonkey.Models.AddItemsToCartModel;
-import com.kartik.project.foodmonkey.R;
+import com.app.foodMonkey.Models.AddItemsToCartModel;
+import com.app.foodMonkey.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -54,8 +54,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class AppCommon {
     public static AppCommon mInstance = null;
@@ -726,7 +724,7 @@ public class AppCommon {
     }
 
     public void setAddToCartObject(List<AddItemsToCartModel> addItemsToCartModelArrayList) {
-        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_CARD, Context.MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
         mEditor.putString(MYPerference.Add_DATA_CART, new Gson().toJson(addItemsToCartModelArrayList));
         mEditor.apply();
@@ -734,7 +732,7 @@ public class AppCommon {
 
     public List<AddItemsToCartModel> getAddToCartObject() {
         List<AddItemsToCartModel> cartData = new ArrayList<>();
-        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_CARD, Context.MODE_PRIVATE);
         String jsonCart = mSharedPreferences.getString(MYPerference.Add_DATA_CART, "");
         Gson gson = new Gson();
         AddItemsToCartModel[] cartItems = gson.fromJson(jsonCart,
@@ -750,6 +748,24 @@ public class AppCommon {
 
         return cartData;
     }
+
+    public void removeAddToCartData() {
+        SharedPreferences preferences = mContext.getSharedPreferences(MYPerference.mPREFS_CARD, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+    }
+
+
+    public String getPriceInCart(List<AddItemsToCartModel> cartData) {
+        float totalAmt = 0;
+        for (int i = 0; i < cartData.size(); i++) {
+            totalAmt = totalAmt + (Float.parseFloat(cartData.get(i).getPrice()) *
+                    Integer.parseInt(cartData.get(i).getQuantity()));
+        }
+        return String.valueOf(totalAmt);
+    }
+
 
     public static DraweeController getDraweeController(DraweeView imageView, String imageUrl, int size) {
         Uri uri = Uri.parse(imageUrl);
@@ -777,4 +793,15 @@ public class AppCommon {
         return mSharedPreferences.getString(MYPerference.BrainTreeToken, "");
     }
 
+    public void setSocialLogin(boolean status) {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putBoolean(MYPerference.SOCIAL_LOGIN, status);
+        mEditor.apply();
+    }
+
+    public boolean isSocialLogin() {
+        SharedPreferences mSharedPreferences = mContext.getSharedPreferences(MYPerference.mPREFS_NAME, Context.MODE_PRIVATE);
+        return mSharedPreferences.getBoolean(MYPerference.SOCIAL_LOGIN, false);
+    }
 }

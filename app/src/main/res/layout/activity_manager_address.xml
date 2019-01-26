@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kartik.project.foodmonkey.ManagerAddressActivity">
+    tools:context="com.app.foodMonkey.ManagerAddressActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -27,7 +27,6 @@
 
             <CustomControls.ButtonLatoRegular
                 android:id="@+id/addNewAddress"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop"
@@ -36,7 +35,7 @@
                 android:text="@string/addNewAddress"
                 android:layout_margin="@dimen/margin"
                 android:textColor="@android:color/white" />
-
+            <!--style="@style/Base.V7.Widget.AppCompat.EditText"-->
 
         </LinearLayout>
     </ScrollView>

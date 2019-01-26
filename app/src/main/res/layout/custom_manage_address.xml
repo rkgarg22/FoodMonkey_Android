@@ -32,6 +32,7 @@
             android:id="@+id/descriptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/smallText"
             android:paddingLeft="@dimen/padding"/>
 
         <LinearLayout
@@ -43,7 +44,6 @@
 
             <CustomControls.ButtonLatoRegular
                 android:id="@+id/edit"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding"
@@ -55,7 +55,6 @@
 
             <CustomControls.ButtonLatoRegular
                 android:id="@+id/delete"
-                style="@style/Base.V7.Widget.AppCompat.EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding"
@@ -64,6 +63,7 @@
                 android:gravity="center"
                 android:text="@string/delete"
                 android:textColor="@android:color/white" />
+            <!--style="@style/Base.V7.Widget.AppCompat.EditText"-->
 
 
         </LinearLayout>

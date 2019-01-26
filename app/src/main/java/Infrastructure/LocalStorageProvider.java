@@ -17,7 +17,7 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import com.kartik.project.foodmonkey.R;
+import com.app.foodMonkey.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;

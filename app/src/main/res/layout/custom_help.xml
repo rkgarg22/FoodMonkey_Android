@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/margin"
+    android:layout_marginLeft="@dimen/largeMargin"
+    android:layout_marginRight="@dimen/largeMargin">
+
+    <CustomControls.TextViewRawLineBold
+        android:id="@+id/questionsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black" />
+
+    <CustomControls.TextViewLatoRegular
+        android:id="@+id/answerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray" />
+
+</LinearLayout>

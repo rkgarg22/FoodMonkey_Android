@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context="com.app.foodMonkey.DeliveryTimeActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        android:paddingBottom="@dimen/padding"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CustomControls.TextViewRawLineBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:text="@string/deliveryTimeText"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewRawLineBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:text="@string/deliveryDate"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewRawLineBold
+                android:id="@+id/dateForOrder"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/background_border"
+                android:layout_marginTop="@dimen/margin"
+                android:text="26 octuber,2018 Friday"
+                android:paddingLeft="@dimen/padding"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewRawLineBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:text="@string/deliveryTime"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewRawLineBold
+                android:id="@+id/deliverTimeText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/background_border"
+                android:layout_marginTop="@dimen/margin"
+                android:text="17:15"
+                android:paddingLeft="@dimen/padding"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.TextViewRawLineBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:text="@string/leaveANote"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.EditTextLatoRegular
+                android:id="@+id/noteForRest"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="start"
+                android:background="@drawable/background_border"
+                android:layout_marginTop="@dimen/margin"
+                android:paddingLeft="@dimen/padding"
+                android:textSize="@dimen/mediumText" />
+
+            <CustomControls.ButtonLatoRegular
+                android:id="@+id/payButton"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/largeMarginTop"
+                android:layout_marginTop="@dimen/largeMarginTop"
+                android:background="@color/pink"
+                android:gravity="center"
+                android:text="@string/payByCash"
+                android:textColor="@android:color/white" />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:progressTint="@color/pink"
+        android:visibility="gone" />
+
+</RelativeLayout>

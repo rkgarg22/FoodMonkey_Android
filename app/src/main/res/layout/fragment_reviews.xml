@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kartik.project.foodmonkey.Fragments.ReviewsFragment">
+    tools:context="com.app.foodMonkey.Fragments.ReviewsFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -26,14 +26,16 @@
                     android:orientation="horizontal">
 
                     <RatingBar
+                        android:id="@+id/ratingBar"
                         android:theme="@style/RatingBar"
-                        style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:rating="4.5" />
+                        android:layout_height="40dp"
+                        android:numStars="5"
+                        style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
+                        android:layout_gravity="center_vertical"/>
 
                     <CustomControls.TextViewLatoRegular
+                        android:id="@+id/agreegateText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -44,11 +46,11 @@
                 </LinearLayout>
 
                 <CustomControls.TextViewLatoRegular
+                    android:id="@+id/reviewHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/smallMargin"
                     android:gravity="center"
-                    android:text="Based on the 333 most recent reviews"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/mediumText" />
 

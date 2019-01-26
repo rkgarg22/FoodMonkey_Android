@@ -16,7 +16,7 @@
             android:layout_weight="0.5"
             android:text="Monday"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/mediumText" />
+            android:textSize="@dimen/smallText" />
 
         <CustomControls.TextViewLatoRegular
             android:id="@+id/descriptionText"
@@ -25,7 +25,7 @@
             android:layout_weight="0.5"
             android:text="Monday"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/mediumText" />
+            android:textSize="@dimen/smallText" />
     </LinearLayout>
 
     <View

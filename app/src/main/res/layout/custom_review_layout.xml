@@ -4,13 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/marginLeft"
         android:layout_marginRight="@dimen/margin"
-        android:layout_marginTop="@dimen/largeMarginTop">
+        android:layout_marginTop="@dimen/marginTop">
 
         <CustomControls.TextViewLatoRegular
             android:id="@+id/name"
@@ -28,7 +27,7 @@
             android:layout_alignParentRight="true"
             android:text="01/09/2018"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/mediumText" />
+            android:textSize="@dimen/smallText" />
 
     </RelativeLayout>
 
@@ -40,8 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        android:rating="4.5" />
+        android:layout_marginRight="@dimen/margin" />
     <!--android:scaleX="0.9"-->
     <!--android:scaleY="0.9"-->
 
